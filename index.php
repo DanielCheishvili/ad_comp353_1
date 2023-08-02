@@ -2,7 +2,7 @@
 include ('config.php');
 
 //display all students on the page
-$sql = "SELECT * FROM students";
+$sql = "SELECT * FROM Student";
 $result = mysqli_query($conn, $sql);
 
 echo $result;
