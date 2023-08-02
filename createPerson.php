@@ -28,6 +28,15 @@
             {
                 $sql = "INSERT INTO person (medicareCard, firstName, lastName, address, city, province, postalCode, telephoneNumber, email, dateOfBirth, medicareExpiryDate, citizenship)
                 VALUES ('$medicareCard', '$firstName', '$lastName', '$address', '$city', '$province', '$postalCode', '$telephoneNumber', '$email', '$dateOfBirth', '$medicareExpiryDate', '$citizenship')";
+                if(mysqli_query($conn, $sql))
+                {
+                    echo "Record added successfully";
+                }
+                else
+                {
+                    echo "Error: " . $sql . "<br>" . mysqli_error($conn);
+                }
             }
         }
+        mysqli_close($conn);
 ?>
