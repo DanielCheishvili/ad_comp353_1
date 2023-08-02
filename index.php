@@ -98,11 +98,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>My Website</title>
-    <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
 </head>
 <body>
-    <!-- Navigation Bar -->
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
         <div class="container">
             <a class="navbar-brand" href="#">My Website</a>
@@ -112,22 +110,22 @@
             <div class="collapse navbar-collapse" id="navbarNav">
                 <ul class="navbar-nav">
                     <li class="nav-item active">
-                        <a class="nav-link" href="person.php">Person</a>
+                        <a class="nav-link" href="Tables/person.php">Person</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="employee.php">Employee</a>
+                        <a class="nav-link" href="Tables/employee.php">Employees</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="student.php">Student</a>
+                        <a class="nav-link" href="Tables/student.php">Students</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="facility.php">Facility</a>
+                        <a class="nav-link" href="Tables/facility.php">Facilities</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="vaccination.php">Vaccination</a>
+                        <a class="nav-link" href="Tables/vaccination.php">Vaccinations</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="infection.php">Infection</a>
+                        <a class="nav-link" href="Tables/infection.php">Infections</a>
                     </li>
                 </ul>
             </div>
@@ -139,7 +137,6 @@
         <p>This is the landing page for my website. Use the navigation bar to access the different tables.</p>
     </div>
 
-    <!-- Bootstrap JS -->
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.1/dist/umd/popper.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
