@@ -53,7 +53,7 @@
                 echo '<td>' . $row['province'] . '</td>';
                 echo '<td>' . $row['postalCode'] . '</td>';
                 echo '<td>' . $row['medicareCard'] . '</td>';
-                echo '<td>' . $row['medicareExpiry'] . '</td>';
+                echo '<td>' . $row['medicareExpiryDate'] . '</td>';
                 echo '<td>' . $row['citizenship'] . '</td>';
 
                 echo '</tr>';
