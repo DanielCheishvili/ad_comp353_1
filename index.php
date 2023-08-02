@@ -9,7 +9,7 @@
 <body>
 
     <h1> Create A Person </h1>
-    <form action="createPerson.php" method="POST">
+    <form action="createPerson.php" method="post">
         <label for="medicareCard">Medicare Card</label>
         <input type="text" name="medicareCard" id="medicareCard" placeholder="Medicare Card">
         <br>
