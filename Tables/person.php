@@ -8,9 +8,39 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
 </head>
 <body>
-    <!-- Navigation Bar -->
-    <!-- ... (Same as in the previous example) ... -->
-
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <div class="container">
+            <a class="navbar-brand" href="#">My Website</a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav">
+                    <li class="nav-item">
+                        <a class="nav-link" href="person.php">Person</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="employee.php">Employee</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="student.php">Student</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="facility.php">Facility</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="vaccination.php">Vaccination</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="infection.php">Infection</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+    <button class="btn btn-primary">Insert Row</button>
+        <button class="btn btn-danger">Delete Row</button>
+        <button class="btn btn-warning">Edit Row</button>
     <div class="container mt-5">
         <h2>Person Table</h2>
         <p>Table displaying all the records of the Person table.</p>
@@ -70,9 +100,7 @@
         <!-- End of PHP code -->
         
         <!-- Buttons -->
-        <button class="btn btn-primary">Insert Row</button>
-        <button class="btn btn-danger">Delete Row</button>
-        <button class="btn btn-warning">Edit Row</button>
+       
     </div>
 
     <!-- Bootstrap JS -->
