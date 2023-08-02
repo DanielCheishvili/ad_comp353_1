@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<!-- <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -11,40 +11,40 @@
     <h1> Create A Person </h1>
     <form action="<?php echo $_SERVER['PHP_SELF']; ?>" method="post">
         <label for="medicareCard">Medicare Card</label>
-        <input type="text" name="medicareCard" id="medicareCard" placeholder="Medicare Card" value="<?php echo isset($medicareCard) ? htmlspecialchars($medicareCard) : ''; ?>">
+        <input type="text" name="medicareCard" id="medicareCard" placeholder="Medicare Card">
         <br>
         <label for="firstName">First Name</label>
-        <input type="text" name="firstName" id="firstName" placeholder="First Name" value="<?php echo htmlspecialchars($firstName); ?>">
+        <input type="text" name="firstName" id="firstName" placeholder="First Name">
         <br>
         <label for="lastName">Last Name</label>
-        <input type="text" name="lastName" id="lastName" placeholder="Last Name" value="<?php echo htmlspecialchars($lastName); ?>">
+        <input type="text" name="lastName" id="lastName" placeholder="Last Name">
         <br>
         <label for="address">Address</label>
-        <input type="text" name="address" id="address" placeholder="Address" value="<?php echo htmlspecialchars($address); ?>">
+        <input type="text" name="address" id="address" placeholder="Address">
         <br>
         <label for="city">City</label>
-        <input type="text" name="city" id="city" placeholder="City" value="<?php echo htmlspecialchars($city); ?>">
+        <input type="text" name="city" id="city" placeholder="City">
         <br>
         <label for="province">Province</label>
-        <input type="text" name="province" id="province" placeholder="Province" value="<?php echo htmlspecialchars($province); ?>">
+        <input type="text" name="province" id="province" placeholder="Province">
         <br>
         <label for="postalCode">Postal Code</label>
-        <input type="text" name="postalCode" id="postalCode" placeholder="Postal Code" value="<?php echo htmlspecialchars($postalCode); ?>">
+        <input type="text" name="postalCode" id="postalCode" placeholder="Postal Code">
         <br>
         <label for="telephoneNumber">Telephone Number</label>
-        <input type="text" name="telephoneNumber" id="telephoneNumber" placeholder="Telephone Number" value="<?php echo htmlspecialchars($telephoneNumber); ?>">
+        <input type="text" name="telephoneNumber" id="telephoneNumber" placeholder="Telephone Number">
         <br>
         <label for="email">Email</label>
-        <input type="text" name="email" id="email" placeholder="Email" value="<?php echo htmlspecialchars($email); ?>">
+        <input type="text" name="email" id="email" placeholder="Email">
         <br>
         <label for="dateOfBirth">Date Of Birth</label>
-        <input type="text" name="dateOfBirth" id="dateOfBirth" placeholder="Date Of Birth" value="<?php echo htmlspecialchars($dateOfBirth); ?>">
+        <input type="text" name="dateOfBirth" id="dateOfBirth" placeholder="Date Of Birth">
         <br>
         <label for="medicareExpiryDate">Medicare Expiry Date</label>
-        <input type="text" name="medicareExpiryDate" id="medicareExpiryDate" placeholder="Medicare Expiry Date" value="<?php echo htmlspecialchars($medicareExpiryDate); ?>">
+        <input type="text" name="medicareExpiryDate" id="medicareExpiryDate" placeholder="Medicare Expiry Date">
         <br>
         <label for="citizenship">Citizenship</label>
-        <input type="checkbox" name="citizenship" id="citizenship" placeholder="Citizenship" value="<?php echo htmlspecialchars($citizenship); ?>">
+        <input type="checkbox" name="citizenship" id="citizenship" placeholder="Citizenship">
         <br>
         <input type="submit" name="submit" value="Submit">
     </form>
@@ -52,11 +52,7 @@
     <?php 
         include ('config.php');
         $medicareCard = $firstName = $lastName = $address = $city = $province = 
-        $postalCode = $telephoneNumber = $email =  $dateOfBirth = $medicareExpiryDate = $citizenship = "";
-
-        $medicareCard_err = $firstName_err = $lastName_err = $address_err = $city_err = $province_err = $postalCode_err = 
-        $telephoneNumber_err = $email_err =  $dateOfBirth_err = $medicareExpiryDate_err = $citizenship_err = "";
-        
+        $postalCode = $telephoneNumber = $email =  $dateOfBirth = $medicareExpiryDate = $citizenship = "";        
         if(isset($_POST['submit']))
         {
             $medicareCard = $_POST['medicareCard'];
@@ -91,5 +87,61 @@
         }
         mysqli_close($conn);
 ?>
+</body>
+</html> -->
+
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Website</title>
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+</head>
+<body>
+    <!-- Navigation Bar -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <div class="container">
+            <a class="navbar-brand" href="#">My Website</a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav">
+                    <li class="nav-item active">
+                        <a class="nav-link" href="person.php">Person</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="employee.php">Employee</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="student.php">Student</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="facility.php">Facility</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="vaccination.php">Vaccination</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="infection.php">Infection</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container mt-5">
+        <h1>Welcome to My Website</h1>
+        <p>This is the landing page for my website. Use the navigation bar to access the different tables.</p>
+    </div>
+
+    <!-- Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.1/dist/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 </body>
 </html>
