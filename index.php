@@ -11,7 +11,7 @@
     <h1> Create A Person </h1>
     <form action="<?php echo $_SERVER['PHP_SELF']; ?>" method="post">
         <label for="medicareCard">Medicare Card</label>
-        <input type="text" name="medicareCard" id="medicareCard" placeholder="Medicare Card" value="<?php echo htmlspecialchars($medicareCard); ?>">
+        <input type="text" name="medicareCard" id="medicareCard" placeholder="Medicare Card" value="<?php echo isset($medicareCard) ? htmlspecialchars($medicareCard) : ''; ?>">
         <br>
         <label for="firstName">First Name</label>
         <input type="text" name="firstName" id="firstName" placeholder="First Name" value="<?php echo htmlspecialchars($firstName); ?>">
