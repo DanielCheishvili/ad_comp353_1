@@ -5,7 +5,15 @@ include ('config.php');
 $sql = "SELECT * FROM Student";
 $result = mysqli_query($conn, $sql);
 
-echo $result;
+if ($result->num_rows > 0) {
+    // output data of each row
+    while($row = $result->fetch_assoc()) {
+      echo "id: " . $row["studentID"]. " - medicare Card: " . $row["medicareCard"]. "<br>";
+    }
+  } else {
+    echo "0 results";
+  }
+  $conn->close();
 
 
 
