@@ -9,59 +9,49 @@
 </head>
 <body>
     <!-- Navigation Bar -->
-    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-        <div class="container">
-            <a class="navbar-brand" href="#">My Website</a>
-            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse" id="navbarNav">
-                <ul class="navbar-nav">
-                    <li class="nav-item">
-                        <a class="nav-link" href="person.php">Person</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="employee.php">Employee</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="student.php">Student</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="facility.php">Facility</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="vaccination.php">Vaccination</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="infection.php">Infection</a>
-                    </li>
-                </ul>
-            </div>
-        </div>
-    </nav>
+    <!-- ... (Same as in the previous example) ... -->
 
     <div class="container mt-5">
         <h2>Person Table</h2>
         <p>Table displaying all the records of the Person table.</p>
-        <!-- Replace this with your actual table -->
-        <table class="table table-bordered">
-            <thead>
-                <tr>
-                    <th>ID</th>
-                    <th>Name</th>
-                    <th>Email</th>
-                    <!-- Add other table headers -->
-                </tr>
-            </thead>
-            <tbody>
-                <tr>
-                    <td>1</td>
-                    <td>John Doe</td>
-                    <td>john@example.com</td>
-                    <!-- Add other table data rows -->
-                </tr>
-            </tbody>
-        </table>
+        <!-- PHP code to fetch data from the database -->
+        <?php
+        include('config.php'); // Assuming this file contains the database connection settings
+        
+        $sql = "SELECT * FROM Person";
+        $result = mysqli_query($conn, $sql);
+        
+        if (mysqli_num_rows($result) > 0) {
+            echo '<table class="table table-bordered">';
+            echo '<thead>';
+            echo '<tr>';
+            echo '<th>ID</th>';
+            echo '<th>Name</th>';
+            echo '<th>Email</th>';
+            // Add other table headers
+            echo '</tr>';
+            echo '</thead>';
+            echo '<tbody>';
+        
+            while ($row = mysqli_fetch_assoc($result)) {
+                echo '<tr>';
+                echo '<td>' . $row['id'] . '</td>';
+                echo '<td>' . $row['name'] . '</td>';
+                echo '<td>' . $row['email'] . '</td>';
+                // Add other table data columns based on your database structure
+                echo '</tr>';
+            }
+        
+            echo '</tbody>';
+            echo '</table>';
+        } else {
+            echo 'No records found.';
+        }
+        
+        mysqli_close($conn);
+        ?>
+        <!-- End of PHP code -->
+        
         <!-- Buttons -->
         <button class="btn btn-primary">Insert Row</button>
         <button class="btn btn-danger">Delete Row</button>
@@ -69,8 +59,6 @@
     </div>
 
     <!-- Bootstrap JS -->
-    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.1/dist/umd/popper.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <!-- ... (Same as in the previous example) ... -->
 </body>
 </html>
