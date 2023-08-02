@@ -1,7 +1,12 @@
 <?php
 include ('config.php');
 
-echo "Hello World!";
+//display all students on the page
+$sql = "SELECT * FROM students";
+$result = mysqli_query($conn, $sql);
+
+echo $result;
+
 
 
 ?>
@@ -9,7 +14,7 @@ echo "Hello World!";
 
 
 
-<HTML>
+<!-- <HTML>
 <HEAD>
  <TITLE>Date/Time Functions Demo</TITLE>
 </HEAD>
@@ -20,4 +25,4 @@ echo "Hello World!";
 <P>Current PHP version:
 <EM><?echo  phpversion()?></EM>
 </BODY>
-</HTML>
+</HTML> -->
