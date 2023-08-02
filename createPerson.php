@@ -6,7 +6,7 @@
         $medicareCard_err = $firstName_err = $lastName_err = $address_err = $city_err = $province_err = $postalCode_err = 
         $telephoneNumber_err = $email_err =  $dateOfBirth_err = $medicareExpiryDate_err = $citizenship_err = "";
         echo "Hello";
-        if(isset($_POST['POST']))
+        if(isset($_POST['sumbit']))
         {
             echo "not empty";
             $medicareCard = $_POST['medicareCard'];
