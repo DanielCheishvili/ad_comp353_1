@@ -22,7 +22,7 @@
             $dateOfBirth = $_POST['dateOfBirth'];
             $medicareExpiryDate = $_POST['medicareExpiryDate'];
             $citizenship = $_POST['citizenship'];
-            if(empty($medicareCard) || empty($firstName) || empty($lastName) || empty($address) || empty($city) || empty($province) || empty($postalCode) || empty($telephoneNumber) || empty($email) || empty($dateOfBirth) || empty($medicareExpiryDate) || empty($citizenship))
+            if(empty($medicareCard) || empty($firstName) || empty($lastName) || empty($address) || empty($city) || empty($province) || empty($postalCode) || empty($telephoneNumber) || empty($email) || empty($dateOfBirth) || empty($medicareExpiryDate))
             {
                echo "Please fill all the fields";
             }
