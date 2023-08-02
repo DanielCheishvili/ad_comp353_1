@@ -1,3 +1,14 @@
+<?php
+include ('config.php');
+
+echo "Hello World!";
+
+
+?>
+
+
+
+
 <HTML>
 <HEAD>
  <TITLE>Date/Time Functions Demo</TITLE>
