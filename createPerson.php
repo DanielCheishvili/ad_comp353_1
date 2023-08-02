@@ -7,7 +7,7 @@
         $telephoneNumber_err = $email_err =  $dateOfBirth_err = $medicareExpiryDate_err = $citizenship_err = "";
         echo "Hello";
         echo $_POST['medicareCard'];
-        if(isset($_POST['sumbit']))
+        if(isset($_POST['submit']))
         {
             echo "not empty";
             $medicareCard = $_POST['medicareCard'];

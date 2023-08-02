@@ -46,7 +46,7 @@
         <label for="citizenship">Citizenship</label>
         <input type="checkbox" name="citizenship" id="citizenship" placeholder="Citizenship">
         <br>
-        <input type="submit" value="Submit">
+        <input type="submit" name="submit" value="Submit">
     </form>
 </body>
 </html>
