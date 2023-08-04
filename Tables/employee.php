@@ -37,7 +37,7 @@
             </div>
         </div>
     </nav>
-    <button class="btn btn-primary">Insert Row</button>
+    <button class="btn btn-primary" onclick="insertRow()">Insert Row</button>
     <div class="container mt-5">
         <h2 class="text-center">Employee Table</h2>
         <p class="text-center">Table displaying all the records of the Employee table.</p>
