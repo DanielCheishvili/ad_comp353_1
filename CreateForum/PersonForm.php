@@ -53,7 +53,7 @@
         if ($action == 'edit') {
             echo "Does it go here?";
             $medicareCard = isset($_GET['medicareCard']) ? $_GET['medicareCard'] : '';
-            $sql = "SELECT * FROM person WHERE medicareCard = '$medicareCard'";
+            $sql = "SELECT * FROM Person WHERE medicareCard = '$medicareCard'";
             $result = mysqli_query($conn, $sql);
             $row = mysqli_fetch_assoc($result);
             if (!$result) {
@@ -108,14 +108,19 @@
                     }
                 }
             } elseif ($action == 'edit') {
-                $sql = "UPDATE Person SET medicareCard = '$medicareCard', firstName = '$firstName', lastName = '$lastName', address = '$address', city = '$city', province = '$province', postalCode = '$postalCode', telephoneNumber = '$telephoneNumber', email = '$email', dateOfBirth = '$dateOfBirth', medicareExpiryDate = '$medicareExpiryDate', citizenship = '$citizenship' WHERE medicareCard = '$medicareCard'";
-                if (mysqli_query($conn, $sql)) {
-                    echo "Record updated successfully!";
-                    header("Location: ../Tables/person.php");
-                    exit();
-                } else {
-                    echo "Error: " . $sql . "<br>" . mysqli_error($conn);
+                if(isset($_POST['submit']))
+                {
+                    $sql = "UPDATE Person SET medicareCard = '$medicareCard', firstName = '$firstName', lastName = '$lastName', address = '$address', city = '$city', province = '$province', postalCode = '$postalCode', telephoneNumber = '$telephoneNumber', email = '$email', dateOfBirth = '$dateOfBirth', medicareExpiryDate = '$medicareExpiryDate', citizenship = '$citizenship' WHERE medicareCard = '$medicareCard'";
+                    if (mysqli_query($conn, $sql)) {
+                        echo "Record updated successfully!";
+                        header("Location: ../Tables/person.php");
+                        exit();
+                    } 
+                    else {
+                        echo "Error: " . $sql . "<br>" . mysqli_error($conn);
+                    }
                 }
+                
             }
 
     }
