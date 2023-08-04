@@ -56,6 +56,9 @@
             $sql = "SELECT * FROM person WHERE medicareCard = '$medicareCard'";
             $result = mysqli_query($conn, $sql);
             $row = mysqli_fetch_assoc($result);
+            if (!$result) {
+                echo "Error: " . mysqli_error($conn); // Output the error message for debugging purposes
+            }
 
             $medicareCard = $row['medicareCard'];
             $firstName = $row['firstName'];
