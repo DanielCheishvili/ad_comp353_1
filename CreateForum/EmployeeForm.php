@@ -179,7 +179,16 @@
 
             <div class="form-group">
                 <label for="medicareCard">Medicare Card</label>
-                <input type="text" name="medicareCard" id="medicareCard" class="form-control" placeholder="Medicare Card" value="<?php echo $medicareCard; ?>">
+                <input type="text" name="medicareCard" id="medicareCard" class="form-control" placeholder="Medicare Card" value="<?php echo $medicareCard; ?>"
+                <?php
+                // Check if action is 'edit', then set 'readonly' attribute
+                if ($action == 'edit') {
+                    echo 'readonly ';
+                }
+                // Echo the value of $medicareCard
+                echo 'value="' . $medicareCard . '"';
+    ?>
+                >
             </div>
             <input type="submit" name="submit" value="Submit" class="btn btn-primary">
         </form>
