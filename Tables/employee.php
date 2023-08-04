@@ -62,8 +62,7 @@
             echo '<th>Start Work Date</th>';
             echo '<th>Role</th>';
             echo '<th>Medicare Card Number</th>';
-    
-            echo '<th>Citizenship</th>';
+            echo '<th>Action</th>';
             echo '</tr>';
             echo '</thead>';
             echo '<tbody>';
@@ -76,6 +75,10 @@
                 echo '<td>' . $row['startWorkDate'] . '</td>';
                 echo '<td>' . $row['endWorkDate'] . '</td>';
                 echo '<td>' . $row['employeeRole'] . '</td>';
+                echo '<td>';
+                echo '<button class="btn btn-danger" onclick="deletePerson(' . $row['employeeID'] . ')">Delete</button>';
+                echo '<button class="btn btn-warning" onclick="editPerson(' . $row['employeeID'] . ')">Edit</button>';
+                echo '</td>';
                 echo '</tr>';
             }
         
