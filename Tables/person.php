@@ -87,7 +87,7 @@
                             echo '<td>' . ($row['citizenship'] ? 'Yes' : 'No') . '</td>';
                             echo '<td>';
                             echo "<button class=\"btn btn-danger\" onclick=\"deletePerson('" . $row['medicareCard'] . "')\">Delete</button>";
-                            echo "<button class=\"btn btn-danger\" onclick=\"editPerson('" . $row['medicareCard'] . "')\">Edit</button>";
+                            echo "<button class=\"btn btn-warning\" onclick=\"editPerson('" . $row['medicareCard'] . "')\">Edit</button>";
                             echo '</td>';
                             echo '</tr>';
                         }
@@ -115,7 +115,7 @@
             }
         }
         function editPerson(medicareCard) {
-            window.location.href = "../CreateForm/PersonForm.php?medicareCard=" + medicareCard + "&action=edit";
+            window.location.href = "../CreateForum/PersonForm.php?medicareCard=" + medicareCard + "&action=edit";
         }
 
     </script>
