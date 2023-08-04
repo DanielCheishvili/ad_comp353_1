@@ -81,7 +81,7 @@
     </div>
 
     <?php 
-        include ('config.php');
+        include ('../config.php');
         $medicareCard = $firstName = $lastName = $address = $city = $province = 
         $postalCode = $telephoneNumber = $email =  $dateOfBirth = $medicareExpiryDate = $citizenship = "";        
         if(isset($_POST['submit']))
