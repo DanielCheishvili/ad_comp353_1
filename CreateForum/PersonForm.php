@@ -113,8 +113,8 @@
                     $sql = "UPDATE Person SET medicareCard = '$medicareCard', firstName = '$firstName', lastName = '$lastName', address = '$address', city = '$city', province = '$province', postalCode = '$postalCode', telephoneNumber = '$telephoneNumber', email = '$email', dateOfBirth = '$dateOfBirth', medicareExpiryDate = '$medicareExpiryDate', citizenship = '$citizenship' WHERE medicareCard = '$medicareCard'";
                     if (mysqli_query($conn, $sql)) {
                         echo "Record updated successfully!";
-                        header("Location: ../Tables/person.php");
-                        exit();
+                        //header("Location: ../Tables/person.php");
+                        //exit();
                     } 
                     else {
                         echo "Error: " . $sql . "<br>" . mysqli_error($conn);
