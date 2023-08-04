@@ -66,6 +66,7 @@
             echo '<th>Medicare Card Number</th>';
             echo '<th>Medicare Card Expiry Date</th>';
             echo '<th>Citizenship</th>';
+            echo '<th>Actions</th>';
             echo '</tr>';
             echo '</thead>';
             echo '<tbody>';
@@ -83,7 +84,11 @@
                 echo '<td>' . $row['postalCode'] . '</td>';
                 echo '<td>' . $row['medicareCard'] . '</td>';
                 echo '<td>' . $row['medicareExpiryDate'] . '</td>';
-                echo '<td>' . ($row['citizenship'] ? 'Yes' : 'No') . '</td>';;
+                echo '<td>' . ($row['citizenship'] ? 'Yes' : 'No') . '</td>';
+                echo '<td>';
+                echo '<button class="btn btn-danger" onclick="deletePerson(' . $row['medicareCard'] . ')">Delete</button>';
+                echo '<button class="btn btn-warning" onclick="editPerson(' . $row['medicareCard'] . ')">Edit</button>';
+                echo '</td>';
                 echo '</tr>';
             }
         
@@ -103,6 +108,7 @@
         function insertRow() {
             window.location.href = "../CreateForum/CreatePerson.php";
         }
+
     </script>
    
 </body>
