@@ -196,19 +196,19 @@
             {
                 echo "Form submission not detecred";
             }
-            elseif($action == 'delete')
-            {
-                $medicareCard = isset($_GET['medicareCard']) ? $_GET['medicareCard'] : '';
-                $sql = "DELETE FROM Person WHERE medicareCard = '$medicareCard'";
-                if(mysqli_query($conn, $sql))
-                {
-                    header("Location: ../Tables/person.php");
-                }
-                else
-                {
-                    echo "Error deleting record: " . mysqli_error($conn);
-                }
-            }
+            // elseif($action == 'delete')
+            // {
+            //     $medicareCard = isset($_GET['medicareCard']) ? $_GET['medicareCard'] : '';
+            //     $sql = "DELETE FROM Person WHERE medicareCard = '$medicareCard'";
+            //     if(mysqli_query($conn, $sql))
+            //     {
+            //         header("Location: ../Tables/person.php");
+            //     }
+            //     else
+            //     {
+            //         echo "Error deleting record: " . mysqli_error($conn);
+            //     }
+            // }
         }
         mysqli_close($conn);
     
