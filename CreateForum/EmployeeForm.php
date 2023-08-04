@@ -80,9 +80,11 @@
                     $medicareCard = $_POST['medicareCard'];
                     
                     $checkIfPerson = "SELECT * FROM Person WHERE medicareCard = '$medicareCard'";
+                    echo $checkIfPerson;
                     $result = mysqli_query($conn, $checkIfPerson);
                     if($result)
                     {
+                        echo $medicareCard;
                         if(mysqli_num_rows($result) == 0)
                         {
                             echo '<div class="text-center text-danger mb-4">';
