@@ -71,33 +71,38 @@ if ($action == 'create' || $action == 'edit') {
         $medicareExpiryDate = $row['medicareExpiryDate'];
         $citizenship = $row['citizenship'];
     }
-        if ($action == 'create') {
-            $medicareCard = $_POST['medicareCard'];
-            $firstName = $_POST['firstName'];
-            $lastName = $_POST['lastName'];
-            $address = $_POST['address'];
-            $city = $_POST['city'];
-            $province = $_POST['province'];
-            $postalCode = $_POST['postalCode'];
-            $telephoneNumber = $_POST['telephoneNumber'];
-            $email = $_POST['email'];
-            $dateOfBirth = $_POST['dateOfBirth'];
-            $medicareExpiryDate = $_POST['medicareExpiryDate'];
-            $citizenship = isset($_POST['citizenship']) ? 1 : 0;
 
-            if (empty($medicareCard) || empty($firstName) || empty($lastName) || empty($address) || empty($city) || empty($province) || empty($postalCode) || empty($telephoneNumber) || empty($email) || empty($dateOfBirth) || empty($medicareExpiryDate)) {
-                echo '<div class="text-center text-danger mb-4">';
-                echo "Please fill all the fields";
-                echo '</div>';
-            } else {
-                $sql = "INSERT INTO Person (medicareCard, firstName, lastName, address, city, province, postalCode, telephoneNumber, email, dateOfBirth, medicareExpiryDate, citizenship)
-                VALUES ('$medicareCard', '$firstName', '$lastName', '$address', '$city', '$province', '$postalCode', '$telephoneNumber', '$email', '$dateOfBirth', '$medicareExpiryDate', '1')";
-                if (mysqli_query($conn, $sql)) {
-                    echo "Record inserted successfully!";
-                    header("Location: ../Tables/person.php");
-                    exit();
+    
+        if ($action == 'create') {
+            if(isset($_POST['submit']))
+            {
+                $medicareCard = $_POST['medicareCard'];
+                $firstName = $_POST['firstName'];
+                $lastName = $_POST['lastName'];
+                $address = $_POST['address'];
+                $city = $_POST['city'];
+                $province = $_POST['province'];
+                $postalCode = $_POST['postalCode'];
+                $telephoneNumber = $_POST['telephoneNumber'];
+                $email = $_POST['email'];
+                $dateOfBirth = $_POST['dateOfBirth'];
+                $medicareExpiryDate = $_POST['medicareExpiryDate'];
+                $citizenship = isset($_POST['citizenship']) ? 1 : 0;
+
+                if (empty($medicareCard) || empty($firstName) || empty($lastName) || empty($address) || empty($city) || empty($province) || empty($postalCode) || empty($telephoneNumber) || empty($email) || empty($dateOfBirth) || empty($medicareExpiryDate)) {
+                    echo '<div class="text-center text-danger mb-4">';
+                    echo "Please fill all the fields";
+                    echo '</div>';
                 } else {
-                    echo "Error: " . $sql . "<br>" . mysqli_error($conn);
+                    $sql = "INSERT INTO Person (medicareCard, firstName, lastName, address, city, province, postalCode, telephoneNumber, email, dateOfBirth, medicareExpiryDate, citizenship)
+                    VALUES ('$medicareCard', '$firstName', '$lastName', '$address', '$city', '$province', '$postalCode', '$telephoneNumber', '$email', '$dateOfBirth', '$medicareExpiryDate', '1')";
+                    if (mysqli_query($conn, $sql)) {
+                        echo "Record inserted successfully!";
+                        //header("Location: ../Tables/person.php");
+                        exit();
+                    } else {
+                        echo "Error: " . $sql . "<br>" . mysqli_error($conn);
+                    }
                 }
             }
         } elseif ($action == 'edit') {
@@ -110,6 +115,7 @@ if ($action == 'create' || $action == 'edit') {
                 echo "Error: " . $sql . "<br>" . mysqli_error($conn);
             }
         }
+
 }
     mysqli_close($conn);
 ?>
