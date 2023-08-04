@@ -100,7 +100,9 @@
             $citizenship = $_POST['citizenship'];
             if(empty($medicareCard) || empty($firstName) || empty($lastName) || empty($address) || empty($city) || empty($province) || empty($postalCode) || empty($telephoneNumber) || empty($email) || empty($dateOfBirth) || empty($medicareExpiryDate))
             {
-               echo "Please fill all the fields";
+                echo '<div class="text-center text-danger mb-4">';
+                echo "Please fill all the fields";
+                echo '</div>';
             }
             else
             {
@@ -112,7 +114,10 @@
                 }
                 else
                 {
+                    echo '<div class="text-center text-danger mb-4">';
                     echo "Error: " . $sql . "<br>" . mysqli_error($conn);
+                    echo '</div>';
+                    
                 }
             }
         }
