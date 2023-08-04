@@ -38,8 +38,6 @@
         </div>
     </nav>
     <button class="btn btn-primary">Insert Row</button>
-        <button class="btn btn-danger">Delete Row</button>
-        <button class="btn btn-warning">Edit Row</button>
     <div class="container mt-5">
         <h2 class="text-center">Person Table</h2>
         <p>Table displaying all the records of the Person table.</p>
@@ -60,8 +58,8 @@
             echo '<th>First Name</th>';
             echo '<th>Last Name</th>';
             echo '<th>Start Work Date</th>';
+            echo '<th>End Work Date</th>';
             echo '<th>Role</th>';
-            echo '<th>Medicare Card Number</th>';
             echo '<th>Action</th>';
             echo '</tr>';
             echo '</thead>';
@@ -91,13 +89,9 @@
         
         mysqli_close($conn);
         ?>
-        <!-- End of PHP code -->
         
-        <!-- Buttons -->
        
     </div>
 
-    <!-- Bootstrap JS -->
-    <!-- ... (Same as in the previous example) ... -->
 </body>
 </html>
