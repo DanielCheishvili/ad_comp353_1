@@ -111,6 +111,7 @@
                 if(isset($_POST['submit']))
                 {
                     $sql = "UPDATE Person SET medicareCard = '$medicareCard', firstName = '$firstName', lastName = '$lastName', address = '$address', city = '$city', province = '$province', postalCode = '$postalCode', telephoneNumber = '$telephoneNumber', email = '$email', dateOfBirth = '$dateOfBirth', medicareExpiryDate = '$medicareExpiryDate', citizenship = '$citizenship' WHERE medicareCard = '$medicareCard'";
+                    echo $sql;
                     if (mysqli_query($conn, $sql)) {
                         echo "Record updated successfully!";
                         //header("Location: ../Tables/person.php");
