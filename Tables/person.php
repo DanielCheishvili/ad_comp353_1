@@ -158,13 +158,13 @@
         // }
         function showNotification(message) 
         {
-            var toastContainer = $(".toast-container");
-            var toast = $('<div class="toast" role="alert" aria-live="assertive" aria-atomic="true" data-delay="3000">');
-            var toastHeader = $('<div class="toast-header">');
-            var strong = $('<strong class="mr-auto">').html("Success!");
-            var button = $('<button type="button" class="ml-2 mb-1 close" data-dismiss="toast" aria-label="Close">');
-            var span = $('<span aria-hidden="true">&times;</span>');
-            var toastBody = $('<div class="toast-body">').text(message);
+            var toastContainer = (".toast-container");
+            var toast = ('<div class="toast" role="alert" aria-live="assertive" aria-atomic="true" data-delay="3000">');
+            var toastHeader = ('<div class="toast-header">');
+            var strong = ('<strong class="mr-auto">').html("Success!");
+            var button = ('<button type="button" class="ml-2 mb-1 close" data-dismiss="toast" aria-label="Close">');
+            var span = ('<span aria-hidden="true">&times;</span>');
+            var toastBody = ('<div class="toast-body">').text(message);
 
             toastHeader.append(strong);
             button.append(span);
