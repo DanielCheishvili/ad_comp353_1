@@ -105,8 +105,17 @@
         </div>
 
     <script>
-        function insertRow() {
-            window.location.href = "../CreateForum/CreatePerson.php";
+        function insertRow()
+        {
+            window.location.href = "../CreateForum/PersonForm.php?action=create";
+        }
+        function deletePerson(medicareCard) {
+            if (confirm("Are you sure you want to delete this person?")) {
+                window.location.href = "../DeleteForum/deletePerson.php?medicareCard=" + medicareCard + "&action=delete";
+            }
+        }
+        function editPerson(medicareCard) {
+            window.location.href = "../UpdateForum/updatePerson.php?medicareCard=" + medicareCard + "&action=edit";
         }
 
     </script>

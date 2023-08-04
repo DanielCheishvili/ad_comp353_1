@@ -40,6 +40,7 @@
     <button class="btn btn-primary">Insert Row</button>
     <div class="container mt-5">
         <h2 class="text-center">Student Table</h2>
+        <button class="btn btn-primary">Register Student</button>
         <p class="text-center">Table displaying all the records of the Student table.</p>
         <?php
         include('../config.php');
