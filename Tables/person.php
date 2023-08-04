@@ -41,8 +41,8 @@
     <div class="row">
             <div class="col-md-8 offset-md-2">
                 <div class="table-responsive">
-                    <h2>Person Table</h2>
-                    <p>Table displaying all the records of the Person table.</p>
+                    <h2 class="text-center">Person Table</h2>
+                    <p class="text-center">Table displaying all the records of the Person table.</p>
                 
                     <?php
                     include('../config.php'); 

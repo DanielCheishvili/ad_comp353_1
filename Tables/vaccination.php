@@ -39,8 +39,8 @@
     </nav>
     <button class="btn btn-primary">Insert Row</button>
     <div class="container mt-5">
-        <h2 class="text-center">Person Table</h2>
-        <p>Table displaying all the records of the Person table.</p>
+        <h2 class="text-center">Vaccinations Table</h2>
+        <p class="text-center">Table displaying all the records of the Vaccinations table.</p>
         <?php
         include('../config.php');
         

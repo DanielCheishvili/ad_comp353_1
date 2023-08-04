@@ -39,8 +39,8 @@
     </nav>
     <button class="btn btn-primary">Insert Row</button>
     <div class="container mt-5">
-        <h2 class="text-center">Person Table</h2>
-        <p>Table displaying all the records of the Person table.</p>
+        <h2 class="text-center">Student Table</h2>
+        <p class="text-center">Table displaying all the records of the Student table.</p>
         <?php
         include('../config.php');
         
@@ -59,7 +59,6 @@
             echo '<th>Last Name</th>';
             echo '<th>Start School Date</th>';
             echo '<th>End School Date</th>';
-            echo '<th>Medicare Card Number</th>';
             echo '<th>Action</th>';
             echo '</tr>';
             echo '</thead>';
