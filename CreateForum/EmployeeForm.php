@@ -81,24 +81,31 @@
                     
                     $checkIfPerson = "SELECT * FROM Person WHERE medicareCard = '$medicareCard'";
                     $result = mysqli_query($conn, $checkIfPerson);
-                    echo $result;
-                    if(mysqli_num_rows($result) == 0)
+                    if($result)
                     {
-                        echo '<div class="text-center text-danger mb-4">';
-                        echo "Person with the following medicare card does not exist: " . $medicareCard;
-                        echo '</div>';
-
-                    }
-                    else{
-                        $sql = "INSERT INTO Employee (employeeID, startWorkDate, endWorkDate, employeeRole, medicareCard) VALUES ('$employeeID', '$startWorkDate', '$endWorkDate', '$role', '$medicareCard')";
-                        if (mysqli_query($conn, $sql)) {
-                            echo "New record created successfully!";
-                            //header("Location: ../Tables/person.php");
-                            //exit();
-                        } else {
-                            echo "Error: " . $sql . "<br>" . mysqli_error($conn);
+                        if(mysqli_num_rows($result) == 0)
+                        {
+                            echo '<div class="text-center text-danger mb-4">';
+                            echo "Person with the following medicare card does not exist: " . $medicareCard;
+                            echo '</div>';
+    
+                        }
+                        else{
+                            $sql = "INSERT INTO Employee (employeeID, startWorkDate, endWorkDate, employeeRole, medicareCard) VALUES ('$employeeID', '$startWorkDate', '$endWorkDate', '$role', '$medicareCard')";
+                            if (mysqli_query($conn, $sql)) {
+                                echo "New record created successfully!";
+                                //header("Location: ../Tables/person.php");
+                                //exit();
+                            } else {
+                                echo "Error: " . $sql . "<br>" . mysqli_error($conn);
+                            }
                         }
                     }
+                    else
+                    {
+                        echo "Error: " . $sql . "<br>" . mysqli_error($conn);
+                    }
+                    
                 }
             } elseif ($action == 'edit') {
                 if(isset($_POST['submit']))
