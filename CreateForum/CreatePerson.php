@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Person Form</title>
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+</head>
+<body>
+    <div class="container mt-5">
+        <h2>Person Form</h2>
+        <form action="<?php echo $_SERVER['PHP_SELF']; ?>" method="post">
+
+            <div class="form-group">
+                <label for="medicareCard">Medicare Card</label>
+                <input type="text" name="medicareCard" id="medicareCard" class="form-control" placeholder="Medicare Card">
+            </div>
+
+            <div class="form-row">
+                <div class="form-group col-md-6">
+                    <label for="firstName">First Name</label>
+                    <input type="text" name="firstName" id="firstName" class="form-control" placeholder="First Name">
+                </div>
+
+                <div class="form-group col-md-6">
+                    <label for="lastName">Last Name</label>
+                    <input type="text" name="lastName" id="lastName" class="form-control" placeholder="Last Name">
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label for="address">Address</label>
+                <input type="text" name="address" id="address" class="form-control" placeholder="Address">
+            </div>
+
+            <div class="form-row">
+                <div class="form-group col-md-6">
+                    <label for="city">City</label>
+                    <input type="text" name="city" id="city" class="form-control" placeholder="City">
+                </div>
+
+                <div class="form-group col-md-6">
+                    <label for="province">Province</label>
+                    <input type="text" name="province" id="province" class="form-control" placeholder="Province">
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label for="postalCode">Postal Code</label>
+                <input type="text" name="postalCode" id="postalCode" class="form-control" placeholder="Postal Code">
+            </div>
+
+            <div class="form-group">
+                <label for="telephoneNumber">Telephone Number</label>
+                <input type="text" name="telephoneNumber" id="telephoneNumber" class="form-control" placeholder="Telephone Number">
+            </div>
+
+            <div class="form-group">
+                <label for="email">Email</label>
+                <input type="text" name="email" id="email" class="form-control" placeholder="Email">
+            </div>
+
+            <div class="form-group">
+                <label for="dateOfBirth">Date Of Birth</label>
+                <input type="text" name="dateOfBirth" id="dateOfBirth" class="form-control" placeholder="Date Of Birth">
+            </div>
+
+            <div class="form-group">
+                <label for="medicareExpiryDate">Medicare Expiry Date</label>
+                <input type="text" name="medicareExpiryDate" id="medicareExpiryDate" class="form-control" placeholder="Medicare Expiry Date">
+            </div>
+
+            <div class="form-group">
+                <label for="citizenship">Citizenship</label>
+                <input type="checkbox" name="citizenship" id="citizenship" class="form-check-input">
+            </div>
+
+            <input type="submit" name="submit" value="Submit" class="btn btn-primary">
+        </form>
+    </div>
+
+    <!-- Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.1/dist/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>
