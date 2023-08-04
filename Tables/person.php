@@ -37,6 +37,12 @@
             </div>
         </div>
     </nav>
+    <div id="notification" class="alert alert-success alert-dismissible fade show" role="alert" style="display: none;">
+        <strong>Success!</strong> <span id="notification-message"></span>
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
     <button class="btn btn-primary" onclick="insertRow()">Insert Row</button>
     <div class="row">
             <div class="col-md-8 offset-md-2">
@@ -116,7 +122,7 @@
                     if (xhr.readyState == XMLHttpRequest.DONE ) {
                         if(xhr.status == 200)
                         {
-                            alert("Person deleted successfully");
+                            showNotification("Person deleted successfully");
                             window.location.reload();
                         }
                         else
@@ -135,6 +141,15 @@
         function editPerson(medicareCard) {
             window.location.href = "../CreateForum/PersonForm.php?medicareCard=" + medicareCard + "&action=edit";
         }
+        function showNotification(message) {
+        var notification = document.getElementById("notification");
+        var notificationMessage = document.getElementById("notification-message");
+        notificationMessage.innerText = message;
+        notification.style.display = "block";
+        setTimeout(function () {
+            notification.style.display = "none";
+        }, 3000); // Set the duration in milliseconds (e.g., 3000ms = 3 seconds)
+    }
 
     </script>
    
