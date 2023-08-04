@@ -107,7 +107,7 @@
     <script>
         function insertRow()
         {
-            window.location.href = "../CreateForum/PersonForm.php?action=create";
+            window.location.href = "../CreateForum/PersonForm.php?";
         }
         function deletePerson(medicareCard) {
             if (confirm("Are you sure you want to delete this person?")) {
