@@ -44,10 +44,8 @@
         <?php
         include('../config.php');
         
-        $sql = "SELECT facilityName, Ministry.ministryName, address, city, province, postalCode, phoneNumber, webAddress, capacity 
-        FROM Facility
-        LEFT JOIN Facility ON Ministry.ministryID = Facility.ministryID
-        ORDER BY facilityName ASC";
+        $sql = "SELECT facilityName, address, city, province, postalCode, phoneNumber, webAddress, capacity 
+        FROM Facility";
         $result = mysqli_query($conn, $sql);
         
         if (mysqli_num_rows($result) > 0) {
@@ -56,7 +54,6 @@
             echo '<thead>';
             echo '<tr>';
             echo '<th>Facility Name</th>';
-            echo '<th>Minister</th>';
             echo '<th>Address</th>';
             echo '<th>City</th>';
             echo '<th>Provicne</th>';
@@ -72,7 +69,6 @@
             while ($row = mysqli_fetch_assoc($result)) {
                 echo '<tr>';
                 echo '<td>' . $row['facilityName'] . '</td>';
-                echo '<td>' . $row['ministryID'] . '</td>';
                 echo '<td>' . $row['address'] . '</td>';
                 echo '<td>' . $row['city'] . '</td>';
                 echo '<td>' . $row['province'] . '</td>';
