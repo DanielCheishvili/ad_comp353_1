@@ -113,106 +113,85 @@
     </div>
 
     <?php
-        include('../config.php');
+include('../config.php');
 
-        $table = isset($_GET['table']) ? $_GET['table'] : '';
-        $action = isset($_GET['action']) ? $_GET['action'] : '';
+$table = isset($_GET['table']) ? $_GET['table'] : '';
+$action = isset($_GET['action']) ? $_GET['action'] : '';
 
-        $medicareCard = $firstName = $lastName = $address = $city = $province = $postalCode = $telephoneNumber = $email = 
-        $dateOfBirth = $medicareExpiryDate = $citizenship = '';
+$medicareCard = $firstName = $lastName = $address = $city = $province = $postalCode = $telephoneNumber = $email = 
+$dateOfBirth = $medicareExpiryDate = $citizenship = '';
 
-        if($action == 'create' || $action == 'edit')
-        {
-            echo "I am here";
-            if($action == 'edit')
-            {
-                echo "Does it go here?";
-                $medicareCard = isset($_GET['medicareCard']) ? $_GET['medicareCard'] : '';
-                $sql = "SELECT * FROM person WHERE medicareCard = '$medicareCard'";
-                $result = mysqli_query($conn, $sql);
-                $row = mysqli_fetch_assoc($result);
+if ($action == 'create' || $action == 'edit') {
+    echo "I am here";
+    if ($action == 'edit') {
+        echo "Does it go here?";
+        $medicareCard = isset($_GET['medicareCard']) ? $_GET['medicareCard'] : '';
+        $sql = "SELECT * FROM person WHERE medicareCard = '$medicareCard'";
+        $result = mysqli_query($conn, $sql);
+        $row = mysqli_fetch_assoc($result);
 
-                $medicareCard = $row['medicareCard'];
-                $firstName = $row['firstName'];
-                $lastName = $row['lastName'];
-                $address = $row['address'];
-                $city = $row['city'];
-                $province = $row['province'];
-                $postalCode = $row['postalCode'];
-                $telephoneNumber = $row['telephoneNumber'];
-                $email = $row['email'];
-                $dateOfBirth = $row['dateOfBirth'];
-                $medicareExpiryDate = $row['medicareExpiryDate'];
-                $citizenship = $row['citizenship'];
+        $medicareCard = $row['medicareCard'];
+        $firstName = $row['firstName'];
+        $lastName = $row['lastName'];
+        $address = $row['address'];
+        $city = $row['city'];
+        $province = $row['province'];
+        $postalCode = $row['postalCode'];
+        $telephoneNumber = $row['telephoneNumber'];
+        $email = $row['email'];
+        $dateOfBirth = $row['dateOfBirth'];
+        $medicareExpiryDate = $row['medicareExpiryDate'];
+        $citizenship = $row['citizenship'];
+    }
 
-            }
+    if (isset($_POST['submit'])) {
+        echo "THIS IS POST METHOD";
+        if ($action == 'create') {
+            $medicareCard = $_POST['medicareCard'];
+            $firstName = $_POST['firstName'];
+            $lastName = $_POST['lastName'];
+            $address = $_POST['address'];
+            $city = $_POST['city'];
+            $province = $_POST['province'];
+            $postalCode = $_POST['postalCode'];
+            $telephoneNumber = $_POST['telephoneNumber'];
+            $email = $_POST['email'];
+            $dateOfBirth = $_POST['dateOfBirth'];
+            $medicareExpiryDate = $_POST['medicareExpiryDate'];
+            $citizenship = isset($_POST['citizenship']) ? 1 : 0;
 
-            if(isset($_POST['submit']))
-            {
-                echo "THIS IS POST METHJOD";
-                if($action == 'create')
-                {
-                    $medicareCard = $_POST['medicareCard'];
-                    $firstName = $_POST['firstName'];
-                    $lastName = $_POST['lastName'];
-                    $address = $_POST['address'];
-                    $city = $_POST['city'];
-                    $province = $_POST['province'];
-                    $postalCode = $_POST['postalCode'];
-                    $telephoneNumber = $_POST['telephoneNumber'];
-                    $email = $_POST['email'];
-                    $dateOfBirth = $_POST['dateOfBirth'];
-                    $medicareExpiryDate = $_POST['medicareExpiryDate'];
-                    $citizenship = isset($_POST['citizenship']) ? 1 : 0;
-
-                    if(empty($medicareCard) || empty($firstName) || empty($lastName) || empty($address) || empty($city) || empty($province) || empty($postalCode) || empty($telephoneNumber) || empty($email) || empty($dateOfBirth) || empty($medicareExpiryDate))
-                    {
-                        echo '<div class="text-center text-danger mb-4">';
-                        echo "Please fill all the fields";
-                        echo '</div>';
-                    }
-                    else
-                    {
-                        $sql = "INSERT INTO Person (medicareCard, firstName, lastName, address, city, province, postalCode, telephoneNumber, email, dateOfBirth, medicareExpiryDate, citizenship)
-                        VALUES ('$medicareCard', '$firstName', '$lastName', '$address', '$city', '$province', '$postalCode', '$telephoneNumber', '$email', '$dateOfBirth', '$medicareExpiryDate', '1')";
-                    }
-                }
-
-                elseif($action == 'edit')
-                {
-                    $sql = "UPDATE Person SET medicareCard = '$medicareCard', firstName = '$firstName', lastName = '$lastName', address = '$address', city = '$city', province = '$province', postalCode = '$postalCode', telephoneNumber = '$telephoneNumber', email = '$email', dateOfBirth = '$dateOfBirth', medicareExpiryDate = '$medicareExpiryDate', citizenship = '$citizenship' WHERE medicareCard = '$medicareCard'";
-                }
-                if(mysqli_query($conn, $sql))
-                {
-
+            if (empty($medicareCard) || empty($firstName) || empty($lastName) || empty($address) || empty($city) || empty($province) || empty($postalCode) || empty($telephoneNumber) || empty($email) || empty($dateOfBirth) || empty($medicareExpiryDate)) {
+                echo '<div class="text-center text-danger mb-4">';
+                echo "Please fill all the fields";
+                echo '</div>';
+            } else {
+                $sql = "INSERT INTO Person (medicareCard, firstName, lastName, address, city, province, postalCode, telephoneNumber, email, dateOfBirth, medicareExpiryDate, citizenship)
+                VALUES ('$medicareCard', '$firstName', '$lastName', '$address', '$city', '$province', '$postalCode', '$telephoneNumber', '$email', '$dateOfBirth', '$medicareExpiryDate', '1')";
+                if (mysqli_query($conn, $sql)) {
+                    echo "Record inserted successfully!";
                     header("Location: ../Tables/person.php");
-                }
-                else
-                {
+                    exit();
+                } else {
                     echo "Error: " . $sql . "<br>" . mysqli_error($conn);
                 }
             }
-            else
-            {
-                echo "Form submission not detecred";
+        } elseif ($action == 'edit') {
+            $sql = "UPDATE Person SET medicareCard = '$medicareCard', firstName = '$firstName', lastName = '$lastName', address = '$address', city = '$city', province = '$province', postalCode = '$postalCode', telephoneNumber = '$telephoneNumber', email = '$email', dateOfBirth = '$dateOfBirth', medicareExpiryDate = '$medicareExpiryDate', citizenship = '$citizenship' WHERE medicareCard = '$medicareCard'";
+            if (mysqli_query($conn, $sql)) {
+                echo "Record updated successfully!";
+                header("Location: ../Tables/person.php");
+                exit();
+            } else {
+                echo "Error: " . $sql . "<br>" . mysqli_error($conn);
             }
-            // elseif($action == 'delete')
-            // {
-            //     $medicareCard = isset($_GET['medicareCard']) ? $_GET['medicareCard'] : '';
-            //     $sql = "DELETE FROM Person WHERE medicareCard = '$medicareCard'";
-            //     if(mysqli_query($conn, $sql))
-            //     {
-            //         header("Location: ../Tables/person.php");
-            //     }
-            //     else
-            //     {
-            //         echo "Error deleting record: " . mysqli_error($conn);
-            //     }
-            // }
         }
-        mysqli_close($conn);
-    
-    ?>
+    } else {
+        echo "Form submission not detected";
+    }
+}
+    mysqli_close($conn);
+?>
+
 
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.1/dist/umd/popper.min.js"></script>
