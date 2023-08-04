@@ -85,7 +85,7 @@
                 }
                 if(mysqli_query($conn, $sql))
                 {
-                    header("Location: person.php");
+                    header("Location: ../Tables/person.php");
                 }
                 else
                 {
@@ -98,7 +98,7 @@
                 $sql = "DELETE FROM Person WHERE medicareCard = '$medicareCard'";
                 if(mysqli_query($conn, $sql))
                 {
-                    header("Location: person.php");
+                    header("Location: ../Tables/person.php");
                 }
                 else
                 {
