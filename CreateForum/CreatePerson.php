@@ -80,7 +80,45 @@
         </form>
     </div>
 
-    <!-- Bootstrap JS -->
+    <?php 
+        include ('config.php');
+        $medicareCard = $firstName = $lastName = $address = $city = $province = 
+        $postalCode = $telephoneNumber = $email =  $dateOfBirth = $medicareExpiryDate = $citizenship = "";        
+        if(isset($_POST['submit']))
+        {
+            $medicareCard = $_POST['medicareCard'];
+            $firstName = $_POST['firstName'];
+            $lastName = $_POST['lastName'];
+            $address = $_POST['address'];
+            $city = $_POST['city'];
+            $province = $_POST['province'];
+            $postalCode = $_POST['postalCode'];
+            $telephoneNumber = $_POST['telephoneNumber'];
+            $email = $_POST['email'];
+            $dateOfBirth = $_POST['dateOfBirth'];
+            $medicareExpiryDate = $_POST['medicareExpiryDate'];
+            $citizenship = $_POST['citizenship'];
+            if(empty($medicareCard) || empty($firstName) || empty($lastName) || empty($address) || empty($city) || empty($province) || empty($postalCode) || empty($telephoneNumber) || empty($email) || empty($dateOfBirth) || empty($medicareExpiryDate))
+            {
+               echo "Please fill all the fields";
+            }
+            else
+            {
+                $sql = "INSERT INTO Person (medicareCard, firstName, lastName, address, city, province, postalCode, telephoneNumber, email, dateOfBirth, medicareExpiryDate, citizenship)
+                VALUES ('$medicareCard', '$firstName', '$lastName', '$address', '$city', '$province', '$postalCode', '$telephoneNumber', '$email', '$dateOfBirth', '$medicareExpiryDate', '1')";
+                if(mysqli_query($conn, $sql))
+                {
+                    echo "Record added successfully";
+                }
+                else
+                {
+                    echo "Error: " . $sql . "<br>" . mysqli_error($conn);
+                }
+            }
+        }
+        mysqli_close($conn);
+?>
+
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.1/dist/umd/popper.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
