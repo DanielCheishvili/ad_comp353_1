@@ -85,6 +85,7 @@
         
             echo '</tbody>';
             echo '</table>';
+            echo '</div>';
         } else {
             echo 'No records found.';
         }
