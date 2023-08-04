@@ -117,7 +117,7 @@
                     if (xhr.readyState == XMLHttpRequest.DONE ) {
                         if(xhr.status == 200)
                         {
-                            alert("Person deleted successfully");
+                            showNotification("Person deleted successfully");
                             window.location.reload();
                         }
                         else
