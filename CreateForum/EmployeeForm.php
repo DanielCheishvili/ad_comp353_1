@@ -148,7 +148,7 @@
                 <input type="text" name="employeeID" id="employeeID" class="form-control" placeholder="Employee ID" value="<?php echo $employeeID; ?>">
             </div>
 
-            <div class="form-row">
+            <!-- <div class="form-row">
                 <div class="form-group col-md-6">
                     <label for="firstName">First Name</label>
                     <input type="text" name="firstName" id="firstName" class="form-control" placeholder="First Name" value="<?php echo $firstName; ?>">
@@ -158,7 +158,7 @@
                     <label for="lastName">Last Name</label>
                     <input type="text" name="lastName" id="lastName" class="form-control" placeholder="Last Name" value="<?php echo $lastName; ?>">
                 </div>
-            </div>
+            </div> -->
 
             <div class="form-group">
                 <label for="startWorkDate">Start Work Date </label>
@@ -181,14 +181,11 @@
                 <label for="medicareCard">Medicare Card</label>
                 <input type="text" name="medicareCard" id="medicareCard" class="form-control" placeholder="Medicare Card" value="<?php echo $medicareCard; ?>"
                 <?php
-                // Check if action is 'edit', then set 'readonly' attribute
                 if ($action == 'edit') {
                     echo 'readonly ';
                 }
-                // Echo the value of $medicareCard
                 echo 'value="' . $medicareCard . '"';
-    ?>
-                >
+                ?>>
             </div>
             <input type="submit" name="submit" value="Submit" class="btn btn-primary">
         </form>
