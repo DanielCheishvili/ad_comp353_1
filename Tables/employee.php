@@ -4,7 +4,6 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Person Table</title>
-    <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
 </head>
 <body>
@@ -44,9 +43,8 @@
     <div class="container mt-5">
         <h2>Person Table</h2>
         <p>Table displaying all the records of the Person table.</p>
-        <!-- PHP code to fetch data from the database -->
         <?php
-        include('../config.php'); // Assuming this file contains the database connection settings
+        include('../config.php');
         
         $sql = "SELECT * FROM Employee";
         $result = mysqli_query($conn, $sql);
@@ -81,7 +79,6 @@
                 echo '<td>' . $row['medicareCard'] . '</td>';
                 echo '<td>' . $row['medicareExpiryDate'] . '</td>';
                 echo '<td>' . ($row['citizenship'] ? 'Yes' : 'No') . '</td>';
-
                 echo '</tr>';
             }
         

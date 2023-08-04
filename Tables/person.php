@@ -83,8 +83,7 @@
                 echo '<td>' . $row['postalCode'] . '</td>';
                 echo '<td>' . $row['medicareCard'] . '</td>';
                 echo '<td>' . $row['medicareExpiryDate'] . '</td>';
-                echo '<td>' . $row['citizenship'] . '</td>';
-
+                echo '<td>' . ($row['citizenship'] ? 'Yes' : 'No') . '</td>';;
                 echo '</tr>';
             }
         
