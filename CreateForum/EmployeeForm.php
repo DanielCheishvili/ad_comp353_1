@@ -81,7 +81,7 @@
                     
                     $checkIfPerson = "SELECT * FROM Person WHERE medicareCard = '$medicareCard'";
                     $result = mysqli_query($conn, $checkIfPerson);
-
+                    echo $result;
                     if(mysqli_num_rows($result) == 0)
                     {
                         echo '<div class="text-center text-danger mb-4">';
