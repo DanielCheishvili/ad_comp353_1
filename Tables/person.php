@@ -102,7 +102,7 @@
 
     <script>
         function insertRow() {
-            window.location.href = "CreateForum/CreatePerson.php";
+            window.location.href = "../CreateForum/CreatePerson.php";
         }
     </script>
    
