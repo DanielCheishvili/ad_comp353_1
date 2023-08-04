@@ -38,9 +38,7 @@
         </div>
     </nav>
     <button class="btn btn-primary" onclick="insertRow()">Insert Row</button>
-        <button class="btn btn-danger">Delete Row</button>
-        <button class="btn btn-warning">Edit Row</button>
-    <div class="container mt-5">
+    <div class="container mt-5 mx-auto">
         <h2>Person Table</h2>
         <p>Table displaying all the records of the Person table.</p>
        
