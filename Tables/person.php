@@ -16,7 +16,7 @@
             <div class="collapse navbar-collapse" id="navbarNav">
                 <ul class="navbar-nav">
                     <li class="nav-item">
-                        <a class="nav-link" href="person.php">Person</a>
+                        <a class="nav-link" href="../person.php">Person</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="employee.php">Employees</a>
@@ -111,11 +111,11 @@
         }
         function deletePerson(medicareCard) {
             if (confirm("Are you sure you want to delete this person?")) {
-                window.location.href = "../DeleteForum/deletePerson.php?medicareCard=" + medicareCard + "&action=delete";
+                window.location.href = "../CreateForm/PersonForm.php?medicareCard=" + medicareCard + "&action=delete";
             }
         }
         function editPerson(medicareCard) {
-            window.location.href = "../UpdateForum/updatePerson.php?medicareCard=" + medicareCard + "&action=edit";
+            window.location.href = "../CreateForm/PersonForm.php?medicareCard=" + medicareCard + "&action=edit";
         }
 
     </script>
