@@ -45,7 +45,7 @@
         include('../config.php');
         
         $sql = "SELECT facilityName, ministryName, address, city, province, postalCode, phoneNumber, webAddress, capacity FROM facility
-        INNER JOIN ministry ON facility.ministryID = ministry.ministryID
+        JOIN ministry ON facility.ministryID = Ministry.ministryID
         ORDER BY facilityName ASC";
         $result = mysqli_query($conn, $sql);
         
