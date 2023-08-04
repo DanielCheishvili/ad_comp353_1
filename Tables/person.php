@@ -37,12 +37,7 @@
             </div>
         </div>
     </nav>
-    <div id="notification" class="alert alert-success alert-dismissible fade show" role="alert" style="display: none;">
-        <strong>Success!</strong> <span id="notification-message"></span>
-        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-            <span aria-hidden="true">&times;</span>
-        </button>
-    </div>
+    <div class="toast-container position-fixed top-0 end-0 p-3"></div>
     <button class="btn btn-primary" onclick="insertRow()">Insert Row</button>
     <div class="row">
             <div class="col-md-8 offset-md-2">
@@ -122,7 +117,7 @@
                     if (xhr.readyState == XMLHttpRequest.DONE ) {
                         if(xhr.status == 200)
                         {
-                            showNotification("Person deleted successfully");
+                            alert("Person deleted successfully");
                             window.location.reload();
                         }
                         else
@@ -142,13 +137,23 @@
             window.location.href = "../CreateForum/PersonForm.php?medicareCard=" + medicareCard + "&action=edit";
         }
         function showNotification(message) {
-        var notification = document.getElementById("notification");
-        var notificationMessage = document.getElementById("notification-message");
-        notificationMessage.innerText = message;
-        notification.style.display = "block";
-        setTimeout(function () {
-            notification.style.display = "none";
-        }, 3000); // Set the duration in milliseconds (e.g., 3000ms = 3 seconds)
+        var toastContainer = $(".toast-container");
+        var toast = $('<div class="toast" role="alert" aria-live="assertive" aria-atomic="true" data-delay="3000">');
+        var toastHeader = $('<div class="toast-header">');
+        var strong = $('<strong class="mr-auto">').text("Success!");
+        var button = $('<button type="button" class="ml-2 mb-1 close" data-dismiss="toast" aria-label="Close">');
+        var span = $('<span aria-hidden="true">&times;</span>');
+        var toastBody = $('<div class="toast-body">').text(message);
+
+        toastHeader.append(strong);
+        button.append(span);
+        toastHeader.append(button);
+        toast.append(toastHeader);
+        toast.append(toastBody);
+
+        toastContainer.append(toast);
+
+        toast.toast('show');
     }
 
     </script>
