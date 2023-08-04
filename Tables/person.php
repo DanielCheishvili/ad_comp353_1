@@ -4,7 +4,6 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Person Table</title>
-    <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
 </head>
 <body>
@@ -20,33 +19,33 @@
                         <a class="nav-link" href="person.php">Person</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="employee.php">Employee</a>
+                        <a class="nav-link" href="employee.php">Employees</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="student.php">Student</a>
+                        <a class="nav-link" href="student.php">Students</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="facility.php">Facility</a>
+                        <a class="nav-link" href="facility.php">Facilities</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="vaccination.php">Vaccination</a>
+                        <a class="nav-link" href="vaccination.php">Vaccinations</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="infection.php">Infection</a>
+                        <a class="nav-link" href="infection.php">Infections</a>
                     </li>
                 </ul>
             </div>
         </div>
     </nav>
-    <button class="btn btn-primary">Insert Row</button>
+    <button class="btn btn-primary" onclick="insertRow()">Insert Row</button>
         <button class="btn btn-danger">Delete Row</button>
         <button class="btn btn-warning">Edit Row</button>
     <div class="container mt-5">
         <h2>Person Table</h2>
         <p>Table displaying all the records of the Person table.</p>
-        <!-- PHP code to fetch data from the database -->
+       
         <?php
-        include('../config.php'); // Assuming this file contains the database connection settings
+        include('../config.php'); 
         
         $sql = "SELECT * FROM Person";
         $result = mysqli_query($conn, $sql);
@@ -97,13 +96,15 @@
         
         mysqli_close($conn);
         ?>
-        <!-- End of PHP code -->
-        
-        <!-- Buttons -->
+
        
     </div>
 
-    <!-- Bootstrap JS -->
-    <!-- ... (Same as in the previous example) ... -->
+    <script>
+        function insertRow() {
+            window.location.href = "CreatePerson.php";
+        }
+    </script>
+   
 </body>
 </html>
