@@ -111,7 +111,7 @@
         }
         function deletePerson(medicareCard) {
             if (confirm("Are you sure you want to delete this person?")) {
-                window.location.href = "../CreateForm/PersonForm.php?medicareCard=" + medicareCard + "&action=delete";
+                window.location.href = "../CreateForum/PersonForm.php?medicareCard=" + medicareCard + "&action=delete";
             }
         }
         function editPerson(medicareCard) {
