@@ -163,7 +163,7 @@
                     $email = $_POST['email'];
                     $dateOfBirth = $_POST['dateOfBirth'];
                     $medicareExpiryDate = $_POST['medicareExpiryDate'];
-                    $citizenship = $_POST['citizenship'];
+                    $citizenship = isset($_POST['citizenship']) ? 1 : 0;
 
                     if(empty($medicareCard) || empty($firstName) || empty($lastName) || empty($address) || empty($city) || empty($province) || empty($postalCode) || empty($telephoneNumber) || empty($email) || empty($dateOfBirth) || empty($medicareExpiryDate))
                     {
@@ -191,6 +191,10 @@
                 {
                     echo "Error: " . $sql . "<br>" . mysqli_error($conn);
                 }
+            }
+            else
+            {
+                echo "Form submission not detecred";
             }
             elseif($action == 'delete')
             {
