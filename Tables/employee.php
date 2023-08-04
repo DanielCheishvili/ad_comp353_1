@@ -46,7 +46,9 @@
         <?php
         include('../config.php');
         
-        $sql = "SELECT * FROM Employee";
+        $sql = "SELECT employeeID,firstName,lastName,startWorkDate,endWorkDate,employeeRole 
+        FROM Employee
+        JOIN Person ON Employee.medicareCard = Person.medicareCard";
         $result = mysqli_query($conn, $sql);
         
         if (mysqli_num_rows($result) > 0) {
@@ -68,18 +70,12 @@
         
             while ($row = mysqli_fetch_assoc($result)) {
                 echo '<tr>';
+                echo '<td>' . $row['employeeID'] . '</td>';
                 echo '<td>' . $row['firstName'] . '</td>';
                 echo '<td>' . $row['lastName'] . '</td>';
-                echo '<td>' . $row['dateOfBirth'] . '</td>';
-                echo '<td>' . $row['telephoneNumber'] . '</td>';
-                echo '<td>' . $row['email'] . '</td>';
-                echo '<td>' . $row['address'] . '</td>';
-                echo '<td>' . $row['city'] . '</td>';
-                echo '<td>' . $row['province'] . '</td>';
-                echo '<td>' . $row['postalCode'] . '</td>';
-                echo '<td>' . $row['medicareCard'] . '</td>';
-                echo '<td>' . $row['medicareExpiryDate'] . '</td>';
-                echo '<td>' . ($row['citizenship'] ? 'Yes' : 'No') . '</td>';
+                echo '<td>' . $row['startWorkDate'] . '</td>';
+                echo '<td>' . $row['endWorkDate'] . '</td>';
+                echo '<td>' . $row['employeeRole'] . '</td>';
                 echo '</tr>';
             }
         
