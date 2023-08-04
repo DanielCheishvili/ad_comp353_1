@@ -41,68 +41,60 @@
     
     
     include('../config.php');
-
-    $table = isset($_GET['table']) ? $_GET['table'] : '';
     $action = isset($_GET['action']) ? $_GET['action'] : '';
 
-    $medicareCard = $firstName = $lastName = $address = $city = $province = $postalCode = $telephoneNumber = $email = 
-    $dateOfBirth = $medicareExpiryDate = $citizenship = '';
+    $employeeID = $firstName = $lastName = $startWorkDate = $endWorkDate = $role = $medicareCard = '';
 
     if ($action == 'create' || $action == 'edit') {
         if ($action == 'edit') {
             echo "Does it go here?";
             echo $medicareCard;
-            $medicareCard = isset($_GET['medicareCard']) ? $_GET['medicareCard'] : '';
-            $sql = "SELECT * FROM Person WHERE medicareCard = '$medicareCard'";
+            $employeeID = isset($_GET['employeeID']) ? $_GET['employeeID'] : '';
+            $sql = "SELECT * FROM Employee WHERE employeeID = '$employeeID'";
             $result = mysqli_query($conn, $sql);
             $row = mysqli_fetch_assoc($result);
             if (!$result) {
                 echo "Error: " . mysqli_error($conn); // Output the error message for debugging purposes
             }
             
-            $medicareCard = $row['medicareCard'];
+            $employeeID = $row['employeeID'];
             $firstName = $row['firstName'];
             $lastName = $row['lastName'];
-            $address = $row['address'];
-            $city = $row['city'];
-            $province = $row['province'];
-            $postalCode = $row['postalCode'];
-            $telephoneNumber = $row['telephoneNumber'];
-            $email = $row['email'];
-            $dateOfBirth = $row['dateOfBirth'];
-            $medicareExpiryDate = $row['medicareExpiryDate'];
-            $citizenship = $row['citizenship'];
-            echo $medicareCard;
+            $startWorkDate = $row['startWorkDate'];
+            $endWorkDate = $row['endWorkDate'];
+            $role = $row['employeeRole'];
+            $medicareCard = $row['medicareCard'];
+
         }
 
         
             if ($action == 'create') {
                 if(isset($_POST['submit']))
                 {
-                    $medicareCard = $_POST['medicareCard'];
+                    $employeeID = $_POST['employeeID'];
                     $firstName = $_POST['firstName'];
                     $lastName = $_POST['lastName'];
-                    $address = $_POST['address'];
-                    $city = $_POST['city'];
-                    $province = $_POST['province'];
-                    $postalCode = $_POST['postalCode'];
-                    $telephoneNumber = $_POST['telephoneNumber'];
-                    $email = $_POST['email'];
-                    $dateOfBirth = $_POST['dateOfBirth'];
-                    $medicareExpiryDate = $_POST['medicareExpiryDate'];
-                    $citizenship = isset($_POST['citizenship']) ? 1 : 0;
+                    $startWorkDate = $_POST['startWorkDate'];
+                    $endWorkDate = $_POST['endWorkDate'];
+                    $role = $_POST['employeeRole'];
+                    $medicareCard = $_POST['medicareCard'];
+                    
+                    $checkIfPerson = "SELECT * FROM Person WHERE medicareCard = '$medicareCard'";
+                    $result = mysqli_query($conn, $checkIfPerson);
 
-                    if (empty($medicareCard) || empty($firstName) || empty($lastName) || empty($address) || empty($city) || empty($province) || empty($postalCode) || empty($telephoneNumber) || empty($email) || empty($dateOfBirth) || empty($medicareExpiryDate)) {
+                    if(mysqli_num_rows($result) == 0)
+                    {
                         echo '<div class="text-center text-danger mb-4">';
-                        echo "Please fill all the fields";
+                        echo "Person with the following medicare card does not exist: " . $medicareCard;
                         echo '</div>';
-                    } else {
-                        $sql = "INSERT INTO Person (medicareCard, firstName, lastName, address, city, province, postalCode, telephoneNumber, email, dateOfBirth, medicareExpiryDate, citizenship)
-                        VALUES ('$medicareCard', '$firstName', '$lastName', '$address', '$city', '$province', '$postalCode', '$telephoneNumber', '$email', '$dateOfBirth', '$medicareExpiryDate', '1')";
+
+                    }
+                    else{
+                        $sql = "INSERT INTO Employee (employeeID, startWorkDate, endWorkDate, employeeRole, medicareCard) VALUES ('$employeeID', '$startWorkDate', '$endWorkDate', '$role', '$medicareCard')";
                         if (mysqli_query($conn, $sql)) {
-                            echo "Record inserted successfully!";
+                            echo "New record created successfully!";
                             //header("Location: ../Tables/person.php");
-                            exit();
+                            //exit();
                         } else {
                             echo "Error: " . $sql . "<br>" . mysqli_error($conn);
                         }
@@ -111,15 +103,12 @@
             } elseif ($action == 'edit') {
                 if(isset($_POST['submit']))
                 {
-                    echo $medicareCard + "Before";
-                    $sql = "UPDATE Person SET medicareCard = '$medicareCard', firstName = '$firstName', lastName = '$lastName', address = '$address', city = '$city', province = '$province', postalCode = '$postalCode', telephoneNumber = '$telephoneNumber', email = '$email', dateOfBirth = '$dateOfBirth', medicareExpiryDate = '$medicareExpiryDate', citizenship = '$citizenship' WHERE medicareCard = '$medicareCard'";
-                    echo $medicareCard + "After";
+                    $sql = "UPDATE Employee SET employeeID = '$employeeID', startWorkDate = '$startWorkDate', endWorkDate = '$endWorkDate', employeeRole = '$role', medicareCard = '$medicareCard' WHERE employeeID = '$employeeID'";
                     if (mysqli_query($conn, $sql)) {
                         echo "Record updated successfully!";
                         //header("Location: ../Tables/person.php");
                         //exit();
-                    } 
-                    else {
+                    } else {
                         echo "Error: " . $sql . "<br>" . mysqli_error($conn);
                     }
                 }
@@ -128,8 +117,8 @@
 
     }
     elseif ($action == 'delete') {
-        $medicareCard = isset($_GET['medicareCard']) ? $_GET['medicareCard'] : '';
-        $sql = "DELETE FROM Person WHERE medicareCard = '$medicareCard'";
+        $employeeID = isset($_GET['employeeID']) ? $_GET['employeeID'] : '';
+        $sql = "DELETE FROM Employee WHERE employeeID = '$employeeID'";
         if (mysqli_query($conn, $sql)) {
             echo "Record deleted successfully!";
             //header("Location: ../Tables/person.php");
@@ -146,8 +135,8 @@
         <form action="<?php echo $_SERVER['PHP_SELF']; ?>?action=<?php echo $action; ?>" method="post">
 
             <div class="form-group">
-                <label for="medicareCard">Medicare Card</label>
-                <input type="text" name="medicareCard" id="medicareCard" class="form-control" placeholder="Medicare Card" value="<?php echo $medicareCard; ?>">
+                <label for="employeeID">Employee ID</label>
+                <input type="text" name="employeeID" id="employeeID" class="form-control" placeholder="Employee ID" value="<?php echo $employeeID; ?>">
             </div>
 
             <div class="form-row">
@@ -163,52 +152,26 @@
             </div>
 
             <div class="form-group">
-                <label for="address">Address</label>
-                <input type="text" name="address" id="address" class="form-control" placeholder="Address" value="<?php echo $address; ?>">
+                <label for="startWorkDate">Start Work Date </label>
+                <input type="text" name="startWorkDate" id="startWorkDate" class="startWorkDate" placeholder="Start Work Date" value="<?php echo $startWorkDate; ?>">
             </div>
 
             <div class="form-row">
                 <div class="form-group col-md-6">
-                    <label for="city">City</label>
-                    <input type="text" name="city" id="city" class="form-control" placeholder="City" value="<?php echo $city; ?>">
+                    <label for="endWorkDate">End Work Date</label>
+                    <input type="text" name="endWorkDate" id="endWorkDate" class="form-control" placeholder="End Work Date" value="<?php echo $endWorkDate; ?>">
                 </div>
 
                 <div class="form-group col-md-6">
-                    <label for="province">Province</label>
-                    <input type="text" name="province" id="province" class="form-control" placeholder="Province" value="<?php echo $province; ?>">
+                    <label for="employeeRole">Employee Role</label>
+                    <input type="text" name="employeeRole" id="employeeRole" class="form-control" placeholder="Employee Role" value="<?php echo $employeeRole; ?>">
                 </div>
             </div>
 
             <div class="form-group">
-                <label for="postalCode">Postal Code</label>
-                <input type="text" name="postalCode" id="postalCode" class="form-control" placeholder="Postal Code" value="<?php echo $postalCode; ?>">
+                <label for="medicareCard">Medicare Card</label>
+                <input type="text" name="medicareCard" id="medicareCard" class="form-control" placeholder="Medicare Card" value="<?php echo $medicareCard; ?>">
             </div>
-
-            <div class="form-group">
-                <label for="telephoneNumber">Telephone Number</label>
-                <input type="text" name="telephoneNumber" id="telephoneNumber" class="form-control" placeholder="Telephone Number" value="<?php echo $telephoneNumber; ?>">
-            </div>
-
-            <div class="form-group">
-                <label for="email">Email</label>
-                <input type="text" name="email" id="email" class="form-control" placeholder="Email" value="<?php echo $email; ?>">
-            </div>
-
-            <div class="form-group">
-                <label for="dateOfBirth">Date Of Birth</label>
-                <input type="text" name="dateOfBirth" id="dateOfBirth" class="form-control" placeholder="Date Of Birth" value="<?php echo $dateOfBirth; ?>">
-            </div>
-
-            <div class="form-group">
-                <label for="medicareExpiryDate">Medicare Expiry Date</label>
-                <input type="text" name="medicareExpiryDate" id="medicareExpiryDate" class="form-control" placeholder="Medicare Expiry Date" value="<?php echo $medicareExpiryDate; ?>">
-            </div>
-
-            <div class="form-group">
-                <label for="citizenship">Citizenship</label>
-                <input type="checkbox" name="citizenship" id="citizenship" class="form-check-input" value="<?php echo $citizenship; ?>">
-            </div>
-
             <input type="submit" name="submit" value="Submit" class="btn btn-primary">
         </form>
     </div>
