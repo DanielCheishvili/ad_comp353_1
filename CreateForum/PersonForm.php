@@ -50,6 +50,7 @@
 
         if($action == 'create' || $action == 'edit')
         {
+            echo "I am here";
             if($action == 'edit')
             {
                 $medicalCard = isset($_GET['medicareCard']) ? $_GET['medicareCard'] : '';
@@ -74,8 +75,10 @@
 
             if($_SERVER['REQUEST_METHOD'] =='POST')
             {
+                echo "THIS IS POST METHJOD";
                 if($action == 'create')
                 {
+                    echo "THIS IS CREATE METHOD";
                     $sql = "INSERT INTO Person (medicareCard, firstName, lastName, address, city, province, postalCode, telephoneNumber, email, dateOfBirth, medicareExpiryDate, citizenship) 
                     VALUES ('$medicareCard', '$firstName', '$lastName', '$address', '$city', '$province', '$postalCode', '$telephoneNumber', '$email', '$dateOfBirth', '$medicareExpiryDate', '$citizenship')";
                 }
@@ -85,6 +88,7 @@
                 }
                 if(mysqli_query($conn, $sql))
                 {
+
                     header("Location: ../Tables/person.php");
                 }
                 else
