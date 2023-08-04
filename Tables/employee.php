@@ -41,7 +41,7 @@
         <button class="btn btn-danger">Delete Row</button>
         <button class="btn btn-warning">Edit Row</button>
     <div class="container mt-5">
-        <h2>Person Table</h2>
+        <h2 class="text-center">Person Table</h2>
         <p>Table displaying all the records of the Person table.</p>
         <?php
         include('../config.php');
@@ -50,6 +50,7 @@
         $result = mysqli_query($conn, $sql);
         
         if (mysqli_num_rows($result) > 0) {
+            echo '<div class="d-flex justify-content-center">';
             echo '<table class="table table-bordered">';
             echo '<thead>';
             echo '<tr>';
