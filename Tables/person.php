@@ -111,7 +111,25 @@
         }
         function deletePerson(medicareCard) {
             if (confirm("Are you sure you want to delete this person?")) {
-                window.location.href = "../CreateForm/PersonForm.php?medicareCard=" + medicareCard + "&action=delete";
+                var xhr = new XMLHttpRequest();
+                xhr.onreadystatechange = function() {
+                    if (xhr.readyState == XMLHttpRequest.DONE ) {
+                        if(xhr.status == 200)
+                        {
+                            alert("Person deleted successfully");
+                            window.location.reload();
+                        }
+                        else
+                        {
+                            alert("Error deleting person");
+                        }
+                        
+                    }
+                };
+                xhr.open("GET", "../CreateForum/PersonForm.php?medicareCard=" + medicareCard + "&action=delete", true);
+                xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+                xhr.send("medicareCard=" + medicareCard);
+
             }
         }
         function editPerson(medicareCard) {

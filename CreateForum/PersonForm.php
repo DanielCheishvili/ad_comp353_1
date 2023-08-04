@@ -52,6 +52,7 @@
     if ($action == 'create' || $action == 'edit') {
         if ($action == 'edit') {
             echo "Does it go here?";
+            echo $medicareCard;
             $medicareCard = isset($_GET['medicareCard']) ? $_GET['medicareCard'] : '';
             $sql = "SELECT * FROM Person WHERE medicareCard = '$medicareCard'";
             $result = mysqli_query($conn, $sql);
@@ -59,7 +60,7 @@
             if (!$result) {
                 echo "Error: " . mysqli_error($conn); // Output the error message for debugging purposes
             }
-
+            
             $medicareCard = $row['medicareCard'];
             $firstName = $row['firstName'];
             $lastName = $row['lastName'];
@@ -72,6 +73,7 @@
             $dateOfBirth = $row['dateOfBirth'];
             $medicareExpiryDate = $row['medicareExpiryDate'];
             $citizenship = $row['citizenship'];
+            echo $medicareCard;
         }
 
         
@@ -125,6 +127,17 @@
                 
             }
 
+    }
+    elseif ($action == 'delete') {
+        $medicareCard = isset($_GET['medicareCard']) ? $_GET['medicareCard'] : '';
+        $sql = "DELETE FROM Person WHERE medicareCard = '$medicareCard'";
+        if (mysqli_query($conn, $sql)) {
+            echo "Record deleted successfully!";
+            //header("Location: ../Tables/person.php");
+            exit();
+        } else {
+            echo "Error: " . $sql . "<br>" . mysqli_error($conn);
+        }
     }
         mysqli_close($conn);
     ?>
