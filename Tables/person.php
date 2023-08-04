@@ -16,7 +16,7 @@
             <div class="collapse navbar-collapse" id="navbarNav">
                 <ul class="navbar-nav">
                     <li class="nav-item">
-                        <a class="nav-link" href="../person.php">Person</a>
+                        <a class="nav-link" href="../Tables/person.php">Person</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="employee.php">Employees</a>
