@@ -74,8 +74,8 @@
                 echo '<td>' . $row['endWorkDate'] . '</td>';
                 echo '<td>' . $row['employeeRole'] . '</td>';
                 echo '<td>';
-                echo '<button class="btn btn-danger" onclick="deletePerson(' . $row['employeeID'] . ')">Delete</button>';
-                echo '<button class="btn btn-warning" onclick="editPerson(' . $row['employeeID'] . ')">Edit</button>';
+                echo "<button class=\"btn btn-danger\" onclick=\"deleteEmployee('" . $row['employeeID'] . "')\">Delete</button>";
+                echo "<button class=\"btn btn-warning\" onclick=\"editEmployee('" . $row['employeeID'] . "')\">Edit</button>";
                 echo '</td>';
                 echo '</tr>';
             }
@@ -90,7 +90,38 @@
         mysqli_close($conn);
         ?>
         
-       
+        <script>
+        function insertRow()
+        {
+            window.location.href = "../CreateForum/EmployeeForm.php?action=create";
+        }
+        function deleteEmployee(employeeID) {
+            if (confirm("Are you sure you want to delete this employee?")) {
+                var xhr = new XMLHttpRequest();
+                xhr.onreadystatechange = function() {
+                    if (xhr.readyState == XMLHttpRequest.DONE ) {
+                        if(xhr.status == 200)
+                        {
+                            alert("Employee deleted successfully");
+                            window.location.reload();
+                        }
+                        else
+                        {
+                            alert("Error deleting employee");
+                        }
+                        
+                    }
+                };
+                xhr.open("GET", "../CreateForum/EmployeeForm.php?employeeID=" + employeeID + "&action=delete", true);
+                xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+                xhr.send("employeeID=" + employeeID);
+
+            }
+        }
+        function editEmployee(employeeID) {
+            window.location.href = "../CreateForum/EmployeeForm.php?employeeID=" + employeeID + "&action=edit";
+        }
+    </script>
     </div>
 
 </body>
