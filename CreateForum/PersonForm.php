@@ -78,10 +78,32 @@
                 echo "THIS IS POST METHJOD";
                 if($action == 'create')
                 {
-                    echo "THIS IS CREATE METHOD";
-                    $sql = "INSERT INTO Person (medicareCard, firstName, lastName, address, city, province, postalCode, telephoneNumber, email, dateOfBirth, medicareExpiryDate, citizenship) 
-                    VALUES ('$medicareCard', '$firstName', '$lastName', '$address', '$city', '$province', '$postalCode', '$telephoneNumber', '$email', '$dateOfBirth', '$medicareExpiryDate', '$citizenship')";
+                    $medicalCard = $_POST['medicareCard'];
+                    $firstName = $_POST['firstName'];
+                    $lastName = $_POST['lastName'];
+                    $address = $_POST['address'];
+                    $city = $_POST['city'];
+                    $province = $_POST['province'];
+                    $postalCode = $_POST['postalCode'];
+                    $telephoneNumber = $_POST['telephoneNumber'];
+                    $email = $_POST['email'];
+                    $dateOfBirth = $_POST['dateOfBirth'];
+                    $medicareExpiryDate = $_POST['medicareExpiryDate'];
+                    $citizenship = $_POST['citizenship'];
+
+                    if(empty($medicareCard) || empty($firstName) || empty($lastName) || empty($address) || empty($city) || empty($province) || empty($postalCode) || empty($telephoneNumber) || empty($email) || empty($dateOfBirth) || empty($medicareExpiryDate))
+                    {
+                        echo '<div class="text-center text-danger mb-4">';
+                        echo "Please fill all the fields";
+                        echo '</div>';
+                    }
+                    else
+                    {
+                        $sql = "INSERT INTO Person (medicareCard, firstName, lastName, address, city, province, postalCode, telephoneNumber, email, dateOfBirth, medicareExpiryDate, citizenship)
+                        VALUES ('$medicareCard', '$firstName', '$lastName', '$address', '$city', '$province', '$postalCode', '$telephoneNumber', '$email', '$dateOfBirth', '$medicareExpiryDate', '1')";
+                    }
                 }
+
                 elseif($action == 'edit')
                 {
                     $sql = "UPDATE Person SET medicareCard = '$medicareCard', firstName = '$firstName', lastName = '$lastName', address = '$address', city = '$city', province = '$province', postalCode = '$postalCode', telephoneNumber = '$telephoneNumber', email = '$email', dateOfBirth = '$dateOfBirth', medicareExpiryDate = '$medicareExpiryDate', citizenship = '$citizenship' WHERE medicareCard = '$medicareCard'";
