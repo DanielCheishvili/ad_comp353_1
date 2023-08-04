@@ -39,6 +39,79 @@
         </div>
     </nav>
 
+    
+    <div class="container mt-5">
+        <h2>Person Form</h2>
+        <form action="<?php echo $_SERVER['PHP_SELF']; ?>" method="post">
+
+            <div class="form-group">
+                <label for="medicareCard">Medicare Card</label>
+                <input type="text" name="medicareCard" id="medicareCard" class="form-control" placeholder="Medicare Card" value="<?php echo $medicareCard; ?>">
+            </div>
+
+            <div class="form-row">
+                <div class="form-group col-md-6">
+                    <label for="firstName">First Name</label>
+                    <input type="text" name="firstName" id="firstName" class="form-control" placeholder="First Name" value="<?php echo $firstName; ?>">
+                </div>
+
+                <div class="form-group col-md-6">
+                    <label for="lastName">Last Name</label>
+                    <input type="text" name="lastName" id="lastName" class="form-control" placeholder="Last Name" value="<?php echo $lastName; ?>">
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label for="address">Address</label>
+                <input type="text" name="address" id="address" class="form-control" placeholder="Address" value="<?php echo $address; ?>">
+            </div>
+
+            <div class="form-row">
+                <div class="form-group col-md-6">
+                    <label for="city">City</label>
+                    <input type="text" name="city" id="city" class="form-control" placeholder="City" value="<?php echo $city; ?>">
+                </div>
+
+                <div class="form-group col-md-6">
+                    <label for="province">Province</label>
+                    <input type="text" name="province" id="province" class="form-control" placeholder="Province" value="<?php echo $province; ?>">
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label for="postalCode">Postal Code</label>
+                <input type="text" name="postalCode" id="postalCode" class="form-control" placeholder="Postal Code" value="<?php echo $postalCode; ?>">
+            </div>
+
+            <div class="form-group">
+                <label for="telephoneNumber">Telephone Number</label>
+                <input type="text" name="telephoneNumber" id="telephoneNumber" class="form-control" placeholder="Telephone Number" value="<?php echo $telephoneNumber; ?>">
+            </div>
+
+            <div class="form-group">
+                <label for="email">Email</label>
+                <input type="text" name="email" id="email" class="form-control" placeholder="Email" value="<?php echo $email; ?>">
+            </div>
+
+            <div class="form-group">
+                <label for="dateOfBirth">Date Of Birth</label>
+                <input type="text" name="dateOfBirth" id="dateOfBirth" class="form-control" placeholder="Date Of Birth" value="<?php echo $dateOfBirth; ?>">
+            </div>
+
+            <div class="form-group">
+                <label for="medicareExpiryDate">Medicare Expiry Date</label>
+                <input type="text" name="medicareExpiryDate" id="medicareExpiryDate" class="form-control" placeholder="Medicare Expiry Date" value="<?php echo $medicareExpiryDate; ?>">
+            </div>
+
+            <div class="form-group">
+                <label for="citizenship">Citizenship</label>
+                <input type="checkbox" name="citizenship" id="citizenship" class="form-check-input" value="<?php echo $citizenship; ?>">
+            </div>
+
+            <input type="submit" name="submit" value="Submit" class="btn btn-primary">
+        </form>
+    </div>
+
     <?php
         include('../config.php');
 
@@ -53,6 +126,7 @@
             echo "I am here";
             if($action == 'edit')
             {
+                echo "Does it go here?";
                 $medicalCard = isset($_GET['medicareCard']) ? $_GET['medicareCard'] : '';
                 $sql = "SELECT * FROM person WHERE medicareCard = '$medicareCard'";
                 $result = mysqli_query($conn, $sql);
@@ -135,79 +209,6 @@
         mysqli_close($conn);
     
     ?>
-    <div class="container mt-5">
-        <h2>Person Form</h2>
-        <form action="<?php echo $_SERVER['PHP_SELF']; ?>" method="post">
-
-            <div class="form-group">
-                <label for="medicareCard">Medicare Card</label>
-                <input type="text" name="medicareCard" id="medicareCard" class="form-control" placeholder="Medicare Card" value="<?php echo $medicareCard; ?>">
-            </div>
-
-            <div class="form-row">
-                <div class="form-group col-md-6">
-                    <label for="firstName">First Name</label>
-                    <input type="text" name="firstName" id="firstName" class="form-control" placeholder="First Name" value="<?php echo $firstName; ?>">
-                </div>
-
-                <div class="form-group col-md-6">
-                    <label for="lastName">Last Name</label>
-                    <input type="text" name="lastName" id="lastName" class="form-control" placeholder="Last Name" value="<?php echo $lastName; ?>">
-                </div>
-            </div>
-
-            <div class="form-group">
-                <label for="address">Address</label>
-                <input type="text" name="address" id="address" class="form-control" placeholder="Address" value="<?php echo $address; ?>">
-            </div>
-
-            <div class="form-row">
-                <div class="form-group col-md-6">
-                    <label for="city">City</label>
-                    <input type="text" name="city" id="city" class="form-control" placeholder="City" value="<?php echo $city; ?>">
-                </div>
-
-                <div class="form-group col-md-6">
-                    <label for="province">Province</label>
-                    <input type="text" name="province" id="province" class="form-control" placeholder="Province" value="<?php echo $province; ?>">
-                </div>
-            </div>
-
-            <div class="form-group">
-                <label for="postalCode">Postal Code</label>
-                <input type="text" name="postalCode" id="postalCode" class="form-control" placeholder="Postal Code" value="<?php echo $postalCode; ?>">
-            </div>
-
-            <div class="form-group">
-                <label for="telephoneNumber">Telephone Number</label>
-                <input type="text" name="telephoneNumber" id="telephoneNumber" class="form-control" placeholder="Telephone Number" value="<?php echo $telephoneNumber; ?>">
-            </div>
-
-            <div class="form-group">
-                <label for="email">Email</label>
-                <input type="text" name="email" id="email" class="form-control" placeholder="Email" value="<?php echo $email; ?>">
-            </div>
-
-            <div class="form-group">
-                <label for="dateOfBirth">Date Of Birth</label>
-                <input type="text" name="dateOfBirth" id="dateOfBirth" class="form-control" placeholder="Date Of Birth" value="<?php echo $dateOfBirth; ?>">
-            </div>
-
-            <div class="form-group">
-                <label for="medicareExpiryDate">Medicare Expiry Date</label>
-                <input type="text" name="medicareExpiryDate" id="medicareExpiryDate" class="form-control" placeholder="Medicare Expiry Date" value="<?php echo $medicareExpiryDate; ?>">
-            </div>
-
-            <div class="form-group">
-                <label for="citizenship">Citizenship</label>
-                <input type="checkbox" name="citizenship" id="citizenship" class="form-check-input" value="<?php echo $citizenship; ?>">
-            </div>
-
-            <input type="submit" name="submit" value="Submit" class="btn btn-primary">
-        </form>
-    </div>
-
-   
 
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.1/dist/umd/popper.min.js"></script>
