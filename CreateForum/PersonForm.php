@@ -71,9 +71,6 @@ if ($action == 'create' || $action == 'edit') {
         $medicareExpiryDate = $row['medicareExpiryDate'];
         $citizenship = $row['citizenship'];
     }
-
-    if (isset($_POST['submit'])) {
-        echo "THIS IS POST METHOD";
         if ($action == 'create') {
             $medicareCard = $_POST['medicareCard'];
             $firstName = $_POST['firstName'];
@@ -113,9 +110,6 @@ if ($action == 'create' || $action == 'edit') {
                 echo "Error: " . $sql . "<br>" . mysqli_error($conn);
             }
         }
-    } else {
-        echo "Form submission not detected";
-    }
 }
     mysqli_close($conn);
 ?>
