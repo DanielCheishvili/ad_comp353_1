@@ -78,8 +78,8 @@
                 echo '<td>';
                 echo "<button class=\"btn btn-danger\" onclick=\"deleteEmployee('" . $row['employeeID'] . "')\">Delete</button>";
                 echo "<button class=\"btn btn-warning\" onclick=\"editEmployee('" . $row['employeeID'] . "')\">Edit</button>";
-                echo "<button class=\"btn btn-primary\" onclick=\"assignSchedule('" . $row['employeeID'] . "')\">Assign Schedule</button>";
                 echo '</td>';
+                echo '<td> <button class="btn btn-primary" onclick="assignSchedule(' . $row['employeeID'] . ')">Assign Schedule</button> </td>';
                 echo '</tr>';
             }
         
