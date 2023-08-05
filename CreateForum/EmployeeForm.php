@@ -147,19 +147,6 @@
                 <label for="employeeID">Employee ID</label>
                 <input type="text" name="employeeID" id="employeeID" class="form-control" placeholder="Employee ID" value="<?php echo $employeeID; ?>">
             </div>
-
-            <!-- <div class="form-row">
-                <div class="form-group col-md-6">
-                    <label for="firstName">First Name</label>
-                    <input type="text" name="firstName" id="firstName" class="form-control" placeholder="First Name" value="<?php echo $firstName; ?>">
-                </div>
-
-                <div class="form-group col-md-6">
-                    <label for="lastName">Last Name</label>
-                    <input type="text" name="lastName" id="lastName" class="form-control" placeholder="Last Name" value="<?php echo $lastName; ?>">
-                </div>
-            </div> -->
-
             <div class="form-group">
                 <label for="startWorkDate">Start Work Date </label>
                 <input type="text" name="startWorkDate" id="startWorkDate" class="startWorkDate" placeholder="Start Work Date" value="<?php echo $startWorkDate; ?>">

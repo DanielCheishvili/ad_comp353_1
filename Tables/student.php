@@ -88,7 +88,38 @@
         
         mysqli_close($conn);
         ?>
-        
+        <script>
+        function insertRow()
+        {
+            window.location.href = "../CreateForum/StudenForm.php?action=create";
+        }
+        function deleteEmployee(employeeID) {
+            if (confirm("Are you sure you want to delete this student?")) {
+                var xhr = new XMLHttpRequest();
+                xhr.onreadystatechange = function() {
+                    if (xhr.readyState == XMLHttpRequest.DONE ) {
+                        if(xhr.status == 200)
+                        {
+                            alert("Student deleted successfully");
+                            window.location.reload();
+                        }
+                        else
+                        {
+                            alert("Error deleting student");
+                        }
+                        
+                    }
+                };
+                xhr.open("GET", "../CreateForum/EmployeeForm.php?employeeID=" + employeeID + "&action=delete", true);
+                xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+                xhr.send("employeeID=" + employeeID);
+
+            }
+        }
+        function editEmployee(employeeID) {
+            window.location.href = "../CreateForum/EmployeeForm.php?employeeID=" + employeeID + "&action=edit";
+        }
+    </script>
        
     </div>
 
