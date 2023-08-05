@@ -47,8 +47,6 @@
 
     if ($action == 'create' || $action == 'edit') {
         if ($action == 'edit') {
-            echo "Does it go here?";
-            echo $medicareCard;
             $employeeID = isset($_GET['employeeID']) ? $_GET['employeeID'] : '';
             $sql = "SELECT * FROM Employee WHERE employeeID = '$employeeID'";
             $result = mysqli_query($conn, $sql);
@@ -72,6 +70,7 @@
                     $employeeID = $_POST['employeeID'];
                     $startWorkDate = $_POST['startWorkDate'];
                     $endWorkDate = $_POST['endWorkDate'];
+                    $endWorkDate = $_POST['endWorkDate'] ? $_POST['endWorkDate'] : null; // Set to null if empty
                     $role = $_POST['employeeRole'];
                     $medicareCard = $_POST['medicareCard'];
                     
