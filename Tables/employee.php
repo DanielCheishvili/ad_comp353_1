@@ -38,6 +38,7 @@
         </div>
     </nav>
     <button class="btn btn-primary" onclick="insertRow()">Insert Row</button>
+
     <div class="container mt-5">
         <h2 class="text-center">Employee Table</h2>
         <p class="text-center">Table displaying all the records of the Employee table.</p>
@@ -61,6 +62,7 @@
             echo '<th>End Work Date</th>';
             echo '<th>Role</th>';
             echo '<th>Action</th>';
+            echo '<th>Schedule</th>';
             echo '</tr>';
             echo '</thead>';
             echo '<tbody>';
@@ -76,6 +78,7 @@
                 echo '<td>';
                 echo "<button class=\"btn btn-danger\" onclick=\"deleteEmployee('" . $row['employeeID'] . "')\">Delete</button>";
                 echo "<button class=\"btn btn-warning\" onclick=\"editEmployee('" . $row['employeeID'] . "')\">Edit</button>";
+                echo "<button class=\"btn btn-primary\" onclick=\"assignSchedule('" . $row['employeeID'] . "')\">Assign Schedule</button>";
                 echo '</td>';
                 echo '</tr>';
             }
@@ -120,6 +123,9 @@
         }
         function editEmployee(employeeID) {
             window.location.href = "../CreateForum/EmployeeForm.php?employeeID=" + employeeID + "&action=edit";
+        }
+        function assignSchedule(employeeID) {
+            window.location.href = "../AssignSchedule.php?employeeID=" + employeeID;
         }
     </script>
     </div>
