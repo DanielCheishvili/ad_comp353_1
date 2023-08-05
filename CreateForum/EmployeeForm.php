@@ -110,12 +110,12 @@
                 {
                     
             
-                    $originalEmployeeID = $_POST['originalEmployeeID'];
-                    $newEmployeeID = $_POST['employeeID'];
-                    $newStartWorkDate = $_POST['startWorkDate'];
-                    $newEndWorkDate = $_POST['endWorkDate'];
-                    $newRole = $_POST['employeeRole'];
-                    $newMedicareCard = $_POST['medicareCard'];
+                    // $originalEmployeeID = $_POST['originalEmployeeID'];
+                    // $newEmployeeID = $_POST['employeeID'];
+                    // $newStartWorkDate = $_POST['startWorkDate'];
+                    // $newEndWorkDate = $_POST['endWorkDate'];
+                    // $newRole = $_POST['employeeRole'];
+                    // $newMedicareCard = $_POST['medicareCard'];
                     //$endWorkDate = empty($newEndWorkDate) ? "NULL" : "'" . date('Y-m-d', strtotime($newEndWorkDate)) . "'";
 
                     // $sql = "UPDATE Employee SET employeeID = '$newEmployeeID', startWorkDate = '$newStartWorkDate', endWorkDate = '$endWorkDate', employeeRole = '$newRole', medicareCard = '$newMedicareCard' WHERE employeeID = '$originalEmployeeID'";
@@ -127,6 +127,14 @@
                     //     echo "Error: " . $sql . "<br>" . mysqli_error($conn);
                     // }
 
+                    $originalEmployeeID = $_POST['originalEmployeeID'];
+                    $newEmployeeID = $_POST['employeeID'];
+                    $newStartWorkDate = $_POST['startWorkDate'];
+                    $newEndWorkDate = $_POST['endWorkDate'] ? $_POST['endWorkDate'] : null; // Set to null if empty
+                    $newRole = $_POST['employeeRole'];
+                    $newMedicareCard = $_POST['medicareCard'];
+
+                    // Prepare the UPDATE query with placeholders
                     $sql = "UPDATE Employee SET employeeID = ?, startWorkDate = ?, endWorkDate = ?, employeeRole = ?, medicareCard = ? WHERE employeeID = ?";
 
                     // Use prepared statement to bind parameters and handle NULL values correctly
