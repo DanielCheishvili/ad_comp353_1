@@ -116,16 +116,8 @@
                     $newEndWorkDate = $_POST['endWorkDate'];
                     $newRole = $_POST['employeeRole'];
                     $newMedicareCard = $_POST['medicareCard'];
-                    // if (empty($newEndWorkDate)) {
-                    //     $newEndWorkDate = 'NULL';
-                    // } else {
-                    //     $newEndWorkDate = "'" . date('Y-m-d', strtotime($newEndWorkDate)) . "'";
-                    // }
-                    if (empty($newEndWorkDate)) {
-                        $endWorkDate = "NULL";
-                    } else {
-                        $endWorkDate = "'" . date('Y-m-d', strtotime($newEndWorkDate)) . "'";
-                    }
+                    $endWorkDate = empty($newEndWorkDate) ? "NULL" : "'" . date('Y-m-d', strtotime($newEndWorkDate)) . "'";
+
                     $sql = "UPDATE Employee SET employeeID = '$newEmployeeID', startWorkDate = '$newStartWorkDate', endWorkDate = '$endWorkDate', employeeRole = '$newRole', medicareCard = '$newMedicareCard' WHERE employeeID = '$originalEmployeeID'";
                     if (mysqli_query($conn, $sql)) {
                         echo "Record updated successfully!";
