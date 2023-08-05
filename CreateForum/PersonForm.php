@@ -111,14 +111,12 @@
                     }
                 }
             } elseif ($action == 'edit') {
-                echo "EDIT PLEASE";
-                echo $medicareCard;
-                echo $firstName;
-                echo $lastName;
+                
                 if(isset($_POST['submit']))
                 {
+                    // medicareCard = '$medicareCard', 
                     echo "Before";
-                    $sql = "UPDATE Person SET medicareCard = '$medicareCard', firstName = '$firstName', lastName = '$lastName', 
+                    $sql = "UPDATE Person SET firstName = '$firstName', lastName = '$lastName', 
                     address = '$address', city = '$city', province = '$province', postalCode = '$postalCode', telephoneNumber = '$telephoneNumber', 
                     email = '$email', dateOfBirth = '$dateOfBirth', medicareExpiryDate = '$medicareExpiryDate', citizenship = '$citizenship' 
                     WHERE medicareCard = '$medicareCard'";
