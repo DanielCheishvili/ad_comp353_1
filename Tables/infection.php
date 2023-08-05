@@ -37,7 +37,7 @@
             </div>
         </div>
     </nav>
-    <button class="btn btn-primary">Insert Row</button>
+    <button class="btn btn-primary" onclick="insertRow()">Insert Row</button>
     <div class="container mt-5">
         <h2 class="text-center">Infection Table</h2>
         <p class="text-center">Table displaying all the records of the Infection table.</p>
@@ -73,8 +73,8 @@
                 echo '<td>' . $row['infectionType'] . '</td>';
                 echo '<td>' . $row['infectionDate'] . '</td>';
                 echo '<td>';
-                echo '<button class="btn btn-danger" onclick="deletePerson(' . $row['employeeID'] . ')">Delete</button>';
-                echo '<button class="btn btn-warning" onclick="editPerson(' . $row['employeeID'] . ')">Edit</button>';
+                echo "<button class=\"btn btn-danger\" onclick=\"deletePerson('" . $row['infectedPersonID'] . "')\">Delete</button>";
+                echo "<button class=\"btn btn-warning\" onclick=\"editPerson('" . $row['infectedPersonID'] . "')\">Edit</button>";
                 echo '</td>';
                 echo '</tr>';
             }
@@ -88,7 +88,38 @@
         
         mysqli_close($conn);
         ?>
-        
+    <script>
+        function insertRow()
+        {
+            window.location.href = "../CreateForum/InfectionForm.php?action=create";
+        }
+        function deletePerson(InfectedPersonID) {
+            if (confirm("Are you sure you want to delete this Infected person?")) {
+                var xhr = new XMLHttpRequest();
+                xhr.onreadystatechange = function() {
+                    if (xhr.readyState == XMLHttpRequest.DONE ) {
+                        if(xhr.status == 200)
+                        {
+                            alert("Infected Person deleted successfully");
+                            window.location.reload();
+                        }
+                        else
+                        {
+                            alert("Error deleting Infected Person");
+                        }
+                        
+                    }
+                };
+                xhr.open("GET", "../CreateForum/InfectionForm.php?InfectedPersonID=" + InfectedPersonID + "&action=delete", true);
+                xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+                xhr.send("InfectedPersonID=" + InfectedPersonID);
+
+            }
+        }
+        function editPerson(InfectedPersonID) {
+            window.location.href = "../CreateForum/InfectionForm.php?infectedPersonID=" + InfectedPersonID + "&action=edit";
+        }
+    </script>
        
     </div>
 

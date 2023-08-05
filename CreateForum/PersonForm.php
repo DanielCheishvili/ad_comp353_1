@@ -50,8 +50,6 @@
 
     if ($action == 'create' || $action == 'edit') {
         if ($action == 'edit') {
-            echo "Does it go here?";
-            echo $medicareCard;
             $medicareCard = isset($_GET['medicareCard']) ? $_GET['medicareCard'] : '';
             $sql = "SELECT * FROM Person WHERE medicareCard = '$medicareCard'";
             $result = mysqli_query($conn, $sql);
@@ -72,15 +70,13 @@
             $dateOfBirth = $row['dateOfBirth'];
             $medicareExpiryDate = $row['medicareExpiryDate'];
             $citizenship = $row['citizenship'];
-            echo $medicareCard;
-            echo "AFTER SETTING";
+            
         }
 
         
             if ($action == 'create') {
                 if(isset($_POST['submit']))
                 {
-                    echo "IT SHOULD GO HERE";
                     $medicareCard = $_POST['medicareCard'];
                     $firstName = $_POST['firstName'];
                     $lastName = $_POST['lastName'];
@@ -128,14 +124,11 @@
                     $newdateOfBirth = $_POST['dateOfBirth'];
                     $newmedicareExpiryDate = $_POST['medicareExpiryDate'];
                     $newcitizenship = isset($_POST['citizenship']) ? 1 : 0;
-                    echo "Before";
-                    echo $_POST['dateOfBirth'];
                     $sql = "UPDATE Person SET medicareCard = '$newMedicareCard', firstName = '$newfirstName', lastName = '$newlastName', 
                     address = '$newaddress', city = '$newcity', province = '$newprovince', postalCode = '$newpostalCode', telephoneNumber = '$newtelephoneNumber', 
                     email = '$newemail', dateOfBirth = STR_TO_DATE('$newdateOfBirth', '%Y-%m-%d'), medicareExpiryDate = STR_TO_DATE('$newmedicareExpiryDate', '%Y-%m-%d'), citizenship = '$newcitizenship' 
                     WHERE medicareCard = '$originalMedicareCard'";
 
-                    echo "After";
                     if (mysqli_query($conn, $sql)) {
                         echo "Record updated successfully!";
                         //header("Location: ../Tables/person.php");

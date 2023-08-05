@@ -47,8 +47,6 @@
 
     if ($action == 'create' || $action == 'edit') {
         if ($action == 'edit') {
-            echo "Does it go here?";
-            echo $medicareCard;
             $studentID = isset($_GET['studentID']) ? $_GET['studentID'] : '';
             $sql = "SELECT * FROM Student WHERE studentID = '$studentID'";
             $result = mysqli_query($conn, $sql);
