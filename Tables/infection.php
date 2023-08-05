@@ -44,7 +44,10 @@
         <?php
         include('../config.php');
         
-        $sql = "SELECT * FROM Infection";
+        $sql = "SELECT Person.firstName, Person.lastName,Infection.infectionType, infection.infectionDate 
+        FROM InfectedPerson
+        JOIN Person ON InfectedPerson.personID = Person.personID
+        JOIN Infection ON InfectedPerson.infectionID = Infection.infectionID";
         $result = mysqli_query($conn, $sql);
         
         if (mysqli_num_rows($result) > 0) {
@@ -52,8 +55,8 @@
             echo '<table class="table table-bordered">';
             echo '<thead>';
             echo '<tr>';
-            echo '<th>Infection ID</th>';
-            echo '<th>Nature</th>';
+            echo '<th>First Name</th>';
+            echo '<th>Last Name</th>';
             echo '<th>Infection Type</th>';
             echo '<th>Infection Date</th>';
             echo '<th>Action</th>';
@@ -63,8 +66,8 @@
         
             while ($row = mysqli_fetch_assoc($result)) {
                 echo '<tr>';
-                echo '<td>' . $row['infectionID'] . '</td>';
-                echo '<td>' . $row['nature'] . '</td>';
+                echo '<td>' . $row['firstName'] . '</td>';
+                echo '<td>' . $row['lastName'] . '</td>';
                 echo '<td>' . $row['infectionType'] . '</td>';
                 echo '<td>' . $row['infectionDate'] . '</td>';
                 echo '<td>';

@@ -157,25 +157,25 @@
         <form action="<?php echo $_SERVER['PHP_SELF']; ?>?action=<?php echo $action; ?>" method="post">
 
             <div class="form-group">
-                <label for="studentID">Employee ID</label>
+                <label for="studentID">Student ID</label>
                 <input type="text" name="studentID" id="studentID" class="form-control" placeholder="Student ID" value="<?php echo $studentID; ?>">
             </div>
 
             
 
             <div class="form-group">
-                <label for="startSchoolDate">Start Work Date </label>
+                <label for="startSchoolDate">Start School Date </label>
                 <input type="text" name="startSchoolDate" id="startSchoolDate" class="startSchoolDate" placeholder="Start School Date" value="<?php echo $startSchoolDate; ?>">
             </div>
 
             <div class="form-row">
                 <div class="form-group col-md-6">
-                    <label for="endSchoolDate">End Work Date</label>
+                    <label for="endSchoolDate">End School Date</label>
                     <input type="text" name="endSchoolDate" id="endSchoolDate" class="form-control" placeholder="End School Date" value="<?php echo $endSchoolDate; ?>">
                 </div>
 
                 <div class="form-group col-md-6">
-                    <label for="educationalFacilityID">Employee Role</label>
+                    <label for="educationalFacilityID">Educational Facility ID</label>
                     <input type="text" name="educationalFacilityID" id="educationalFacilityID" class="form-control" placeholder="Educational Facility ID " value="<?php echo $educationalFacilityId; ?>">
                 </div>
             </div>
