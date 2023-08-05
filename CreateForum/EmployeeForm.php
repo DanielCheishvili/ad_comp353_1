@@ -175,12 +175,12 @@
                 <div class="form-group col-md-6">
                     <label for="employeeRole">Employee Role</label>
                     <select name="employeeRole" id="employeeRole" class="form-control">
-                    <option value="teacher" <?php echo $employeeRole === 'teacher' ? 'selected' : ''; ?>>Teacher</option>
-                    <option value="principle" <?php echo $employeeRole === 'principle' ? 'selected' : ''; ?>>Principle</option>
-                    <option value="president" <?php echo $employeeRole === 'president' ? 'selected' : ''; ?>>President</option>
-                    <option value="secretary" <?php echo $employeeRole === 'secretary' ? 'selected' : ''; ?>>Secretary</option>
-                    <option value="specialized personnel" <?php echo $employeeRole === 'specialized personnel' ? 'selected' : ''; ?>>Specialized Personnel</option>
-                    <option value="other" <?php echo $employeeRole === 'other' ? 'selected' : ''; ?>>Other</option>
+                    <option value="teacher" <?php echo $role === 'teacher' ? 'selected' : ''; ?>>Teacher</option>
+                    <option value="principle" <?php echo $role === 'principle' ? 'selected' : ''; ?>>Principle</option>
+                    <option value="president" <?php echo $role === 'president' ? 'selected' : ''; ?>>President</option>
+                    <option value="secretary" <?php echo $role === 'secretary' ? 'selected' : ''; ?>>Secretary</option>
+                    <option value="specialized personnel" <?php echo $role === 'specialized personnel' ? 'selected' : ''; ?>>Specialized Personnel</option>
+                    <option value="other" <?php echo $role === 'other' ? 'selected' : ''; ?>>Other</option>
 
                     </select>
                 </div>
