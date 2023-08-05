@@ -145,7 +145,13 @@
 
             <div class="form-group">
                 <label for="medicareCard">Medicare Card</label>
-                <input type="text" name="medicareCard" id="medicareCard" class="form-control" placeholder="Medicare Card" value="<?php echo $medicareCard; ?>">
+                <input type="text" name="medicareCard" id="medicareCard" class="form-control" placeholder="Medicare Card" value="<?php echo $medicareCard; ?>"
+                <?php
+                if ($action == 'edit') {
+                    echo 'readonly ';
+                }
+                echo 'value="' . $medicareCard . '"';
+                ?>>
             </div>
             <div class="form-row">
                 <label for="infectionID">Infection ID</label>
