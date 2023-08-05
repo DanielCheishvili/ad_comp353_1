@@ -44,7 +44,7 @@
         <?php
         include('../config.php');
         
-        $sql = "SELECT Person.firstName, Person.lastName,Person.medicareCard,Infection.infectionType, infection.infectionDate 
+        $sql = "SELECT Person.firstName, Person.lastName,Person.medicareCard,Infection.infectionType, Infection.infectionDate 
         FROM InfectedPerson
         JOIN Person ON InfectedPerson.medicareCard = Person.medicareCard
         JOIN Infection ON InfectedPerson.infectionID = Infection.infectionID";
