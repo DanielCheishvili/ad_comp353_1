@@ -115,7 +115,7 @@
                 if(isset($_POST['submit']))
                 {
                     $originalMedicareCard = $_POST['originalMedicareCard'];
-
+                    $medicareCard = $_POST['medicareCard'];
                     $newMedicareCard = $_POST['medicareCard'];
                     $newfirstName = $_POST['firstName'];
                     $newlastName = $_POST['lastName'];

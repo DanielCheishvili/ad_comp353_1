@@ -43,7 +43,7 @@
     include('../config.php');
     $action = isset($_GET['action']) ? $_GET['action'] : '';
 
-    $employeeID = $firstName = $lastName = $startWorkDate = $endWorkDate = $role = $medicareCard = '';
+    $employeeID = $startWorkDate = $endWorkDate = $role = $medicareCard = '';
 
     if ($action == 'create' || $action == 'edit') {
         if ($action == 'edit') {
@@ -58,8 +58,6 @@
             }
             
             $employeeID = $row['employeeID'];
-            $firstName = $row['firstName'];
-            $lastName = $row['lastName'];
             $startWorkDate = $row['startWorkDate'];
             $endWorkDate = $row['endWorkDate'];
             $role = $row['employeeRole'];
@@ -72,8 +70,6 @@
                 if(isset($_POST['submit']))
                 {
                     $employeeID = $_POST['employeeID'];
-                    $firstName = $_POST['firstName'];
-                    $lastName = $_POST['lastName'];
                     $startWorkDate = $_POST['startWorkDate'];
                     $endWorkDate = $_POST['endWorkDate'];
                     $role = $_POST['employeeRole'];
@@ -112,7 +108,13 @@
             } elseif ($action == 'edit') {
                 if(isset($_POST['submit']))
                 {
-                    $sql = "UPDATE Employee SET employeeID = '$employeeID', startWorkDate = '$startWorkDate', endWorkDate = '$endWorkDate', employeeRole = '$role', medicareCard = '$medicareCard' WHERE employeeID = '$employeeID'";
+                    $originalEmployeeID = $_POST['originalEmployeeID'];
+                    $newEmployeeID = $_POST['employeeID'];
+                    $newStartWorkDate = $_POST['startWorkDate'];
+                    $newEndWorkDate = $_POST['endWorkDate'];
+                    $newRole = $_POST['employeeRole'];
+                    $newMedicareCard = $_POST['medicareCard'];
+                    $sql = "UPDATE Employee SET employeeID = '$newEmployeeID', startWorkDate = '$newStartWorkDate', endWorkDate = '$newEndWorkDate', employeeRole = '$newRole', medicareCard = '$newMedicareCard' WHERE employeeID = '$originalEmployeeID'";
                     if (mysqli_query($conn, $sql)) {
                         echo "Record updated successfully!";
                         //header("Location: ../Tables/person.php");
@@ -174,6 +176,7 @@
                 echo 'value="' . $medicareCard . '"';
                 ?>>
             </div>
+            <input type="hidden" name="originalEmployeeID" value="<?php echo $employeeID; ?>">
             <input type="submit" name="submit" value="Submit" class="btn btn-primary">
         </form>
     </div>
