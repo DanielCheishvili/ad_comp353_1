@@ -119,6 +119,7 @@
                     $newMedicareCard = $_POST['medicareCard'];
                     // medicareCard = '$medicareCard', 
                     echo "Before";
+                    echo $_POST['dateOfBirth'];
                     $sql = "UPDATE Person SET medicareCard = '$newMedicareCard', firstName = '$firstName', lastName = '$lastName', 
                     address = '$address', city = '$city', province = '$province', postalCode = '$postalCode', telephoneNumber = '$telephoneNumber', 
                     email = '$email', dateOfBirth = '$dateOfBirth', medicareExpiryDate = '$medicareExpiryDate', citizenship = '$citizenship' 
