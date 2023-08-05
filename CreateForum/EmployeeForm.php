@@ -70,7 +70,7 @@
                     $employeeID = $_POST['employeeID'];
                     $startWorkDate = $_POST['startWorkDate'];
                     $endWorkDate = $_POST['endWorkDate'];
-                    $endWorkDate = $_POST['endWorkDate'] ? $_POST['endWorkDate'] : null; // Set to null if empty
+                    $endWorkDate = isset($_POST['endWorkDate']) && $_POST['endWorkDate'] !== '' ? $_POST['endWorkDate'] : null; // Set to null if empty
                     $role = $_POST['employeeRole'];
                     $medicareCard = $_POST['medicareCard'];
                     
