@@ -178,7 +178,7 @@
                     <option value="teacher" <?php echo $employeeRole === 'teacher' ? 'selected' : ''; ?>>Teacher</option>
                     <option value="principle" <?php echo $employeeRole === 'principle' ? 'selected' : ''; ?>>Principle</option>
                     <option value="president" <?php echo $employeeRole === 'president' ? 'selected' : ''; ?>>President</option>
-                    <option value="secretary" <?php echo $employeeRole === '‘secretary’' ? 'selected' : ''; ?>>Secretary</option>
+                    <option value="secretary" <?php echo $employeeRole === 'secretary' ? 'selected' : ''; ?>>Secretary</option>
                     <option value="specialized personnel" <?php echo $employeeRole === 'specialized personnel' ? 'selected' : ''; ?>>Specialized Personnel</option>
                     <option value="other" <?php echo $employeeRole === 'other' ? 'selected' : ''; ?>>Other</option>
 
