@@ -119,7 +119,7 @@
                     $newMedicareCard = $_POST['medicareCard'];
                     // medicareCard = '$medicareCard', 
                     echo "Before";
-                    $sql = "UPDATE Person SET medicareCard = '$newMedicareCard, firstName = '$firstName', lastName = '$lastName', 
+                    $sql = "UPDATE Person SET medicareCard = '$newMedicareCard', firstName = '$firstName', lastName = '$lastName', 
                     address = '$address', city = '$city', province = '$province', postalCode = '$postalCode', telephoneNumber = '$telephoneNumber', 
                     email = '$email', dateOfBirth = '$dateOfBirth', medicareExpiryDate = '$medicareExpiryDate', citizenship = '$citizenship' 
                     WHERE medicareCard = '$originalMedicareCard'";
@@ -217,7 +217,8 @@
 
             <div class="form-group">
                 <label for="citizenship">Citizenship</label>
-                <input type="checkbox" name="citizenship" id="citizenship" class="form-check-input" value="<?php echo $citizenship; ?>">
+                <input type="checkbox" name="citizenship" id="citizenship" class="form-check-input" <?php echo $citizenship == 1 ? 'checked' : ''; ?>>
+                <!-- <input type="checkbox" name="citizenship" id="citizenship" class="form-check-input" value="<?php echo $citizenship; ?>"> -->
             </div>
             <input type="hidden" name="originalMedicareCard" value="<?php echo $medicareCard; ?>">
             <input type="submit" name="submit" value="Submit" class="btn btn-primary">
