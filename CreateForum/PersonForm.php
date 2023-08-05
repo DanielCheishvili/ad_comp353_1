@@ -117,13 +117,22 @@
                     $originalMedicareCard = $_POST['originalMedicareCard'];
 
                     $newMedicareCard = $_POST['medicareCard'];
-                    $citizenship = isset($_POST['citizenship']) ? 1 : 0;
-                    // medicareCard = '$medicareCard', 
+                    $newfirstName = $_POST['firstName'];
+                    $newlastName = $_POST['lastName'];
+                    $newaddress = $_POST['address'];
+                    $newcity = $_POST['city'];
+                    $newprovince = $_POST['province'];
+                    $newpostalCode = $_POST['postalCode'];
+                    $newtelephoneNumber = $_POST['telephoneNumber'];
+                    $newemail = $_POST['email'];
+                    $newdateOfBirth = $_POST['dateOfBirth'];
+                    $newmedicareExpiryDate = $_POST['medicareExpiryDate'];
+                    $newcitizenship = isset($_POST['citizenship']) ? 1 : 0;
                     echo "Before";
                     echo $_POST['dateOfBirth'];
-                    $sql = "UPDATE Person SET medicareCard = '$newMedicareCard', firstName = '$firstName', lastName = '$lastName', 
-                    address = '$address', city = '$city', province = '$province', postalCode = '$postalCode', telephoneNumber = '$telephoneNumber', 
-                    email = '$email', dateOfBirth = STR_TO_DATE('$dateOfBirth', '%Y-%m-%d'), medicareExpiryDate = STR_TO_DATE('$medicareExpiryDate', '%Y-%m-%d'), citizenship = '$citizenship' 
+                    $sql = "UPDATE Person SET medicareCard = '$newMedicareCard', firstName = '$newfirstName', lastName = '$newlastName', 
+                    address = '$newaddress', city = '$newcity', province = '$newprovince', postalCode = '$newpostalCode', telephoneNumber = '$newtelephoneNumber', 
+                    email = '$newemail', dateOfBirth = STR_TO_DATE('$newdateOfBirth', '%Y-%m-%d'), medicareExpiryDate = STR_TO_DATE('$newmedicareExpiryDate', '%Y-%m-%d'), citizenship = '$newcitizenship' 
                     WHERE medicareCard = '$originalMedicareCard'";
 
                     echo "After";
