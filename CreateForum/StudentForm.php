@@ -72,7 +72,7 @@
                 {
                     $studentID = $_POST['studentID'];
                     $startSchoolDate = $_POST['startSchoolDate'];
-                    $endSchoolDate = $_POST['endSchoolDate'];
+                    $endSchoolDate = $_POST['endSchoolDate'] ? $_POST['endSchoolDate'] : null; // Set to null if empty
                     $educationalFacilityId = $_POST['educationalFacilityId'];
                     $medicareCard = $_POST['medicareCard'];
 
@@ -90,14 +90,17 @@
     
                         }
                         else{
-                            $sql = "INSERT INTO Student (studentID, startSchoolDate, endSchoolDate, educationalFacilityId, medicareCard) VALUES ('$studentID', '$startSchoolDate', '$endSchoolDate', '$educationalFacilityId', '$medicareCard')";
-                            if (mysqli_query($conn, $sql)) {
+                            $sql = "INSERT INTO Student (studentID, startSchoolDate, endSchoolDate, educationalFacilityId, medicareCard) VALUES (?, ?, ?, ?, ?)";
+                            $stmt = mysqli_prepare($conn, $sql);
+                            mysqli_stmt_bind_param($stmt, "sssss", $studentID, $startSchoolDate, $endSchoolDate, $educationalFacilityId, $medicareCard);
+                            if (mysqli_stmt_execute($stmt)) {
                                 echo "New record created successfully!";
                                 //header("Location: ../Tables/person.php");
                                 //exit();
                             } else {
-                                echo "Error: " . $sql . "<br>" . mysqli_error($conn);
+                                echo "Error: " . mysqli_error($conn);
                             }
+                           
                         }
                     }
                     else
