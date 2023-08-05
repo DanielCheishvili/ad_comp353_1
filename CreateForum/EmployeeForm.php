@@ -70,7 +70,7 @@
                     $employeeID = $_POST['employeeID'];
                     $startWorkDate = $_POST['startWorkDate'];
                     $endWorkDate = $_POST['endWorkDate'];
-                    $endWorkDate = isset($_POST['endWorkDate']) && $_POST['endWorkDate'] !== '' ? $_POST['endWorkDate'] : null; // Set to null if empty
+                    $endWorkDate = $_POST['endWorkDate'] ? $_POST['endWorkDate'] : null; // Set to null if empty
                     $role = $_POST['employeeRole'];
                     $medicareCard = $_POST['medicareCard'];
                     
@@ -88,14 +88,33 @@
     
                         }
                         else{
-                            $sql = "INSERT INTO Employee (employeeID, startWorkDate, endWorkDate, employeeRole, medicareCard) VALUES ('$employeeID', '$startWorkDate', '$endWorkDate', '$role', '$medicareCard')";
-                            if (mysqli_query($conn, $sql)) {
+                            // Prepare the INSERT query with placeholders
+                            $sql = "INSERT INTO Employee (employeeID, startWorkDate, endWorkDate, employeeRole, medicareCard) VALUES (?, ?, ?, ?, ?)";
+
+                            // Use prepared statement to bind parameters and handle NULL values correctly
+                            $stmt = mysqli_prepare($conn, $sql);
+                            mysqli_stmt_bind_param($stmt, "sssss", $employeeID, $startWorkDate, $endWorkDate, $role, $medicareCard);
+
+                            // Execute the statement
+                            if (mysqli_stmt_execute($stmt)) {
                                 echo "New record created successfully!";
                                 //header("Location: ../Tables/person.php");
                                 //exit();
                             } else {
-                                echo "Error: " . $sql . "<br>" . mysqli_error($conn);
+                                echo "Error: " . mysqli_error($conn);
                             }
+
+                            // Close the statement
+                            mysqli_stmt_close($stmt);
+
+                            // $sql = "INSERT INTO Employee (employeeID, startWorkDate, endWorkDate, employeeRole, medicareCard) VALUES ('$employeeID', '$startWorkDate', '$endWorkDate', '$role', '$medicareCard')";
+                            // if (mysqli_query($conn, $sql)) {
+                            //     echo "New record created successfully!";
+                            //     //header("Location: ../Tables/person.php");
+                            //     //exit();
+                            // } else {
+                            //     echo "Error: " . $sql . "<br>" . mysqli_error($conn);
+                            // }
                         }
                     }
                     else
