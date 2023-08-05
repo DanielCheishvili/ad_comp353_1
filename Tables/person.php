@@ -37,7 +37,6 @@
             </div>
         </div>
     </nav>
-    <div class="toast-container position-fixed top-0 end-0 p-3"></div>
     <button class="btn btn-primary" onclick="insertRow()">Insert Row</button>
     <div class="row">
             <div class="col-md-8 offset-md-2">
