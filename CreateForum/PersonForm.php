@@ -122,7 +122,7 @@
                     echo $_POST['dateOfBirth'];
                     $sql = "UPDATE Person SET medicareCard = '$newMedicareCard', firstName = '$firstName', lastName = '$lastName', 
                     address = '$address', city = '$city', province = '$province', postalCode = '$postalCode', telephoneNumber = '$telephoneNumber', 
-                    email = '$email', dateOfBirth = STR_TO_DATE('$dateOfBirth', '%Y-%m-%d'), medicareExpiryDate = '$medicareExpiryDate', citizenship = '$citizenship' 
+                    email = '$email', dateOfBirth = STR_TO_DATE('$dateOfBirth', '%Y-%m-%d'), medicareExpiryDate = STR_TO_DATE('$medicareExpiryDate', '%Y-%m-%d'), citizenship = '$citizenship' 
                     WHERE medicareCard = '$originalMedicareCard'";
 
                     echo "After";
