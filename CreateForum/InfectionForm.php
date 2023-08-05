@@ -79,7 +79,7 @@
     
                         }
                         else{
-                           $sql = "INSERT INTO infectedperson (infectedPersonID, medicareCard, infectionID) VALUES ('$infectedPersonID', '$medicareCard', '$infectionID')";
+                           $sql = "INSERT INTO InfectedPerson (infectedPersonID, medicareCard, infectionID) VALUES ('$infectedPersonID', '$medicareCard', '$infectionID')";
                             if (mysqli_query($conn, $sql)) {
                                  echo '<div class="text-center text-success mb-4">';
                                  echo "New record created successfully";
