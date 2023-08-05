@@ -109,24 +109,6 @@
                 if(isset($_POST['submit']))
                 {
                     
-            
-                    // $originalEmployeeID = $_POST['originalEmployeeID'];
-                    // $newEmployeeID = $_POST['employeeID'];
-                    // $newStartWorkDate = $_POST['startWorkDate'];
-                    // $newEndWorkDate = $_POST['endWorkDate'];
-                    // $newRole = $_POST['employeeRole'];
-                    // $newMedicareCard = $_POST['medicareCard'];
-                    //$endWorkDate = empty($newEndWorkDate) ? "NULL" : "'" . date('Y-m-d', strtotime($newEndWorkDate)) . "'";
-
-                    // $sql = "UPDATE Employee SET employeeID = '$newEmployeeID', startWorkDate = '$newStartWorkDate', endWorkDate = '$endWorkDate', employeeRole = '$newRole', medicareCard = '$newMedicareCard' WHERE employeeID = '$originalEmployeeID'";
-                    // if (mysqli_query($conn, $sql)) {
-                    //     echo "Record updated successfully!";
-                    //     //header("Location: ../Tables/person.php");
-                    //     //exit();
-                    // } else {
-                    //     echo "Error: " . $sql . "<br>" . mysqli_error($conn);
-                    // }
-
                     $originalEmployeeID = $_POST['originalEmployeeID'];
                     $newEmployeeID = $_POST['employeeID'];
                     $newStartWorkDate = $_POST['startWorkDate'];
@@ -192,7 +174,15 @@
 
                 <div class="form-group col-md-6">
                     <label for="employeeRole">Employee Role</label>
-                    <input type="text" name="employeeRole" id="employeeRole" class="form-control" placeholder="Employee Role" value="<?php echo $employeeRole; ?>">
+                    <select name="employeeRole" id="employeeRole" class="form-control">
+                    <option value="teacher" <?php echo $employeeRole === 'teacher' ? 'selected' : ''; ?>>Teacher</option>
+                    <option value="principle" <?php echo $employeeRole === 'principle' ? 'selected' : ''; ?>>Principle</option>
+                    <option value="president" <?php echo $employeeRole === 'president' ? 'selected' : ''; ?>>President</option>
+                    <option value="secretary" <?php echo $employeeRole === '‘secretary’' ? 'selected' : ''; ?>>Secretary</option>
+                    <option value="specialized personnel" <?php echo $employeeRole === 'specialized personnel' ? 'selected' : ''; ?>>Specialized Personnel</option>
+                    <option value="other" <?php echo $employeeRole === 'other' ? 'selected' : ''; ?>>Other</option>
+
+                    </select>
                 </div>
             </div>
 
