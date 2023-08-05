@@ -49,7 +49,7 @@
     if ($action == 'create' || $action == 'edit') {
         if ($action == 'edit') {
             $infectedPersonID = isset($_GET['infectedPersonID']) ? $_GET['infectedPersonID'] : '';
-            $sql = "SELECT * FROM infectedperson WHERE infectedPersonID = '$infectedPersonID'";
+            $sql = "SELECT * FROM InfectedPerson WHERE infectedPersonID = '$infectedPersonID'";
             $result = mysqli_query($conn, $sql);
             
             $row = mysqli_fetch_assoc($result);
