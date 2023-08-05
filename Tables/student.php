@@ -37,7 +37,7 @@
             </div>
         </div>
     </nav>
-    <button class="btn btn-primary">Insert Row</button>
+    <button class="btn btn-primary" onclick="insertRow()">Insert Row</button>
     <div class="container mt-5">
         <h2 class="text-center">Student Table</h2>
         <button class="btn btn-primary">Register Student</button>
@@ -73,8 +73,8 @@
                 echo '<td>' . $row['startSchoolDate'] . '</td>';
                 echo '<td>' . $row['endSchoolDate'] . '</td>';
                 echo '<td>';
-                echo '<button class="btn btn-danger" onclick="deleteStudent(' . $row['studentID'] . ')">Delete</button>';
-                echo '<button class="btn btn-warning" onclick="editStudent(' . $row['studentID'] . ')">Edit</button>';
+                echo "<button class=\"btn btn-danger\" onclick=\"deleteStudent('" . $row['studentID'] . "')\">Delete</button>";
+                echo "<button class=\"btn btn-warning\" onclick=\"editStudent('" . $row['studentID'] . "')\">Edit</button>";
                 echo '</td>';
                 echo '</tr>';
             }
@@ -116,7 +116,7 @@
 
             }
         }
-        function editEmployee(studentID) {
+        function editStudent(studentID) {
             window.location.href = "../CreateForum/EmployeeForm.php?studentID=" + studentID + "&action=edit";
         }
     </script>
