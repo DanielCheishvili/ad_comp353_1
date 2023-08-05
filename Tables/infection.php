@@ -112,9 +112,9 @@
                         
                     }
                 };
-                xhr.open("GET", "../CreateForum/InfectionForm.php?InfectedPersonID=" + InfectedPersonID + "&action=delete", true);
+                xhr.open("GET", "../CreateForum/InfectionForm.php?infectedPersonID=" + InfectedPersonID + "&action=delete", true);
                 xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
-                xhr.send("InfectedPersonID=" + InfectedPersonID);
+                xhr.send("infectedPersonID=" + InfectedPersonID);
 
             }
         }
