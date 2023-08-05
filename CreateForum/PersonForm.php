@@ -73,12 +73,14 @@
             $medicareExpiryDate = $row['medicareExpiryDate'];
             $citizenship = $row['citizenship'];
             echo $medicareCard;
+            echo "AFTER SETTING";
         }
 
         
             if ($action == 'create') {
                 if(isset($_POST['submit']))
                 {
+                    echo "IT SHOULD GO HERE";
                     $medicareCard = $_POST['medicareCard'];
                     $firstName = $_POST['firstName'];
                     $lastName = $_POST['lastName'];
@@ -109,7 +111,12 @@
                     }
                 }
             } elseif ($action == 'edit') {
-                
+                echo "EDIT PLEASE";
+                echo $medicareCard;
+                echo $firstName;
+                echo $lastName;
+                if(isset($_POST['submit']))
+                {
                     echo $medicareCard + "Before";
                     $sql = "UPDATE Person SET medicareCard = '$medicareCard', firstName = '$firstName', lastName = '$lastName', 
                     address = '$address', city = '$city', province = '$province', postalCode = '$postalCode', telephoneNumber = '$telephoneNumber', 
@@ -125,7 +132,7 @@
                     else {
                         echo "Error: " . $sql . "<br>" . mysqli_error($conn);
                     }
-                
+                }
                 
             }
 
