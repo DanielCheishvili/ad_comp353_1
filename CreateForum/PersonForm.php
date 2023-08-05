@@ -117,6 +117,7 @@
                     $originalMedicareCard = $_POST['originalMedicareCard'];
 
                     $newMedicareCard = $_POST['medicareCard'];
+                    $citizenship = isset($_POST['citizenship']) ? 1 : 0;
                     // medicareCard = '$medicareCard', 
                     echo "Before";
                     echo $_POST['dateOfBirth'];
