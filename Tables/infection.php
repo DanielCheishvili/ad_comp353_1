@@ -44,7 +44,7 @@
         <?php
         include('../config.php');
         
-        $sql = "SELECT Person.firstName, Person.lastName,Person.medicareCard,Infection.infectionType, Infection.infectionDate 
+        $sql = "SELECT infectedPersonID, Person.firstName, Person.lastName,Person.medicareCard,Infection.infectionType, Infection.infectionDate 
         FROM InfectedPerson
         JOIN Person ON InfectedPerson.medicareCard = Person.medicareCard
         JOIN Infection ON InfectedPerson.infectionID = Infection.infectionID";
@@ -55,6 +55,7 @@
             echo '<table class="table table-bordered">';
             echo '<thead>';
             echo '<tr>';
+            echo '<th>Infected Person ID</th>';
             echo '<th>Medicare Card</th>';
             echo '<th>First Name</th>';
             echo '<th>Last Name</th>';
@@ -67,6 +68,7 @@
         
             while ($row = mysqli_fetch_assoc($result)) {
                 echo '<tr>';
+                echo '<td>' . $row['infectedPersonID'] . '</td>';
                 echo '<td>' . $row['medicareCard'] . '</td>';
                 echo '<td>' . $row['firstName'] . '</td>';
                 echo '<td>' . $row['lastName'] . '</td>';
