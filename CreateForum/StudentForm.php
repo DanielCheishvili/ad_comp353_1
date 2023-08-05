@@ -78,7 +78,6 @@
 
                     
                     $checkIfPerson = "SELECT * FROM Person WHERE medicareCard = '$medicareCard'";
-                    echo $checkIfPerson;
                     $result = mysqli_query($conn, $checkIfPerson);
                     if($result)
                     {
@@ -110,14 +109,27 @@
             } elseif ($action == 'edit') {
                 if(isset($_POST['submit']))
                 {
-                    $sql = "UPDATE Student SET studentID = '$studentID', startSchoolDate = '$startSchoolDate', endSchoolDate = '$endSchoolDate', educationalFacilityId = '$educationalFacilityId', medicareCard = '$medicareCard' WHERE studentID = '$studentID'";
-                    if (mysqli_query($conn, $sql)) {
+                    $originalStudentID = $_GET['originalStudentID'];
+                    $newStudentID = $_POST['studentID'];
+                    $newStartSchoolDate = $_POST['startSchoolDate'];
+                    $newEndSchoolDate = $_POST['endSchoolDate'] ? $_POST['endSchoolDate'] : null; // Set to null if empty
+                    $newEducationalFacilityId = $_POST['educationalFacilityId'];
+                    $newMedicareCard = $_POST['medicareCard'];
+
+
+                    $stmt = mysqli_prepare($conn, $sql);
+                    mysqli_stmt_bind_param($stmt, "ssssss", $newStudentID, $newStartSchoolDate, $newEndSchoolDate, $newEducationalFacilityId, $newMedicareCard, $originalStudentID);
+ 
+                    if (mysqli_stmt_execute($stmt)) {
                         echo "Record updated successfully!";
                         //header("Location: ../Tables/person.php");
                         //exit();
                     } else {
-                        echo "Error: " . $sql . "<br>" . mysqli_error($conn);
+                        echo "Error: " . mysqli_error($conn);
                     }
+ 
+
+                    mysqli_stmt_close($stmt);
                 }
                 
             }
@@ -175,6 +187,7 @@
                 echo 'value="' . $medicareCard . '"';
                 ?>>
             </div>
+            <input type="hidden" name="originalStudentID" value="<?php echo $studentID; ?>">
             <input type="submit" name="submit" value="Submit" class="btn btn-primary">
         </form>
     </div>

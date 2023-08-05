@@ -73,8 +73,8 @@
                 echo '<td>' . $row['startSchoolDate'] . '</td>';
                 echo '<td>' . $row['endSchoolDate'] . '</td>';
                 echo '<td>';
-                echo '<button class="btn btn-danger" onclick="deletePerson(' . $row['employeeID'] . ')">Delete</button>';
-                echo '<button class="btn btn-warning" onclick="editPerson(' . $row['employeeID'] . ')">Edit</button>';
+                echo '<button class="btn btn-danger" onclick="deleteStudent(' . $row['studentID'] . ')">Delete</button>';
+                echo '<button class="btn btn-warning" onclick="editStudent(' . $row['studentID'] . ')">Edit</button>';
                 echo '</td>';
                 echo '</tr>';
             }
@@ -93,7 +93,7 @@
         {
             window.location.href = "../CreateForum/StudenForm.php?action=create";
         }
-        function deleteEmployee(employeeID) {
+        function deleteStudent(studentID) {
             if (confirm("Are you sure you want to delete this student?")) {
                 var xhr = new XMLHttpRequest();
                 xhr.onreadystatechange = function() {
@@ -110,14 +110,14 @@
                         
                     }
                 };
-                xhr.open("GET", "../CreateForum/EmployeeForm.php?employeeID=" + employeeID + "&action=delete", true);
+                xhr.open("GET", "../CreateForum/EmployeeForm.php?studentID=" + studentID + "&action=delete", true);
                 xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
-                xhr.send("employeeID=" + employeeID);
+                xhr.send("studentID=" + studentID);
 
             }
         }
-        function editEmployee(employeeID) {
-            window.location.href = "../CreateForum/EmployeeForm.php?employeeID=" + employeeID + "&action=edit";
+        function editEmployee(studentID) {
+            window.location.href = "../CreateForum/EmployeeForm.php?studentID=" + studentID + "&action=edit";
         }
     </script>
        
