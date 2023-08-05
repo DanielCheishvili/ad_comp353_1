@@ -116,16 +116,34 @@
                     $newEndWorkDate = $_POST['endWorkDate'];
                     $newRole = $_POST['employeeRole'];
                     $newMedicareCard = $_POST['medicareCard'];
-                    $endWorkDate = empty($newEndWorkDate) ? "NULL" : "'" . date('Y-m-d', strtotime($newEndWorkDate)) . "'";
+                    //$endWorkDate = empty($newEndWorkDate) ? "NULL" : "'" . date('Y-m-d', strtotime($newEndWorkDate)) . "'";
 
-                    $sql = "UPDATE Employee SET employeeID = '$newEmployeeID', startWorkDate = '$newStartWorkDate', endWorkDate = '$endWorkDate', employeeRole = '$newRole', medicareCard = '$newMedicareCard' WHERE employeeID = '$originalEmployeeID'";
-                    if (mysqli_query($conn, $sql)) {
+                    // $sql = "UPDATE Employee SET employeeID = '$newEmployeeID', startWorkDate = '$newStartWorkDate', endWorkDate = '$endWorkDate', employeeRole = '$newRole', medicareCard = '$newMedicareCard' WHERE employeeID = '$originalEmployeeID'";
+                    // if (mysqli_query($conn, $sql)) {
+                    //     echo "Record updated successfully!";
+                    //     //header("Location: ../Tables/person.php");
+                    //     //exit();
+                    // } else {
+                    //     echo "Error: " . $sql . "<br>" . mysqli_error($conn);
+                    // }
+
+                    $sql = "UPDATE Employee SET employeeID = ?, startWorkDate = ?, endWorkDate = ?, employeeRole = ?, medicareCard = ? WHERE employeeID = ?";
+
+                    // Use prepared statement to bind parameters and handle NULL values correctly
+                    $stmt = mysqli_prepare($conn, $sql);
+                    mysqli_stmt_bind_param($stmt, "ssssss", $newEmployeeID, $newStartWorkDate, $newEndWorkDate, $newRole, $newMedicareCard, $originalEmployeeID);
+
+                    // Execute the statement
+                    if (mysqli_stmt_execute($stmt)) {
                         echo "Record updated successfully!";
                         //header("Location: ../Tables/person.php");
                         //exit();
                     } else {
-                        echo "Error: " . $sql . "<br>" . mysqli_error($conn);
+                        echo "Error: " . mysqli_error($conn);
                     }
+
+                    // Close the statement
+                    mysqli_stmt_close($stmt);
                 }
                 
             }
