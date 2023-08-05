@@ -91,7 +91,7 @@
         <script>
         function insertRow()
         {
-            window.location.href = "../CreateForum/StudenForm.php?action=create";
+            window.location.href = "../CreateForum/StudentForm.php?action=create";
         }
         function deleteStudent(studentID) {
             if (confirm("Are you sure you want to delete this student?")) {
@@ -110,14 +110,14 @@
                         
                     }
                 };
-                xhr.open("GET", "../CreateForum/EmployeeForm.php?studentID=" + studentID + "&action=delete", true);
+                xhr.open("GET", "../CreateForum/StudentForm.php?studentID=" + studentID + "&action=delete", true);
                 xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
                 xhr.send("studentID=" + studentID);
 
             }
         }
         function editStudent(studentID) {
-            window.location.href = "../CreateForum/EmployeeForm.php?studentID=" + studentID + "&action=edit";
+            window.location.href = "../CreateForum/StudentForm.php?studentID=" + studentID + "&action=edit";
         }
     </script>
        
