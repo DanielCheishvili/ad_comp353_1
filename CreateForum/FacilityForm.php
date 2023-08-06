@@ -43,7 +43,7 @@
     include('../config.php');
 
     $action = isset($_GET['action']) ? $_GET['action'] : '';
-    $facilityID = $facilityName = $address = $city = $province = $postalCode = $phoneNumber = $webAddress = $capacity = '';
+    $facilityID = $facilityName = $address = $city = $province = $postalCode = $phoneNumber = $webAddress = $capacity = $ministryID = '';
 
 
     if ($action == 'create' || $action == 'edit') {
@@ -62,6 +62,7 @@
             $phoneNumber = $row['phoneNumber'];
             $webAddress = $row['webAddress'];
             $capacity = $row['capacity'];
+            $ministryID = $row['ministryID'];
 
              
         }
@@ -79,7 +80,8 @@
                     $phoneNumber = $_POST['phoneNumber'];
                     $webAddress = $_POST['webAddress'];
                     $capacity = $_POST['capacity'];
-                    $sql = "INSERT INTO Facility (facilityID, facilityName, address, city, province, postalCode, phoneNumber, webAddress, capacity) VALUES ('$facilityID', '$facilityName', '$address', '$city', '$province', '$postalCode', '$phoneNumber', '$webAddress', '$capacity')";
+                    $ministryID = $_POST['ministryID'];
+                    $sql = "INSERT INTO Facility (facilityID, facilityName, address, city, province, postalCode, phoneNumber, webAddress, capacity,ministryID) VALUES ('$facilityID', '$facilityName', '$address', '$city', '$province', '$postalCode', '$phoneNumber', '$webAddress', '$capacity','$ministryID')";
                     if (mysqli_query($conn, $sql)) {
                         echo '<div class="text-center text-success mb-4">';
                         echo "New record created successfully";
@@ -104,7 +106,8 @@
                     $newPhoneNumber = $_POST['phoneNumber'];
                     $newWebAddress = $_POST['webAddress'];
                     $newCapacity = $_POST['capacity'];
-                    $sql = "UPDATE Facility SET facilityID = '$newFacilityID', facilityName = '$newFacilityName', address = '$newAddress', city = '$newCity', province = '$newProvince', postalCode = '$newPostalCode', phoneNumber = '$newPhoneNumber', webAddress = '$newWebAddress', capacity = '$newCapacity' WHERE facilityID = '$originalFacilityID'";
+                    $newMinistryID = $_POST['ministryID'];
+                    $sql = "UPDATE Facility SET facilityID = '$newFacilityID', facilityName = '$newFacilityName', address = '$newAddress', city = '$newCity', province = '$newProvince', postalCode = '$newPostalCode', phoneNumber = '$newPhoneNumber', webAddress = '$newWebAddress', capacity = '$newCapacity', ministryId = '$ministryID' WHERE facilityID = '$originalFacilityID'";
                     
                     if (mysqli_query($conn, $sql)) {
                         echo '<div class="text-center text-success mb-4">';
@@ -128,7 +131,7 @@
         } else {
             echo "Error: " . $sql . "<br>" . mysqli_error($conn);
         }
-        
+
         
     }
         mysqli_close($conn);
@@ -185,6 +188,10 @@
             <div class="form-group">
                 <label for="capacity">Capacity</label>
                 <input type="text" name="capacity" id="capacity" class="form-control" placeholder="Capacity" value="<?php echo $capacity; ?>">
+            </div>
+            <div class="form-group">
+                <label for="ministryID">Ministry ID</label>
+                <input type="text" name="ministryID" id="ministryID" class="form-control" placeholder="Ministry ID" value="<?php echo $ministryID; ?>">
             </div>
 
             
