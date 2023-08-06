@@ -78,8 +78,8 @@
                 echo '<td>' . $row['doseType'] . '</td>';
 
                 echo '<td>';
-                echo "<button class=\"btn btn-danger\" onclick=\"deletePerson('" . $row['infectedPersonID'] . "')\">Delete</button>";
-                echo "<button class=\"btn btn-warning\" onclick=\"editPerson('" . $row['infectedPersonID'] . "')\">Edit</button>";
+                echo "<button class=\"btn btn-danger\" onclick=\"deletePerson('" . $row['vaccinatedPerson'] . "')\">Delete</button>";
+                echo "<button class=\"btn btn-warning\" onclick=\"editPerson('" . $row['vaccinatedPerson'] . "')\">Edit</button>";
                 echo '</td>';
                 echo '</tr>';
             }
