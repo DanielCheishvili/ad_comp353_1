@@ -81,11 +81,11 @@
                 
                 if(isset($_POST['submit']))
                 {
-                    $originalVaccinationID = $_POST['originalVaccinationID'];
+                    $originalVaccinationPersonID = $_POST['originalVaccinationPersonID'];
                     $newVaccinationID = $_POST['vaccinationID'];
                     $newMedicareCard = $_POST['medicareCard'];
                     $newVaccinatedPersonID = $_POST['vaccinatedPerson'];
-                    $sql = "UPDATE VaccinatedPerson SET vaccinatedPerson = '$newVaccinatedPersonID', medicareCard = '$newMedicareCard', vaccinationID = '$newVaccinationID' WHERE vaccinatedPerson = '$originalVaccinationID'";
+                    $sql = "UPDATE VaccinatedPerson SET vaccinatedPerson = '$newVaccinatedPersonID', medicareCard = '$newMedicareCard', vaccinationID = '$newVaccinationID' WHERE vaccinatedPerson = '$originalVaccinationPersonID'";
                     if (mysqli_query($conn, $sql)) {
                         echo '<div class="text-center text-success mb-4">';
                         echo "Record updated successfully";
@@ -137,7 +137,7 @@
                 <input type="text" name="vaccinationID" id="vaccinationID" class="form-control" placeholder="Vaccination ID" value="<?php echo $vaccinationID; ?>">
    
             </div>
-            <input type="hidden" name="originalVaccinationID" value="<?php echo $originalVaccinationID; ?>">
+            <input type="hidden" name="originalVaccinationPersonID" value="<?php echo $originalVaccinationPersonID; ?>">
             <input type="submit" name="submit" value="Submit" class="btn btn-primary">
         </form>
     </div>
