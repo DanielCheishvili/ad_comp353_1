@@ -44,7 +44,7 @@
         <?php
         include('../config.php');
         
-        $sql = "SELECT facilityID Ministry.ministryName, facilityName, address, city, Facility.province, postalCode, phoneNumber, webAddress, capacity FROM Facility
+        $sql = "SELECT facilityID, Ministry.ministryName, facilityName, address, city, Facility.province, postalCode, phoneNumber, webAddress, capacity FROM Facility
         JOIN Ministry on Ministry.ministryID = Facility.ministryID";
         $result = mysqli_query($conn, $sql);
         
