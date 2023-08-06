@@ -85,7 +85,7 @@
                     $newVaccinationID = $_POST['vaccinationID'];
                     $newMedicareCard = $_POST['medicareCard'];
                     $newVaccinatedPersonID = $_POST['vaccinatedPerson'];
-                    $sql = "UPDATE VaccinatedPerson SET vaccinatedPerson = '$newVaccinatedPersonID', medicareCard = '$newMedicareCard', vaccinationID = '$newVaccinationID' WHERE vaccinatedPersonID = '$originalVaccinatedPersonID'";
+                    $sql = "UPDATE VaccinatedPerson SET vaccinatedPerson = '$newVaccinatedPersonID', medicareCard = '$newMedicareCard', vaccinationID = '$newVaccinationID' WHERE vaccinatedPerson = '$originalVaccinationID'";
                     if (mysqli_query($conn, $sql)) {
                         echo '<div class="text-center text-success mb-4">';
                         echo "Record updated successfully";
