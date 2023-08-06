@@ -132,10 +132,9 @@
                 echo 'value="' . $medicareCard . '"';
                 ?>>
             </div>
-            <div class="form-row">
-                <label for="vaccinationID">Vaccination ID</label>
+            <div class="form-group">
+                 <label for="vaccinationID">Vaccination ID</label>
                 <input type="text" name="vaccinationID" id="vaccinationID" class="form-control" placeholder="Vaccination ID" value="<?php echo $vaccinationID; ?>">
-   
             </div>
             <input type="hidden" name="originalVaccinationPersonID" value="<?php echo $originalVaccinationPersonID; ?>">
             <input type="submit" name="submit" value="Submit" class="btn btn-primary">

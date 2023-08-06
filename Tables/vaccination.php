@@ -16,22 +16,22 @@
             <div class="collapse navbar-collapse" id="navbarNav">
                 <ul class="navbar-nav">
                     <li class="nav-item">
-                        <a class="nav-link" href="person.php">Person</a>
+                        <a class="nav-link" href="/Tables/person.php">Person</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="employee.php">Employees</a>
+                        <a class="nav-link" href="/Tables/employee.php">Employees</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="student.php">Students</a>
+                        <a class="nav-link" href="/Tables/student.php">Students</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="facility.php">Facilities</a>
+                        <a class="nav-link" href="/Tables/facility.php">Facilities</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="vaccination.php">Vaccinations</a>
+                        <a class="nav-link" href="/Tables/vaccination.php">Vaccinations</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="infection.php">Infections</a>
+                        <a class="nav-link" href="/Tables/infection.php">Infections</a>
                     </li>
                 </ul>
             </div>
