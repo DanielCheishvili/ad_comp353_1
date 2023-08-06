@@ -16,22 +16,22 @@
             <div class="collapse navbar-collapse" id="navbarNav">
                 <ul class="navbar-nav">
                     <li class="nav-item">
-                        <a class="nav-link" href="person.php">Person</a>
+                        <a class="nav-link" href="/Tables/person.php">Person</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="employee.php">Employees</a>
+                        <a class="nav-link" href="/Tables/employee.php">Employees</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="student.php">Students</a>
+                        <a class="nav-link" href="/Tables/student.php">Students</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="facility.php">Facilities</a>
+                        <a class="nav-link" href="/Tables/facility.php">Facilities</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="vaccination.php">Vaccinations</a>
+                        <a class="nav-link" href="/Tables/vaccination.php">Vaccinations</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="infection.php">Infections</a>
+                        <a class="nav-link" href="/Tables/infection.php">Infections</a>
                     </li>
                 </ul>
             </div>
@@ -44,8 +44,8 @@
         <?php
         include('../config.php');
         
-        $sql = "SELECT facilityName, address, city, province, postalCode, phoneNumber, webAddress, capacity 
-        FROM Facility";
+        $sql = "SELECT Ministry.ministryName, facilityName, address, city, Facility.province, postalCode, phoneNumber, webAddress, capacity FROM Facility
+        JOIN Ministry on Ministry.ministryID = Facility.ministryID";
         $result = mysqli_query($conn, $sql);
         
         if (mysqli_num_rows($result) > 0) {
@@ -54,6 +54,7 @@
             echo '<thead>';
             echo '<tr>';
             echo '<th>Facility Name</th>';
+            echo '<th>Ministry</th>';
             echo '<th>Address</th>';
             echo '<th>City</th>';
             echo '<th>Provicne</th>';
@@ -69,6 +70,7 @@
             while ($row = mysqli_fetch_assoc($result)) {
                 echo '<tr>';
                 echo '<td>' . $row['facilityName'] . '</td>';
+                echo '<td>' . $row['ministryName'] . '</td>';
                 echo '<td>' . $row['address'] . '</td>';
                 echo '<td>' . $row['city'] . '</td>';
                 echo '<td>' . $row['province'] . '</td>';
@@ -77,8 +79,8 @@
                 echo '<td>' . $row['webAddress'] . '</td>';
                 echo '<td>' . $row['capacity'] . '</td>';
                 echo '<td>';
-                echo '<button class="btn btn-danger" onclick="deletePerson(' . $row['employeeID'] . ')">Delete</button>';
-                echo '<button class="btn btn-warning" onclick="editPerson(' . $row['employeeID'] . ')">Edit</button>';
+                echo "<button class=\"btn btn-danger\" onclick=\"deletePerson('" . $row['facilityID'] . "')\">Delete</button>";
+                echo "<button class=\"btn btn-warning\" onclick=\"editPerson('" . $row['facilityID'] . "')\">Edit</button>";
                 echo '</td>';
                 echo '</tr>';
             }
@@ -92,7 +94,38 @@
         
         mysqli_close($conn);
         ?>
-        
+    <script>
+        function insertRow()
+        {
+            window.location.href = "../CreateForum/FacilityForm.php?action=create";
+        }
+        function deletePerson(facilityID) {
+            if (confirm("Are you sure you want to delete this Facility?")) {
+                var xhr = new XMLHttpRequest();
+                xhr.onreadystatechange = function() {
+                    if (xhr.readyState == XMLHttpRequest.DONE ) {
+                        if(xhr.status == 200)
+                        {
+                            alert("Facility deleted successfully");
+                            window.location.reload();
+                        }
+                        else
+                        {
+                            alert("Error deleting Facility");
+                        }
+                        
+                    }
+                };
+                xhr.open("GET", "../CreateForum/FacilityForm.php?facilityID=" + facilityID + "&action=delete", true);
+                xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+                xhr.send("facilityID=" + facilityID);
+
+            }
+        }
+        function editPerson(facilityID) {
+            window.location.href = "../CreateForum/FacilityForm.php?facilityID=" + facilityID + "&action=edit";
+        }
+    </script>   
        
     </div>
 
