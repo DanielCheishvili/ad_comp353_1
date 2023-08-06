@@ -37,7 +37,7 @@
             </div>
         </div>
     </nav>
-    <button class="btn btn-primary">Insert Row</button>
+    <button class="btn btn-primary" onclick="insertRow()">Insert Row</button>
     <div class="container mt-5">
         <h2 class="text-center">Facility Table</h2>
         <p class="text-center">Table displaying all the records of the Facility table.</p>
@@ -53,6 +53,7 @@
             echo '<table class="table table-bordered">';
             echo '<thead>';
             echo '<tr>';
+            echo '<th>Facility ID</th>';
             echo '<th>Facility Name</th>';
             echo '<th>Ministry</th>';
             echo '<th>Address</th>';
@@ -69,6 +70,7 @@
         
             while ($row = mysqli_fetch_assoc($result)) {
                 echo '<tr>';
+                echo '<td>' . $row['facilityID'] . '</td>';
                 echo '<td>' . $row['facilityName'] . '</td>';
                 echo '<td>' . $row['ministryName'] . '</td>';
                 echo '<td>' . $row['address'] . '</td>';
