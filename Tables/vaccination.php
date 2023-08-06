@@ -37,14 +37,17 @@
             </div>
         </div>
     </nav>
-    <button class="btn btn-primary">Insert Row</button>
+    <button class="btn btn-primary" onclick="insertRow()">Insert Row</button>
     <div class="container mt-5">
-        <h2 class="text-center">Vaccinations Table</h2>
-        <p class="text-center">Table displaying all the records of the Vaccinations table.</p>
+        <h2 class="text-center">Vaccination Table</h2>
+        <p class="text-center">Table displaying all the records of the Infection table.</p>
         <?php
         include('../config.php');
         
-        $sql = "SELECT * FROM Vaccination";
+        $sql = "SELECT vaccinatedPersonID, Person.firstName, Person.lastName,Person.medicareCard,Vaccination.doseNumber, Vaccination.doseDate, Vaccination.doseType 
+        FROM VaccinatedPerson
+        JOIN Person ON VaccinatedPerson.medicareCard = Person.medicareCard
+        JOIN Vaccination ON VaccinatedPerson.vaccinationID = Vaccination.vaccinationID";
         $result = mysqli_query($conn, $sql);
         
         if (mysqli_num_rows($result) > 0) {
@@ -52,10 +55,13 @@
             echo '<table class="table table-bordered">';
             echo '<thead>';
             echo '<tr>';
-            echo '<th>Vaccination ID</th>';
+            echo '<th>Vaccinated Person ID</th>';
+            echo '<th>Medicare Card</th>';
+            echo '<th>First Name</th>';
+            echo '<th>Last Name</th>';
             echo '<th>Dose Number</th>';
-            echo '<th>Dose Type</th>';
             echo '<th>Dose Date</th>';
+            echo '<th>Dose Type</th>';
             echo '<th>Action</th>';
             echo '</tr>';
             echo '</thead>';
@@ -63,13 +69,17 @@
         
             while ($row = mysqli_fetch_assoc($result)) {
                 echo '<tr>';
-                echo '<td>' . $row['vaccinationID'] . '</td>';
+                echo '<td>' . $row['vacinatedPersonID'] . '</td>';
+                echo '<td>' . $row['medicareCard'] . '</td>';
+                echo '<td>' . $row['firstName'] . '</td>';
+                echo '<td>' . $row['lastName'] . '</td>';
                 echo '<td>' . $row['doseNumber'] . '</td>';
-                echo '<td>' . $row['doseType'] . '</td>';
                 echo '<td>' . $row['doseDate'] . '</td>';
+                echo '<td>' . $row['doseType'] . '</td>';
+
                 echo '<td>';
-                echo '<button class="btn btn-danger" onclick="deletePerson(' . $row['employeeID'] . ')">Delete</button>';
-                echo '<button class="btn btn-warning" onclick="editPerson(' . $row['employeeID'] . ')">Edit</button>';
+                echo "<button class=\"btn btn-danger\" onclick=\"deletePerson('" . $row['infectedPersonID'] . "')\">Delete</button>";
+                echo "<button class=\"btn btn-warning\" onclick=\"editPerson('" . $row['infectedPersonID'] . "')\">Edit</button>";
                 echo '</td>';
                 echo '</tr>';
             }
@@ -83,54 +93,40 @@
         
         mysqli_close($conn);
         ?>
-        
-       
-    </div>
-
-
-     <!-- <?php 
-        include ('../config.php');
-        $medicareCard = $firstName = $lastName = $address = $city = $province = 
-        $postalCode = $telephoneNumber = $email =  $dateOfBirth = $medicareExpiryDate = $citizenship = "";        
-        if(isset($_POST['submit']))
+    <script>
+        function insertRow()
         {
-            $medicareCard = $_POST['medicareCard'];
-            $firstName = $_POST['firstName'];
-            $lastName = $_POST['lastName'];
-            $address = $_POST['address'];
-            $city = $_POST['city'];
-            $province = $_POST['province'];
-            $postalCode = $_POST['postalCode'];
-            $telephoneNumber = $_POST['telephoneNumber'];
-            $email = $_POST['email'];
-            $dateOfBirth = $_POST['dateOfBirth'];
-            $medicareExpiryDate = $_POST['medicareExpiryDate'];
-            $citizenship = $_POST['citizenship'];
-            if(empty($medicareCard) || empty($firstName) || empty($lastName) || empty($address) || empty($city) || empty($province) || empty($postalCode) || empty($telephoneNumber) || empty($email) || empty($dateOfBirth) || empty($medicareExpiryDate))
-            {
-                echo '<div class="text-center text-danger mb-4">';
-                echo "Please fill all the fields";
-                echo '</div>';
-            }
-            else
-            {
-                $sql = "INSERT INTO Person (medicareCard, firstName, lastName, address, city, province, postalCode, telephoneNumber, email, dateOfBirth, medicareExpiryDate, citizenship)
-                VALUES ('$medicareCard', '$firstName', '$lastName', '$address', '$city', '$province', '$postalCode', '$telephoneNumber', '$email', '$dateOfBirth', '$medicareExpiryDate', '1')";
-                if(mysqli_query($conn, $sql))
-                {
-                    echo "Record added successfully";
-                }
-                else
-                {
-                    echo '<div class="text-center text-danger mb-4">';
-                    echo "Error: " . $sql . "<br>" . mysqli_error($conn);
-                    echo '</div>';
-                    
-                }
+            window.location.href = "../CreateForum/VaccinationForm.php?action=create";
+        }
+        function deletePerson(InfectedPersonID) {
+            if (confirm("Are you sure you want to delete this Vaccinated person?")) {
+                var xhr = new XMLHttpRequest();
+                xhr.onreadystatechange = function() {
+                    if (xhr.readyState == XMLHttpRequest.DONE ) {
+                        if(xhr.status == 200)
+                        {
+                            alert("Vaccinated Person deleted successfully");
+                            window.location.reload();
+                        }
+                        else
+                        {
+                            alert("Error deleting Vaccinated Person");
+                        }
+                        
+                    }
+                };
+                xhr.open("GET", "../CreateForum/VaccinationForm.php?vaccinatedPersonID=" + vaccinatedPersonID + "&action=delete", true);
+                xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+                xhr.send("vaccinatedPersonID=" + vaccinatedPersonID);
+
             }
         }
-        mysqli_close($conn);
-?> -->
+        function editPerson(vaccinatedPersonID) {
+            window.location.href = "../CreateForum/VaccinationForm.php?vaccinatedPersonID=" + vaccinatedPersonID + "&action=edit";
+        }
+    </script>
+       
+    </div>
 
 </body>
 </html>
