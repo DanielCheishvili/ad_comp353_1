@@ -44,7 +44,7 @@
         <?php
         include('../config.php');
         
-        $sql = "SELECT facilityID, Ministry.ministryName, facilityName, address, city, Facility.province, postalCode, phoneNumber, webAddress, capacity FROM Facility
+        $sql = "SELECT facilityID, Ministry.ministryName, facilityName, address, city, Facility.province, postalCode, phoneNumber, webAddress, capacity, Facility.ministryID FROM Facility
         JOIN Ministry on Ministry.ministryID = Facility.ministryID";
         $result = mysqli_query($conn, $sql);
         
@@ -63,6 +63,7 @@
             echo '<th>Phone Number</th>';
             echo '<th>Web Address</th>';
             echo '<th>Capacity</th>';
+            echo '<th>Ministry ID</th>';
             echo '<th>Action</th>';
             echo '</tr>';
             echo '</thead>';
@@ -80,6 +81,7 @@
                 echo '<td>' . $row['phoneNumber'] . '</td>';
                 echo '<td>' . $row['webAddress'] . '</td>';
                 echo '<td>' . $row['capacity'] . '</td>';
+                echo '<td>' . $row['ministryID'] . '</td>';
                 echo '<td>';
                 echo "<button class=\"btn btn-danger\" onclick=\"deletePerson('" . $row['facilityID'] . "')\">Delete</button>";
                 echo "<button class=\"btn btn-warning\" onclick=\"editPerson('" . $row['facilityID'] . "')\">Edit</button>";
