@@ -48,11 +48,11 @@
 
     if ($action == 'create' || $action == 'edit') {
         if ($action == 'edit') {
-            $vaccinatedPersonID = isset($_GET['vaccinatedPersonID']) ? $_GET['vaccinatedPersonID'] : '';
-            $sql = "SELECT * FROM VaccinatedPerson WHERE vaccinatedPersonID = '$vaccinatedPersonID'";
+            $vaccinatedPersonID = isset($_GET['vaccinatedPerson']) ? $_GET['vaccinatedPerson'] : '';
+            $sql = "SELECT * FROM VaccinatedPerson WHERE vaccinatedPerson = '$vaccinatedPersonID'";
             $result = mysqli_query($conn, $sql);
             $row = mysqli_fetch_array($result);
-            $vaccinatedPersonID = $row['vaccinatedPersonID'];
+            $vaccinatedPersonID = $row['vaccinatedPerson'];
             $medicareCard = $row['medicareCard'];
             $vaccinationID = $row['vaccinationID'];
             
@@ -63,10 +63,10 @@
             if ($action == 'create') {
                 if(isset($_POST['submit']))
                 {
-                    $vaccinatedPersonID = $_POST['vaccinatedPersonID'];
+                    $vaccinatedPersonID = $_POST['vaccinatedPerson'];
                     $medicareCard = $_POST['medicareCard'];
                     $vaccinationID = $_POST['vaccinationID'];
-                    $sql = "INSERT INTO VaccinatedPerson (vaccinatedPersonID, medicareCard, vaccinationID) VALUES ('$vaccinatedPersonID', '$medicareCard', '$vaccinationID')";
+                    $sql = "INSERT INTO VaccinatedPerson (vaccinatedPerson, medicareCard, vaccinationID) VALUES ('$vaccinatedPersonID', '$medicareCard', '$vaccinationID')";
                     if (mysqli_query($conn, $sql)) {
                         echo '<div class="text-center text-success mb-4">';
                         echo "New record created successfully";
@@ -84,8 +84,8 @@
                     $originalVaccinationID = $_POST['originalVaccinationID'];
                     $newVaccinationID = $_POST['vaccinationID'];
                     $newMedicareCard = $_POST['medicareCard'];
-                    $newVaccinatedPersonID = $_POST['vaccinatedPersonID'];
-                    $sql = "UPDATE VaccinatedPerson SET vaccinatedPersonID = '$newVaccinatedPersonID', medicareCard = '$newMedicareCard', vaccinationID = '$newVaccinationID' WHERE vaccinatedPersonID = '$originalVaccinatedPersonID'";
+                    $newVaccinatedPersonID = $_POST['vaccinatedPerson'];
+                    $sql = "UPDATE VaccinatedPerson SET vaccinatedPerson = '$newVaccinatedPersonID', medicareCard = '$newMedicareCard', vaccinationID = '$newVaccinationID' WHERE vaccinatedPersonID = '$originalVaccinatedPersonID'";
                     if (mysqli_query($conn, $sql)) {
                         echo '<div class="text-center text-success mb-4">';
                         echo "Record updated successfully";
@@ -99,8 +99,8 @@
 
     }
     elseif ($action == 'delete') {
-        $vaccinatedPersonID = isset($_GET['vaccinatedPersonID']) ? $_GET['vaccinatedPersonID'] : '';
-        $sql = "DELETE FROM VaccinatedPerson WHERE vaccinatedPersonId = '$vaccinatedPersonID'";
+        $vaccinatedPersonID = isset($_GET['vaccinatedPerson']) ? $_GET['vaccinatedPerson'] : '';
+        $sql = "DELETE FROM VaccinatedPerson WHERE vaccinatedPerson = '$vaccinatedPersonID'";
         if (mysqli_query($conn, $sql)) {
             echo "Record deleted successfully!";
             //header("Location: ../Tables/person.php");
@@ -118,8 +118,8 @@
         <form action="<?php echo $_SERVER['PHP_SELF']; ?>?action=<?php echo $action; ?>" method="post">
 
             <div class="form-group">
-                <label for="vaccinatedPersonID">Vaccinated Person ID</label>
-                <input type="text" name="vaccinatedPersonID" id="vaccinatedPersonID" class="form-control" placeholder="Vaccinated Person ID" value="<?php echo $vaccinatedPersonID; ?>">
+                <label for="vaccinatedPerson">Vaccinated Person ID</label>
+                <input type="text" name="vaccinatedPerson" id="vaccinatedPerson" class="form-control" placeholder="Vaccinated Person ID" value="<?php echo $vaccinatedPersonID; ?>">
             </div>
 
             <div class="form-group">

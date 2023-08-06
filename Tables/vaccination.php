@@ -44,7 +44,7 @@
         <?php
         include('../config.php');
         
-        $sql = "SELECT vaccinatedPersonID, Person.firstName, Person.lastName,Person.medicareCard,Vaccination.doseNumber, Vaccination.doseDate, Vaccination.doseType 
+        $sql = "SELECT vaccinatedPerson, Person.firstName, Person.lastName,Person.medicareCard,Vaccination.doseNumber, Vaccination.doseDate, Vaccination.doseType 
         FROM VaccinatedPerson
         JOIN Person ON VaccinatedPerson.medicareCard = Person.medicareCard
         JOIN Vaccination ON VaccinatedPerson.vaccinationID = Vaccination.vaccinationID";
@@ -69,7 +69,7 @@
         
             while ($row = mysqli_fetch_assoc($result)) {
                 echo '<tr>';
-                echo '<td>' . $row['vacinatedPersonID'] . '</td>';
+                echo '<td>' . $row['vaccinatedPerson'] . '</td>';
                 echo '<td>' . $row['medicareCard'] . '</td>';
                 echo '<td>' . $row['firstName'] . '</td>';
                 echo '<td>' . $row['lastName'] . '</td>';
@@ -115,14 +115,14 @@
                         
                     }
                 };
-                xhr.open("GET", "../CreateForum/VaccinationForm.php?vaccinatedPersonID=" + vaccinatedPersonID + "&action=delete", true);
+                xhr.open("GET", "../CreateForum/VaccinationForm.php?vaccinatedPerson=" + vaccinatedPersonID + "&action=delete", true);
                 xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
-                xhr.send("vaccinatedPersonID=" + vaccinatedPersonID);
+                xhr.send("vaccinatedPerson=" + vaccinatedPersonID);
 
             }
         }
         function editPerson(vaccinatedPersonID) {
-            window.location.href = "../CreateForum/VaccinationForm.php?vaccinatedPersonID=" + vaccinatedPersonID + "&action=edit";
+            window.location.href = "../CreateForum/VaccinationForm.php?vaccinatedPerson=" + vaccinatedPersonID + "&action=edit";
         }
     </script>
        
