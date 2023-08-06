@@ -136,7 +136,7 @@
                  <label for="vaccinationID">Vaccination ID</label>
                 <input type="text" name="vaccinationID" id="vaccinationID" class="form-control" placeholder="Vaccination ID" value="<?php echo $vaccinationID; ?>">
             </div>
-            <input type="hidden" name="originalVaccinationPersonID" value="<?php echo $originalVaccinationPersonID; ?>">
+            <input type="hidden" name="originalVaccinationPersonID" value="<?php echo $vaccinatedPersonID; ?>">
             <input type="submit" name="submit" value="Submit" class="btn btn-primary">
         </form>
     </div>
