@@ -107,7 +107,7 @@
                     $newWebAddress = $_POST['webAddress'];
                     $newCapacity = $_POST['capacity'];
                     $newMinistryID = $_POST['ministryID'];
-                    $sql = "UPDATE Facility SET facilityID = '$newFacilityID', facilityName = '$newFacilityName', address = '$newAddress', city = '$newCity', province = '$newProvince', postalCode = '$newPostalCode', phoneNumber = '$newPhoneNumber', webAddress = '$newWebAddress', capacity = '$newCapacity', ministryId = '$ministryID' WHERE facilityID = '$originalFacilityID'";
+                    $sql = "UPDATE Facility SET facilityID = '$newFacilityID', facilityName = '$newFacilityName', address = '$newAddress', city = '$newCity', province = '$newProvince', postalCode = '$newPostalCode', phoneNumber = '$newPhoneNumber', webAddress = '$newWebAddress', capacity = '$newCapacity', ministryId = '$newMinistryID' WHERE facilityID = '$originalFacilityID'";
                     
                     if (mysqli_query($conn, $sql)) {
                         echo '<div class="text-center text-success mb-4">';
