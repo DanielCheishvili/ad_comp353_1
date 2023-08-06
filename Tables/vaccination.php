@@ -98,7 +98,7 @@
         {
             window.location.href = "../CreateForum/VaccinationForm.php?action=create";
         }
-        function deletePerson(InfectedPersonID) {
+        function deletePerson(vaccinatedPersonID) {
             if (confirm("Are you sure you want to delete this Vaccinated person?")) {
                 var xhr = new XMLHttpRequest();
                 xhr.onreadystatechange = function() {
