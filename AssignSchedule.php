@@ -95,6 +95,75 @@
         
         <!-- Add New Schedule form -->
         <h3>Add New Schedule</h3>
+        <?php
+        include('config.php');
+        
+        // Function to check if an employee is infected
+        function isInfected($conn, $employeeID, $scheduleDate) {
+            $medicareCard = "SELECT medicareCard FROM Employee WHERE employeeID = '$employeeID'";
+            $result = mysqli_query($conn, $medicareCard);
+            $row = mysqli_fetch_assoc($result);
+            $medicareCard = $row['medicareCard'];
+            $twoWeeksAgo = date('Y-m-d', strtotime('-2 weeks'));
+            $sql = "SELECT * FROM InfectedPerson 
+            JOIN Infection ON InfectedPerson.infectionID = Infection.infectionID
+            WHERE InfectedPerson.medicareCard = '$medicareCard' AND Infection.infectionDate > '$twoWeeksAgo'";
+            $result = mysqli_query($conn, $sql);
+            return mysqli_num_rows($result) > 0;
+        }
+
+        // Function to check if an employee is vaccinated
+        function isVaccinated($conn, $employeeID, $scheduleDate) {
+            $medicareCard = "SELECT medicareCard FROM Employee WHERE employeeID = '$employeeID'";
+            $result = mysqli_query($conn, $medicareCard);
+            $row = mysqli_fetch_assoc($result);
+            $medicareCard = $row['medicareCard'];
+            $sixMonthsAgo = date('Y-m-d', strtotime('-6 months'));
+            $sql = "SELECT * FROM VaccinatedPerson 
+            JOIN Vaccination ON VaccinatedPerson.vaccinatedPerson = Vaccination.VaccinationID
+            WHERE VaccinatedPerson.medicareCard = '$medicareCard' AND Vaccination.vaccinationDate > '$sixMonthsAgo'";
+            $result = mysqli_query($conn, $sql);
+            return mysqli_num_rows($result) > 0;
+        }
+
+        // Check if the form was submitted
+        if (isset($_POST['addSchedule'])) {
+            $employeeID = $_GET['employeeID'];
+            $scheduleDate = $_POST['scheduleDate'];
+            $startTime = $_POST['startTime'];
+            $endTime = $_POST['endTime'];
+            $startDateTime = $scheduleDate . ' ' . $startTime;
+            $endDateTime = $scheduleDate . ' ' . $endTime;
+
+            // Check if start time is not greater than end time
+            if ($startTime >= $endTime) {
+                echo '<div class="alert alert-danger">Start time cannot be greater than end time.</div>';
+            }
+            // Check if there is at least one hour gap between schedules
+            elseif (strtotime($endTime) <= strtotime($startTime) + 3600) {
+                echo '<div class="alert alert-danger">The schedule must be at least 1 hour apart.</div>';
+            }
+            // Check if the employee is infected
+            elseif (isInfected($conn, $employeeID, $scheduleDate)) {
+                echo '<div class="alert alert-danger">The employee is infected and cannot be scheduled within 2 weeks of infection.</div>';
+            }
+            // Check if the employee is not vaccinated
+            elseif (!isVaccinated($conn, $employeeID, $scheduleDate)) {
+                echo '<div class="alert alert-danger">The employee is not vaccinated within the past 6 months.</div>';
+            }
+            // All constraints met, insert schedule
+            else {
+                $scheduleDate = date('Y-m-d', strtotime($scheduleDate));
+                $sql = "INSERT INTO Schedule (employeeID,scheduleDate, startDateTime, endDateTime) 
+                        VALUES ('$employeeID','$scheduleDate' '$startDateTime', '$endDateTime')";
+                if (mysqli_query($conn, $sql)) {
+                    echo '<div class="alert alert-success">Schedule added successfully.</div>';
+                } else {
+                    echo '<div class="alert alert-danger">Error adding schedule: ' . mysqli_error($conn) . '</div>';
+                }
+            }
+        }
+        ?>
         <form action="<?php echo $_SERVER['PHP_SELF'] . '?employeeID=' . $_GET['employeeID']; ?>" method="post">
             <div class="form-group">
                 <label for="scheduleDate">Schedule Date</label>
