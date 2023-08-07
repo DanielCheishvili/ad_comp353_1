@@ -119,7 +119,7 @@
 
 
                     $stmt = mysqli_prepare($conn, $sql);
-                    mysqli_stmt_bind_param($stmt, "ssssss", $newStudentID, $newStartSchoolDate, $newEndSchoolDate, $newEducationalFacilityId, $newMedicareCard, $originalStudentID);
+                    mysqli_stmt_bind_param($stmt, "ssssss", $newStudentID, $newStartSchoolDate, $newEndSchoolDate, $newEducationalFacilityId);
  
                     if (mysqli_stmt_execute($stmt)) {
                         echo "Record updated successfully!";
