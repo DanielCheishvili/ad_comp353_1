@@ -72,7 +72,8 @@
         echo $studentID;
         echo $facilityID;
 
-        
+        if(isset($_POST['submit']))
+        {
             echo "submit";
             $originalStudentID = $_POST['originalStudentID'];
             $newFacilityID = $_POST['facilityID'];
@@ -90,14 +91,14 @@
                 echo "Error: " . mysqli_error($conn);
             }
             mysqli_stmt_close($stmt);
-        
+        }
     }
     mysqli_close($conn);
     ?>
 
 <div class="container mt-5">
     <h2>Select Educational Facility</h2>
-    <form action="<?php echo $_SERVER['PHP_SELF']; ?>" method="post">
+    <form action="<?php echo $_SERVER['PHP_SELF'] . '?action=register&studentID=' . $studentID; ?>" method="post">
         <div class="form-group">
             <label for="studentID">Student ID</label>
             <input type="text" name="studentID" id="studentID" class="form-control" placeholder="Student ID" value="<?php echo $studentID; ?>" readonly>
