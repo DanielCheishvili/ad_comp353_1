@@ -40,7 +40,7 @@
     <?php
     
     include('config.php');
-    $retreiveEducationalFacility = "SELECT, Facility.facilityID, Facility.facilityName 
+    $retreiveEducationalFacility = "SELECT Facility.facilityID, Facility.facilityName 
     From EducationalFacility
     JOIN Facility ON EducationalFacility.facilityID = Facility.facilityID";
 
