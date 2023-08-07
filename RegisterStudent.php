@@ -116,7 +116,7 @@
         </div>
         <input type="hidden" name="originalStudentID" value="<?php echo $studentID; ?>">
 
-        <button type="submit" name="submit" value="Submit" class="btn btn-primary">Submit</button>
+        <input type="submit" name="submit" value="Register" class="btn btn-primary">
     </form>
 </div>
 
