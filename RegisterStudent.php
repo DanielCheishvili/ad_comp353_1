@@ -40,7 +40,7 @@
     <?php
     
     include('config.php');
-    $retreiveEducationalFacility = "SELECT Facility.facilityName 
+    $retreiveEducationalFacility = "SELECT, Facility.facilityID, Facility.facilityName 
     From EducationalFacility
     JOIN Facility ON EducationalFacility.facilityID = Facility.facilityID";
 
@@ -57,7 +57,7 @@
     ?>
     
     <div class="container mt-5">
-        <h2>Registration Form</h2>
+        <h2>Select Educational Facility</h2>
         <form action="<?php echo $_SERVER['PHP_SELF']; ?>" method="post">
             <div class="form-group">
                 <label for="facilityID">Educational Facility</label>
@@ -70,10 +70,7 @@
                     ?>
                 </select>
             </div>
-           
-            
-            <input type="hidden" name="originalFacilityID" value="<?php echo $facilityID; ?>">
-            <input type="submit" name="submit" value="Submit" class="btn btn-primary">
+            <button type="submit" class="btn btn-primary">Submit</button>
         </form>
     </div>
 
