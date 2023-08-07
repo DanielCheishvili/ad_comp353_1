@@ -38,7 +38,7 @@
         </div>
     </nav>
     <?php
-    
+    var_dump($_POST);
     include('config.php');
     $action = isset($_GET['action']) ? $_GET['action'] : '';
     $studentID = $facilityID = '';
@@ -70,7 +70,7 @@
         $studentID = $row['studentID'];
         $facilityID = $row['educationalFacilityId'];
         echo $studentID;
-        echo $facilityID + "facilityID";
+        echo $facilityID;
 
         if(isset($_POST['submit']))
         {
