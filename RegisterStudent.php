@@ -40,6 +40,10 @@
     <?php
     
     include('config.php');
+
+    $studentID  = $startSchoolDate = $endSchoolDate = $educationalFacilityId = $medicareCard = '';
+
+    $studentID = isset($_POST['studentID']) ? $_POST['studentID'] : '';
     $retreiveEducationalFacility = "SELECT Facility.facilityID, Facility.facilityName 
     From EducationalFacility
     JOIN Facility ON EducationalFacility.facilityID = Facility.facilityID";
@@ -58,6 +62,16 @@
     <div class="container mt-5">
         <h2>Select Educational Facility</h2>
         <form action="<?php echo $_SERVER['PHP_SELF']; ?>" method="post">
+        <div class="form-group">
+            <label for="studentID">Student ID</label>
+            <input type="text" name="studentID" id="studentID" class="form-control" placeholder="Student ID"
+            <?php
+                if ($action == 'edit') {
+                    echo 'readonly ';
+                }
+                echo 'value="' . $studentID . '"';
+                ?>>
+        </div>
             <div class="form-group">
                 <label for="facilityID">Educational Facility</label>
                 <select name="facilityID" id="facilityID" class="form-control" required>

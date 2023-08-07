@@ -156,7 +156,13 @@
 
             <div class="form-group">
                 <label for="studentID">Student ID</label>
-                <input type="text" name="studentID" id="studentID" class="form-control" placeholder="Student ID" value="<?php echo $studentID; ?>">
+                <input type="text" name="studentID" id="studentID" class="form-control" placeholder="Student ID" value="<?php echo $studentID; ?>"
+                <?php
+                if ($action == 'edit') {
+                    echo 'readonly ';
+                }
+                echo 'value="' . $studentID . '"';
+                ?>>
             </div>
 
             
