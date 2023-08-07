@@ -60,6 +60,8 @@
             $endSchoolDate = $row['endSchoolDate'];
             $educationalFacilityId = $row['educationalFacilityID'];
             $medicareCard = $row['medicareCard'];
+
+            echo "Debug: educationalFacilityID = $educationalFacilityId";
             
 
         }
