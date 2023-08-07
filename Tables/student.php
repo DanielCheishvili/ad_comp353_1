@@ -45,9 +45,11 @@
         <?php
         include('../config.php');
         
-        $sql = "SELECT studentID,firstName,lastName,startSchoolDate,endSchoolDate 
+        $sql = "SELECT studentID,firstName,lastName,startSchoolDate,endSchoolDate, Facility.facilityName  
         FROM Student
-        JOIN Person ON Student.medicareCard = Person.medicareCard";
+        JOIN Person ON Student.medicareCard = Person.medicareCard
+        JOIN EducationalFacility ON Student.educationalFacilityId = EducationalFacility.educationFacilityID
+        JOIN Facility ON EducationalFacility.facilityID = Facility.facilityID;";
         $result = mysqli_query($conn, $sql);
         
         if (mysqli_num_rows($result) > 0) {
