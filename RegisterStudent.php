@@ -37,7 +37,7 @@
             </div>
         </div>
     </nav>
-    <?php
+<?php
 include('config.php');
 
 $action = isset($_GET['action']) ? $_GET['action'] : '';
