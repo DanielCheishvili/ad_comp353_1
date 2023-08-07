@@ -56,27 +56,27 @@
     mysqli_close($conn);
     ?>
 
-    <div class="container mt-5">
-        <h2>Select Educational Facility</h2>
-        <form action="<?php echo $_SERVER['PHP_SELF']; ?>" method="post">
-            <div class="form-group">
-                <label for="studentID">Student ID</label>
-                <input type="text" name="studentID" id="studentID" class="form-control" placeholder="Student ID" value="<?php echo $studentID; ?>" readonly>
-            </div>
-            <div class="form-group">
-                <label for="facilityID">Educational Facility</label>
-                <select name="facilityID" id="facilityID" class="form-control" required>
-                    <option value="" disabled selected>Select an Educational Facility</option>
-                    <?php
-                    foreach ($facilities as $facilityID => $facilityName) {
-                        echo '<option value="' . $facilityID . '">' . $facilityName . '</option>';
-                    }
-                    ?>
-                </select>
-            </div>
-            <button type="submit" class="btn btn-primary">Submit</button>
-        </form>
-    </div>
+<div class="container mt-5">
+    <h2>Select Educational Facility</h2>
+    <form action="<?php echo $_SERVER['PHP_SELF']; ?>" method="post">
+        <div class="form-group">
+            <label for="studentID">Student ID</label>
+            <input type="text" name="studentID" id="studentID" class="form-control" placeholder="Student ID" value="<?php echo $studentID; ?>" readonly>
+        </div>
+        <div class="form-group">
+            <label for="facilityID">Educational Facility</label>
+            <select name="facilityID" id="facilityID" class="form-control" required>
+                <option value="" disabled selected>Select an Educational Facility</option>
+                <?php
+                foreach ($facilities as $facilityID => $facilityName) {
+                    echo '<option value="' . $facilityID . '">' . $facilityName . '</option>';
+                }
+                ?>
+            </select>
+        </div>
+        <button type="submit" class="btn btn-primary">Submit</button>
+    </form>
+</div>
 
     
 
