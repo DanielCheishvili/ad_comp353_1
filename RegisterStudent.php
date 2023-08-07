@@ -71,13 +71,14 @@
 
         if(isset($_POST['submit']))
         {
-            $originalFacilityID = $_POST['originalFacilityID'];
+            $originalStudentID = $_POST['originalStudentID'];
             $newFacilityID = $_POST['facilityID'];
             $currentDate = date('Y-m-d');
             
             $updateQuery = "UPDATE Student SET educationalFacilityId = ?, startSchoolDate = ?, endSchoolDate = NULL WHERE studentID = ?";
             $stmt = mysqli_prepare($conn, $updateQuery);
-            mysqli_stmt_bind_param($stmt, "iss", $newFacilityID, $currentDate, $originalFacilityID);
+            mysqli_stmt_bind_param($stmt, "iss", $newFacilityID, $currentDate, $originalStudentID);
+
             
             if (mysqli_stmt_execute($stmt)) {
                 echo "Registered Successfully";
@@ -109,7 +110,7 @@
                 ?>
             </select>
         </div>
-        <input type="hidden" name="originalFacilityID" value="<?php echo $studentID; ?>">
+        <input type="hidden" name="originalStudentID" value="<?php echo $studentID; ?>">
 
         <button type="submit" class="btn btn-primary">Register</button>
     </form>
