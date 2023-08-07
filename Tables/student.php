@@ -45,7 +45,7 @@
         <?php
         include('../config.php');
         
-        $sql = "SELECT studentID,firstName,lastName,startSchoolDate,endSchoolDate, Facility.facilityName  
+        $sql = "SELECT Student.studentID,firstName,lastName,startSchoolDate,endSchoolDate, Facility.facilityName  
         FROM Student
         JOIN Person ON Student.medicareCard = Person.medicareCard
         JOIN EducationalFacility ON Student.educationalFacilityId = EducationalFacility.educationFacilityID
