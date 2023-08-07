@@ -11,6 +11,7 @@
     include('../config.php');
 
     function isEndDateNull($studentID, $conn) {
+        echo "Debug: Student ID: " . $studentID; // Debug output
         $checkEndDateQuery = "SELECT endSchoolDate FROM Student WHERE studentID = '$studentID'";
         $checkEndDateResult = mysqli_query($conn, $checkEndDateQuery);
     
@@ -26,6 +27,7 @@
     
 
     if (isset($_GET['studentID']) && $_GET['action'] == 'register') {
+        echo "Debug: Registering student."; // Debug output
         $studentID = $_GET['studentID'];
         if (isEndDateNull($studentID, $conn)) {
             echo '<div class="container mt-5">';
