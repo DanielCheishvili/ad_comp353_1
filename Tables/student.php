@@ -168,7 +168,7 @@
                         if (xhr.responseText.trim() === "can_register") {
                             window.location.href = "../RegisterStudent.php?studentID=" + studentID + "&action=register";
                         } else if (xhr.responseText.trim() === "cannot_register") {
-                            alert("The student cannot be registered as their end date is null.");
+                            alert("The student cannot be registered because they are still attending a school. Please set the end date to register student.");
                         } else {
                             alert("Error checking registration eligibility");
                         }
