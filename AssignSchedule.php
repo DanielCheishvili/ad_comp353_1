@@ -43,7 +43,7 @@
         <p>Table displaying all the records of the Employee Schedule table.</p>
         <?php
         include('config.php');
-        $employeeID = isset($_POST['employeeID']) ? $_POST['employeeID'] : '';
+        $employeeID = isset($_GET['employeeID']) ? $_GET['employeeID'] : '';
         echo $employeeID;
         $sql = "SELECT scheduleID, Person.firstName, Person.LastName,Facility.facilityName,scheduleDate,scheduleStartTime,ScheduleEndTime
         FROM Schedule
