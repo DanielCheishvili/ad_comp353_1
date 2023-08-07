@@ -44,7 +44,6 @@
         <?php
         include('config.php');
         $employeeID = isset($_GET['employeeID']) ? $_GET['employeeID'] : '';
-        echo $employeeID;
         $sql = "SELECT scheduleID, Person.firstName, Person.LastName,Facility.facilityName,scheduleDate,scheduleStartTime,scheduleEndTime
         FROM Schedule
         JOIN Employee ON Schedule.employeeID = Employee.employeeID
@@ -115,10 +114,12 @@
         // Function to check if an employee is vaccinated
         function isVaccinated($conn, $employeeID, $scheduleDate) {
             $medicareCard = "SELECT medicareCard FROM Employee WHERE employeeID = '$employeeID'";
-            echo "I am trying to see something $medicareCard";
             $result = mysqli_query($conn, $medicareCard);
             $row = mysqli_fetch_assoc($result);
+
             $medicareCard = $row['medicareCard'];
+            echo "I am trying to see something $medicareCard";
+
             $sixMonthsAgo = date('Y-m-d', strtotime('-6 months'));
             $sql = "SELECT * FROM VaccinatedPerson 
             JOIN Vaccination ON VaccinatedPerson.vaccinatedPerson = Vaccination.VaccinationID
