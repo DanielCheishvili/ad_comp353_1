@@ -64,13 +64,7 @@
         <form action="<?php echo $_SERVER['PHP_SELF']; ?>" method="post">
         <div class="form-group">
             <label for="studentID">Student ID</label>
-            <input type="text" name="studentID" id="studentID" class="form-control" placeholder="Student ID"
-            <?php
-                if ($action == 'edit') {
-                    echo 'readonly ';
-                }
-                echo 'value="' . $studentID . '"';
-                ?>>
+            <input type="text" name="studentID" id="studentID" class="form-control" placeholder="Student ID" value="<?php echo $studentID; ?>" readonly>
         </div>
             <div class="form-group">
                 <label for="facilityID">Educational Facility</label>
