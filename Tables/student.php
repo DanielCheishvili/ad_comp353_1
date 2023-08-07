@@ -7,6 +7,35 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
 </head>
 <body>
+<?php
+    include('config.php');
+
+    function isEndDateNull($studentID, $conn) {
+        $checkEndDateQuery = "SELECT endSchoolDate FROM Student WHERE studentID = '$studentID'";
+        $checkEndDateResult = mysqli_query($conn, $checkEndDateQuery);
+
+        if ($checkEndDateResult && mysqli_num_rows($checkEndDateResult) > 0) {
+            $row = mysqli_fetch_assoc($checkEndDateResult);
+            $endSchoolDate = $row['endSchoolDate'];
+            return $endSchoolDate === null;
+        }
+
+        return false;
+    }
+
+    if (isset($_GET['studentID']) && $_GET['action'] == 'register') {
+        $studentID = $_GET['studentID'];
+        if (!isEndDateNull($studentID, $conn)) {
+            echo '<div class="container mt-5">';
+            echo '<h2>Error</h2>';
+            echo '<p>The student cannot be registered as their end date is not null.</p>';
+            echo '</div>';
+            mysqli_close($conn);
+            exit;
+        }
+    }
+
+    ?>
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
         <div class="container">
             <a class="navbar-brand" href="#">My Website</a>
@@ -127,6 +156,7 @@
         }
         function registerStudent(studentID) {
             window.location.href = "../RegisterStudent.php?studentID=" + studentID + "&action=register";
+
         }
     </script>
        
