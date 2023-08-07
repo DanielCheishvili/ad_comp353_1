@@ -40,8 +40,8 @@
     <?php
 include('config.php');
 
-$studentID = isset($_POST['studentID']) ? $_POST['studentID'] : '';
 $action = isset($_GET['action']) ? $_GET['action'] : '';
+$studentID = isset($_GET['studentID']) ? $_GET['studentID'] : '';
 
 if ($action === 'register' && !empty($studentID)) {
     $facilityID = $_POST['facilityID'];
@@ -79,7 +79,7 @@ mysqli_close($conn);
 
 <div class="container mt-5">
     <h2>Select Educational Facility</h2>
-    <form action="<?php echo $_SERVER['PHP_SELF'] . '?action=register'; ?>" method="post">
+    <form action="<?php echo $_SERVER['PHP_SELF'] . '?studentID=' . $studentID . '&action=register'; ?>" method="post">
         <div class="form-group">
             <label for="studentID">Student ID</label>
             <input type="text" name="studentID" id="studentID" class="form-control" placeholder="Student ID" value="<?php echo $studentID; ?>" readonly>
