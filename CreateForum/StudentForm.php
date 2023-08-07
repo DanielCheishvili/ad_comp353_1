@@ -118,9 +118,9 @@
                     //$newMedicareCard = $_POST['medicareCard'];
 
 
-                    $sql = "UPDATE Student SET studentID = ?, startSchoolDate = ?, endSchoolDate = ?, educationalFacilityID = ? WHERE studentID = ?";
+                    $sql = "UPDATE Student SET startSchoolDate = ?, endSchoolDate = ?, educationalFacilityID = ? WHERE studentID = ?";
                     $stmt = mysqli_prepare($conn, $sql);
-                    mysqli_stmt_bind_param($stmt, "ssssi", $newStudentID, $newStartSchoolDate, $newEndSchoolDate, $newEducationalFacilityId, $originalStudentID);
+                    mysqli_stmt_bind_param($stmt, "sssi", $newStartSchoolDate, $newEndSchoolDate, $newEducationalFacilityId, $originalStudentID);
  
                     if (mysqli_stmt_execute($stmt)) {
                         echo "Record updated successfully!";
