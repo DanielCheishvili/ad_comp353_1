@@ -80,13 +80,6 @@
                 echo '<td>' . $row['scheduleStartTime'] . '</td>';
                 echo '<td>' . $row['scheduleEndTime'] . '</td>';
                 echo '</tr>';
-
-
-                // echo '<td>';
-                // echo "<button class=\"btn btn-danger\" onclick=\"deletePerson('" . $row['vaccinatedPerson'] . "')\">Delete</button>";
-                // echo "<button class=\"btn btn-warning\" onclick=\"editPerson('" . $row['vaccinatedPerson'] . "')\">Edit</button>";
-                // echo '</td>';
-                // echo '</tr>';
             }
         
             echo '</tbody>';
@@ -98,17 +91,25 @@
         
         mysqli_close($conn);
         ?>
-       
-
+    
+    </div>
+    <div class="container mt-5">
+        <!-- Display existing schedules here -->
+        
+        <!-- Add New Schedule form -->
         <h3>Add New Schedule</h3>
-        <form action="<?php echo $_SERVER['PHP_SELF']; ?>" method="post">
+        <form action="<?php echo $_SERVER['PHP_SELF'] . '?employeeID=' . $_GET['employeeID']; ?>" method="post">
             <div class="form-group">
-                <label for="startDateTime">Start Date and Time</label>
-                <input type="datetime-local" name="startDateTime" class="form-control" required>
+                <label for="scheduleDate">Schedule Date</label>
+                <input type="date" name="scheduleDate" class="form-control" required>
             </div>
             <div class="form-group">
-                <label for="endDateTime">End Date and Time</label>
-                <input type="datetime-local" name="endDateTime" class="form-control" required>
+                <label for="startTime">Start Time</label>
+                <input type="time" name="startTime" class="form-control" required>
+            </div>
+            <div class="form-group">
+                <label for="endTime">End Time</label>
+                <input type="time" name="endTime" class="form-control" required>
             </div>
             <input type="submit" name="addSchedule" value="Add Schedule" class="btn btn-primary">
         </form>
