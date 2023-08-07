@@ -110,7 +110,7 @@
             } elseif ($action == 'edit') {
                 if(isset($_POST['submit']))
                 {
-                    $originalStudentID = $_GET['originalStudentID'];
+                    $originalStudentID = $_POST['originalStudentID'];
                     $newStudentID = $_POST['studentID'];
                     $newStartSchoolDate = $_POST['startSchoolDate'];
                     $newEndSchoolDate = $_POST['endSchoolDate'] ? $_POST['endSchoolDate'] : null; // Set to null if empty
