@@ -57,6 +57,7 @@
     }
     if($action == 'register')
     {
+        echo "register";
         $studentID = isset($_GET['studentID']) ? $_GET['studentID'] : '';
         $sql = "SELECT * FROM Student WHERE studentID = '$studentID'";
         $result = mysqli_query($conn, $sql);
@@ -71,6 +72,7 @@
 
         if(isset($_POST['submit']))
         {
+            echo "submit";
             $originalStudentID = $_POST['originalStudentID'];
             $newFacilityID = $_POST['facilityID'];
             $currentDate = date('Y-m-d');
