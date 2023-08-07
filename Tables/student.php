@@ -25,12 +25,16 @@
 
     if (isset($_GET['studentID']) && $_GET['action'] == 'register') {
         $studentID = $_GET['studentID'];
-        if (!isEndDateNull($studentID, $conn)) {
+        if (isEndDateNull($studentID, $conn)) {
             echo '<div class="container mt-5">';
             echo '<h2>Error</h2>';
-            echo '<p>The student cannot be registered as their end date is not null.</p>';
+            echo '<p>The student cannot be registered as their end date is null.</p>';
             echo '</div>';
             mysqli_close($conn);
+            exit;
+        } else {
+            // Continue to the registration page
+            header("Location: ../RegisterStudent.php?studentID=$studentID&action=register");
             exit;
         }
     }
