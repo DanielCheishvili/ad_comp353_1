@@ -44,6 +44,7 @@
         <?php
         include('config.php');
         $employeeID = isset($_POST['employeeID']) ? $_POST['employeeID'] : '';
+        echo $employeeID;
         $sql = "SELECT scheduleID, Person.firstName, Person.LastName,Facility.facilityName,scheduleDate,scheduleStartTime,ScheduleEndTime
         FROM Schedule
         JOIN Employee ON Schedule.employeeID = Employee.employeeID
