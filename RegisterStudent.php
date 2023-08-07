@@ -56,7 +56,9 @@ if ($action === 'register' && !empty($studentID)) {
         mysqli_close($conn);
         header("Location: ../RegisterStudent.php?studentID=$studentID&action=register");
         exit;
-    } else {
+    
+    } 
+    else {
         echo '<div class="container mt-5">';
         echo '<h2>Error</h2>';
         echo '<p>An error occurred while registering the student.</p>';
@@ -79,6 +81,11 @@ mysqli_close($conn);
 
 <div class="container mt-5">
     <h2>Select Educational Facility</h2>
+    <?php
+            if ($action === 'register' && empty($studentID)) {
+                echo '<div class="alert alert-danger" role="alert">Invalid Student ID</div>';
+            }
+        ?>
     <form action="<?php echo $_SERVER['PHP_SELF'] . '?studentID=' . $studentID . '&action=register'; ?>" method="post">
         <div class="form-group">
             <label for="studentID">Student ID</label>
@@ -95,11 +102,7 @@ mysqli_close($conn);
                 ?>
             </select>
         </div>
-        <?php
-            if ($action === 'register' && empty($studentID)) {
-                echo '<div class="alert alert-danger" role="alert">Invalid Student ID</div>';
-            }
-        ?>
+       
         <button type="submit" class="btn btn-primary">Register</button>
     </form>
 </div>
