@@ -68,9 +68,9 @@
         }
         
         $studentID = $row['studentID'];
-        $facilityID = $row['educationalFacilityID'];
+        $facilityID = $row['educationalFacilityId'];
         echo $studentID;
-        echo $facilityID;
+        echo $facilityID + "facilityID";
 
         if(isset($_POST['submit']))
         {
