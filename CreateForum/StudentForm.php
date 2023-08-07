@@ -59,10 +59,7 @@
             $startSchoolDate = $row['startSchoolDate'];
             $endSchoolDate = $row['endSchoolDate'];
             $educationalFacilityId = $row['educationalFacilityId'];
-            $medicareCard = $row['medicareCard'];
-
-            echo "Debug: educationalFacilityID = $educationalFacilityId";
-            
+            $medicareCard = $row['medicareCard'];            
 
         }
 
@@ -81,7 +78,6 @@
                     $result = mysqli_query($conn, $checkIfPerson);
                     if($result)
                     {
-                        echo $medicareCard;
                         if(mysqli_num_rows($result) == 0)
                         {
                             echo '<div class="text-center text-danger mb-4">';
@@ -94,9 +90,9 @@
                             $stmt = mysqli_prepare($conn, $sql);
                             mysqli_stmt_bind_param($stmt, "sssss", $studentID, $startSchoolDate, $endSchoolDate, $educationalFacilityId, $medicareCard);
                             if (mysqli_stmt_execute($stmt)) {
-                                echo "New record created successfully!";
-                                //header("Location: ../Tables/person.php");
-                                //exit();
+                                echo '<div class="text-center text-success mb-4">';
+                                echo "Record Created successfully";
+                                echo '</div>';
                             } else {
                                 echo "Error: " . mysqli_error($conn);
                             }
@@ -125,9 +121,9 @@
                     mysqli_stmt_bind_param($stmt, "ssss" ,$newStartSchoolDate, $newEndSchoolDate, $newEducationalFacilityId, $originalStudentID);
  
                     if (mysqli_stmt_execute($stmt)) {
-                        echo "Record updated successfully!";
-                        //header("Location: ../Tables/person.php");
-                        //exit();
+                        echo '<div class="text-center text-success mb-4">';
+                        echo "Record updated successfully";
+                        echo '</div>';
                     } else {
                         echo "Error: " . mysqli_error($conn);
                     }

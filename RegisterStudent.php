@@ -39,7 +39,6 @@
     </nav>
     <?php
     var_dump($_POST);
-    include('config.php');
     $action = isset($_GET['action']) ? $_GET['action'] : '';
     $studentID = $facilityID = '';
     
@@ -69,12 +68,10 @@
         
         $studentID = $row['studentID'];
         $facilityID = $row['educationalFacilityId'];
-        echo $studentID;
-        echo $facilityID;
+        
 
         if(isset($_POST['submit']))
         {
-            echo "submit";
             $originalStudentID = $_POST['originalStudentID'];
             $newFacilityID = $_POST['facilityID'];
             $currentDate = date('Y-m-d');
@@ -85,7 +82,9 @@
 
             
             if (mysqli_stmt_execute($stmt)) {
-                echo "Registered Successfully";
+                echo '<div class="text-center text-success mb-4">';
+                echo "Registered successfully";
+                echo '</div>';
                 
             } else {
                 echo "Error: " . mysqli_error($conn);

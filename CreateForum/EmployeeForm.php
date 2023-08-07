@@ -130,9 +130,9 @@
 
                     // Execute the statement
                     if (mysqli_stmt_execute($stmt)) {
-                        echo "Record updated successfully!";
-                        //header("Location: ../Tables/person.php");
-                        //exit();
+                        echo '<div class="text-center text-success mb-4">';
+                        echo "Record updated successfully";
+                        echo '</div>';
                     } else {
                         echo "Error: " . mysqli_error($conn);
                     }
