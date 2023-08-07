@@ -115,7 +115,7 @@
                     $newStartSchoolDate = $_POST['startSchoolDate'];
                     $newEndSchoolDate = $_POST['endSchoolDate'] ? $_POST['endSchoolDate'] : null; // Set to null if empty
                     $newEducationalFacilityId = $_POST['educationalFacilityId'];
-                    $newMedicareCard = $_POST['medicareCard'];
+                    //$newMedicareCard = $_POST['medicareCard'];
 
 
                     $stmt = mysqli_prepare($conn, $sql);
