@@ -41,43 +41,8 @@
     
     include('config.php');
     $action = isset($_GET['action']) ? $_GET['action'] : '';
-    $studentID = isset($_POST['studentID']) ? $_POST['studentID'] : '';
-    $getStudentId = "SELECT studentID FROM Student";
-    $row = mysqli_fetch_assoc(mysqli_query($conn, $getStudentId));
-    $studentID = $row['studentID'];
-    echo $studentID;
-    if($action == 'register' && !empty($studentID))
-    {
-        if(isset($_POST['submit']))
-        {
-            echo "it gets here";
-            $facilityID = $_POST['facilityID'];
-            $currentDate = date("Y-m-d");
-            $updateQuery = "UPDATE Student SET educationalFacilityId = ?, startSchoolDate = ?, endSchoolDate = NULL WHERE studentID = ?";
+    $studentID = $facilityID = '';
     
-            $stmt = mysqli_prepare($conn, $updateQuery);
-            mysqli_stmt_bind_param($stmt, "sss", $facilityID, $currentDate, $studentID);
-            mysqli_stmt_execute($stmt);
-            if (mysqli_stmt_execute($stmt)) {
-                echo '<div class="container mt-5">';
-                echo '<h2>Registration Successful</h2>';
-                echo '<p>The student has been registered successfully.</p>';
-                echo '</div>';
-            } else {
-                echo '<div class="container mt-5">';
-                echo '<h2>Error</h2>';
-                echo '<p>An error occurred while registering the student.</p>';
-                echo '</div>';
-            }
-            
-            mysqli_stmt_close($stmt);
-            mysqli_close($conn);
-            exit;
-    
-        }
-
-        
-    }
 
 
     $retreiveEducationalFacility = "SELECT Facility.facilityID, Facility.facilityName 
@@ -89,6 +54,37 @@
 
     while($row = mysqli_fetch_assoc($result)){
         $facilities[$row['facilityID']] = $row['facilityName'];
+    }
+    if($action == 'register')
+    {
+        $studentID = isset($_GET['studentID']) ? $_GET['studentID'] : '';
+        $sql = "SELECT * FROM Student WHERE studentID = '$studentID'";
+        $result = mysqli_query($conn, $sql);
+        $row = mysqli_fetch_assoc($result);
+        if(!$result)
+        {
+            echo "Can't retrieve data " . mysqli_error($conn);
+        }
+
+        $studentID = $row['studentID'];
+        $facilityID = $row['educationalFacilityID'];
+
+        if(isset($_POST['submit']))
+        {
+            $currentDate = date('Y-m-d');
+            
+            $updateQuery = "UPDATE Student SET educationalFacilityId = ?, startSchoolDate = ?, endSchoolDate = NULL WHERE studentID = ?";
+            $stmt = mysqli_prepare($conn, $updateQuery);
+            mysqli_stmt_bind_param($stmt, "iss", $facilityID, $currentDate, $studentID);
+            
+            if (mysqli_stmt_execute($stmt)) {
+                echo "Registered Successfully";
+                
+            } else {
+                echo "Error: " . mysqli_error($conn);
+            }
+            mysqli_stmt_close($stmt);
+        }
     }
     mysqli_close($conn);
     ?>
