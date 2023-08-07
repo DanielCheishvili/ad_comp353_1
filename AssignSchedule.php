@@ -51,8 +51,6 @@
         JOIN Person ON Employee.medicareCard = Person.medicareCard
         JOIN Facility ON Schedule.facilityID = Facility.facilityID
         WHERE Schedule.employeeID = '$employeeID'";
-        
-        ;
         $result = mysqli_query($conn, $sql);
         if (mysqli_num_rows($result) > 0) {
             echo '<div class="d-flex justify-content-center">';
