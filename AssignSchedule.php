@@ -115,7 +115,7 @@
         // Function to check if an employee is vaccinated
         function isVaccinated($conn, $employeeID, $scheduleDate) {
             $medicareCard = "SELECT medicareCard FROM Employee WHERE employeeID = '$employeeID'";
-            echo $medicareCard;
+            echo "I am trying to see something $medicareCard";
             $result = mysqli_query($conn, $medicareCard);
             $row = mysqli_fetch_assoc($result);
             $medicareCard = $row['medicareCard'];
