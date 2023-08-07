@@ -37,56 +37,65 @@
             </div>
         </div>
     </nav>
-<?php
-include('config.php');
+    <?php
+    
+    include('config.php');
+    $action = isset($_GET['action']) ? $_GET['action'] : '';
+    $studentID = isset($_POST['studentID']) ? $_POST['studentID'] : '';
+    $getStudentId = "SELECT studentID FROM Student";
+    $row = mysqli_fetch_assoc(mysqli_query($conn, $getStudentId));
+    $studentID = $row['studentID'];
+    echo $studentID;
+    if($action == 'register' && !empty($studentID))
+    {
+        if(isset($_POST['submit']))
+        {
+            echo "it gets here";
+            $facilityID = $_POST['facilityID'];
+            $currentDate = date("Y-m-d");
+            $updateQuery = "UPDATE Student SET educationalFacilityId = ?, startSchoolDate = ?, endSchoolDate = NULL WHERE studentID = ?";
+    
+            $stmt = mysqli_prepare($conn, $updateQuery);
+            mysqli_stmt_bind_param($stmt, "sss", $facilityID, $currentDate, $studentID);
+            mysqli_stmt_execute($stmt);
+            if (mysqli_stmt_execute($stmt)) {
+                echo '<div class="container mt-5">';
+                echo '<h2>Registration Successful</h2>';
+                echo '<p>The student has been registered successfully.</p>';
+                echo '</div>';
+            } else {
+                echo '<div class="container mt-5">';
+                echo '<h2>Error</h2>';
+                echo '<p>An error occurred while registering the student.</p>';
+                echo '</div>';
+            }
+            
+            mysqli_stmt_close($stmt);
+            mysqli_close($conn);
+            exit;
+    
+        }
 
-$action = isset($_GET['action']) ? $_GET['action'] : '';
-$studentID = isset($_GET['studentID']) ? $_GET['studentID'] : '';
-
-if ($action === 'register' && !empty($studentID)) {
-    $facilityID = $_POST['facilityID'];
-    $currentDate = date('Y-m-d');
-    
-    $updateQuery = "UPDATE Student SET educationalFacilityId = ?, startSchoolDate = ?, endSchoolDate = NULL WHERE studentID = ?";
-    $stmt = mysqli_prepare($conn, $updateQuery);
-    mysqli_stmt_bind_param($stmt, "iss", $facilityID, $currentDate, $studentID);
-    
-    if (mysqli_stmt_execute($stmt)) {
-        mysqli_stmt_close($stmt);
-        mysqli_close($conn);
-        header("Location: ../RegisterStudent.php?studentID=$studentID&action=register");
-        exit;
-    
-    } 
-    else {
-        echo '<div class="container mt-5">';
-        echo '<h2>Error</h2>';
-        echo '<p>An error occurred while registering the student.</p>';
-        echo '</div>';
+        
     }
-}
 
-$retreiveEducationalFacility = "SELECT Facility.facilityID, Facility.facilityName 
+
+    $retreiveEducationalFacility = "SELECT Facility.facilityID, Facility.facilityName 
     From EducationalFacility
     JOIN Facility ON EducationalFacility.facilityID = Facility.facilityID";
 
-$result = mysqli_query($conn, $retreiveEducationalFacility);
-$facilities = [];
+    $result = mysqli_query($conn, $retreiveEducationalFacility);
+    $facilites = [];
 
-while($row = mysqli_fetch_assoc($result)){
-    $facilities[$row['facilityID']] = $row['facilityName'];
-}
-mysqli_close($conn);
-?>
+    while($row = mysqli_fetch_assoc($result)){
+        $facilities[$row['facilityID']] = $row['facilityName'];
+    }
+    mysqli_close($conn);
+    ?>
 
 <div class="container mt-5">
     <h2>Select Educational Facility</h2>
-    <?php
-            if ($action === 'register' && empty($studentID)) {
-                echo '<div class="alert alert-danger" role="alert">Invalid Student ID</div>';
-            }
-        ?>
-    <form action="<?php echo $_SERVER['PHP_SELF'] . '?studentID=' . $studentID . '&action=register'; ?>" method="post">
+    <form action="<?php echo $_SERVER['PHP_SELF']; ?>" method="post">
         <div class="form-group">
             <label for="studentID">Student ID</label>
             <input type="text" name="studentID" id="studentID" class="form-control" placeholder="Student ID" value="<?php echo $studentID; ?>" readonly>
@@ -102,7 +111,6 @@ mysqli_close($conn);
                 ?>
             </select>
         </div>
-       
         <button type="submit" class="btn btn-primary">Register</button>
     </form>
 </div>
