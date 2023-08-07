@@ -156,10 +156,11 @@
             // All constraints met, insert schedule
             else {
                 $scheduleDate = date('Y-m-d', strtotime($scheduleDate));
-                $sql = "INSERT INTO Schedule (scheduleID,employeeID,scheduleDate, scheduleStartTime, scheduleEndTime) 
-                        VALUES (29,'$employeeID','$scheduleDate', '$startDateTime', '$endDateTime')";
+                $sql = "INSERT INTO Schedule (scheduleID,employeeID,facilityID,scheduleDate, scheduleStartTime, scheduleEndTime) 
+                        VALUES (30,'$employeeID',5,'$scheduleDate', '$startDateTime', '$endDateTime')";
                 if (mysqli_query($conn, $sql)) {
                     echo '<div class="alert alert-success">Schedule added successfully.</div>';
+                    echo '<script>setTimeout(function(){ location.reload(); }, 1000);</script>';
                 } else {
                     echo '<div class="alert alert-danger">Error adding schedule: ' . mysqli_error($conn) . '</div>';
                 }
