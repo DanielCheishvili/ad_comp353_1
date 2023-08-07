@@ -65,17 +65,19 @@
         {
             echo "Can't retrieve data " . mysqli_error($conn);
         }
-
+        
         $studentID = $row['studentID'];
         $facilityID = $row['educationalFacilityID'];
 
         if(isset($_POST['submit']))
         {
+            $originalFacilityID = $_POST['originalFacilityID'];
+            $newFacilityID = $_POST['facilityID'];
             $currentDate = date('Y-m-d');
             
             $updateQuery = "UPDATE Student SET educationalFacilityId = ?, startSchoolDate = ?, endSchoolDate = NULL WHERE studentID = ?";
             $stmt = mysqli_prepare($conn, $updateQuery);
-            mysqli_stmt_bind_param($stmt, "iss", $facilityID, $currentDate, $studentID);
+            mysqli_stmt_bind_param($stmt, "iss", $newFacilityID, $currentDate, $originalFacilityID);
             
             if (mysqli_stmt_execute($stmt)) {
                 echo "Registered Successfully";
@@ -107,6 +109,8 @@
                 ?>
             </select>
         </div>
+        <input type="hidden" name="originalFacilityID" value="<?php echo $studentID; ?>">
+
         <button type="submit" class="btn btn-primary">Register</button>
     </form>
 </div>

@@ -58,7 +58,7 @@
             $studentID = $row['studentID'];
             $startSchoolDate = $row['startSchoolDate'];
             $endSchoolDate = $row['endSchoolDate'];
-            $educationalFacilityId = $row['educationalFacilityID'];
+            $educationalFacilityId = $row['educationalFacilityId'];
             $medicareCard = $row['medicareCard'];
 
             echo "Debug: educationalFacilityID = $educationalFacilityId";
@@ -73,7 +73,7 @@
                     $studentID = $_POST['studentID'];
                     $startSchoolDate = $_POST['startSchoolDate'];
                     $endSchoolDate = $_POST['endSchoolDate'] ? $_POST['endSchoolDate'] : null; // Set to null if empty
-                    $educationalFacilityId = $_POST['educationalFacilityID'];
+                    $educationalFacilityId = $_POST['educationalFacilityId'];
                     $medicareCard = $_POST['medicareCard'];
 
                     
@@ -90,7 +90,7 @@
     
                         }
                         else{
-                            $sql = "INSERT INTO Student (studentID, startSchoolDate, endSchoolDate, educationalFacilityID, medicareCard) VALUES (?, ?, ?, ?, ?)";
+                            $sql = "INSERT INTO Student (studentID, startSchoolDate, endSchoolDate, educationalFacilityId, medicareCard) VALUES (?, ?, ?, ?, ?)";
                             $stmt = mysqli_prepare($conn, $sql);
                             mysqli_stmt_bind_param($stmt, "sssss", $studentID, $startSchoolDate, $endSchoolDate, $educationalFacilityId, $medicareCard);
                             if (mysqli_stmt_execute($stmt)) {
@@ -116,11 +116,11 @@
                     $newStudentID = $_POST['studentID'];
                     $newStartSchoolDate = $_POST['startSchoolDate'];
                     $newEndSchoolDate = $_POST['endSchoolDate'] ? $_POST['endSchoolDate'] : null; // Set to null if empty
-                    $newEducationalFacilityId = $_POST['educationalFacilityID'];
+                    $newEducationalFacilityId = $_POST['educationalFacilityId'];
                     //$newMedicareCard = $_POST['medicareCard'];
 
 
-                    $sql = "UPDATE Student SET startSchoolDate = ?, endSchoolDate = ?, educationalFacilityID = ? WHERE studentID = ?";
+                    $sql = "UPDATE Student SET startSchoolDate = ?, endSchoolDate = ?, educationalFacilityId = ? WHERE studentID = ?";
                     $stmt = mysqli_prepare($conn, $sql);
                     mysqli_stmt_bind_param($stmt, "ssss" ,$newStartSchoolDate, $newEndSchoolDate, $newEducationalFacilityId, $originalStudentID);
  
@@ -180,11 +180,11 @@
                     <label for="endSchoolDate">End School Date</label>
                     <input type="text" name="endSchoolDate" id="endSchoolDate" class="form-control" placeholder="End School Date" value="<?php echo $endSchoolDate; ?>">
                 </div>
-                <?php echo "Debug: educationalFacilityID = $educationalFacilityId"; ?>
+                <?php echo "Debug: educationalFacilityId = $educationalFacilityId"; ?>
 
                 <div class="form-group col-md-6">
-                    <label for="educationalFacilityID">Educational Facility ID</label>
-                    <input type="text" name="educationalFacilityID" id="educationalFacilityID" class="form-control" placeholder="Educational Facility ID " value="<?php echo $educationalFacilityId; ?>">
+                    <label for="educationalFacilityId">Educational Facility ID</label>
+                    <input type="text" name="educationalFacilityId" id="educationalFacilityId" class="form-control" placeholder="Educational Facility ID " value="<?php echo $educationalFacilityId; ?>">
                 </div>
             </div>
 
