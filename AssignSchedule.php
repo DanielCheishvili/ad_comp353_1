@@ -156,7 +156,7 @@
             // All constraints met, insert schedule
             else {
                 $scheduleDate = date('Y-m-d', strtotime($scheduleDate));
-                $sql = "INSERT INTO Schedule (employeeID,scheduleDate, startDateTime, endDateTime) 
+                $sql = "INSERT INTO Schedule (employeeID,scheduleDate, startStartTime, scheduleEndTime) 
                         VALUES ('$employeeID','$scheduleDate' '$startDateTime', '$endDateTime')";
                 if (mysqli_query($conn, $sql)) {
                     echo '<div class="alert alert-success">Schedule added successfully.</div>';
