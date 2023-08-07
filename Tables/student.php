@@ -123,7 +123,7 @@
             window.location.href = "../CreateForum/StudentForm.php?studentID=" + studentID + "&action=edit";
         }
         function registerStudent(studentID) {
-            window.location.href = "../CreateForum/StudentForm.php?studentID=" + studentID + "&action=register";
+            window.location.href = "../RegisterStudent.php?studentID=" + studentID + "&action=register";
         }
     </script>
        
