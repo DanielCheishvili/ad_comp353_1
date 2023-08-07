@@ -61,6 +61,7 @@
             echo '<th>Start School Date</th>';
             echo '<th>End School Date</th>';
             echo '<th>Action</th>';
+            echo '<th>Registration</th>';
             echo '</tr>';
             echo '</thead>';
             echo '<tbody>';
@@ -76,6 +77,8 @@
                 echo "<button class=\"btn btn-danger\" onclick=\"deleteStudent('" . $row['studentID'] . "')\">Delete</button>";
                 echo "<button class=\"btn btn-warning\" onclick=\"editStudent('" . $row['studentID'] . "')\">Edit</button>";
                 echo '</td>';
+                echo '<td>';
+                echo "<button class=\"btn btn-primary\" onclick=\"registerStudent('" . $row['studentID'] . "')\">Register</button>";
                 echo '</tr>';
             }
         
@@ -118,6 +121,9 @@
         }
         function editStudent(studentID) {
             window.location.href = "../CreateForum/StudentForm.php?studentID=" + studentID + "&action=edit";
+        }
+        function registerStudent(studentID) {
+            window.location.href = "../CreateForum/StudentForm.php?studentID=" + studentID + "&action=register";
         }
     </script>
        
