@@ -178,6 +178,7 @@
                     <label for="endSchoolDate">End School Date</label>
                     <input type="text" name="endSchoolDate" id="endSchoolDate" class="form-control" placeholder="End School Date" value="<?php echo $endSchoolDate; ?>">
                 </div>
+                <?php echo "Debug: educationalFacilityID = $educationalFacilityId"; ?>
 
                 <div class="form-group col-md-6">
                     <label for="educationalFacilityID">Educational Facility ID</label>
