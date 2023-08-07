@@ -43,12 +43,13 @@
         <p>Table displaying all the records of the Employee Schedule table.</p>
         <?php
         include('config.php');
-
+        $employeeID = isset($_POST['employeeID']) ? $_POST['employeeID'] : '';
         $sql = "SELECT scheduleID, Person.firstName, Person.LastName,Facility.facilityName,scheduleDate,scheduleStartTime,ScheduleEndTime
         FROM Schedule
         JOIN Employee ON Schedule.employeeID = Employee.employeeID
         JOIN Person ON Employee.medicareCard = Person.medicareCard
-        JOIN Facility ON Schedule.facilityID = Facility.facilityID";
+        JOIN Facility ON Schedule.facilityID = Facility.facilityID
+        WHERE Schedule.employeeID = '$employeeID'";
         
         ;
         $result = mysqli_query($conn, $sql);
