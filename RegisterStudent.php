@@ -40,9 +40,11 @@
     <?php
     
     include('config.php');
-
+    $action = isset($_GET['action']) ? $_GET['action'] : '';
     $studentID = isset($_POST['studentID']) ? $_POST['studentID'] : '';
-
+    $getStudentId = "SELECT studentID FROM Student";
+    $row = mysqli_fetch_assoc(mysqli_query($conn, $getStudentId));
+    $studentID = $row['studentID'];
     $retreiveEducationalFacility = "SELECT Facility.facilityID, Facility.facilityName 
     From EducationalFacility
     JOIN Facility ON EducationalFacility.facilityID = Facility.facilityID";
