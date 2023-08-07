@@ -62,6 +62,7 @@
             echo '<th>Last Name</th>';
             echo '<th>Start School Date</th>';
             echo '<th>End School Date</th>';
+            echo '<th>Institution</th>';
             echo '<th>Action</th>';
             echo '<th>Registration</th>';
             echo '</tr>';
@@ -75,6 +76,7 @@
                 echo '<td>' . $row['lastName'] . '</td>';
                 echo '<td>' . $row['startSchoolDate'] . '</td>';
                 echo '<td>' . $row['endSchoolDate'] . '</td>';
+                echo '<td>' . $row['facilityName'] . '</td>';
                 echo '<td>';
                 echo "<button class=\"btn btn-danger\" onclick=\"deleteStudent('" . $row['studentID'] . "')\">Delete</button>";
                 echo "<button class=\"btn btn-warning\" onclick=\"editStudent('" . $row['studentID'] . "')\">Edit</button>";
