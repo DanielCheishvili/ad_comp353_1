@@ -11,23 +11,19 @@
     include('../config.php');
 
     function isEndDateNull($studentID, $conn) {
-        echo "Debug: Student ID: " . $studentID; // Debug output
         $checkEndDateQuery = "SELECT endSchoolDate FROM Student WHERE studentID = '$studentID'";
         $checkEndDateResult = mysqli_query($conn, $checkEndDateQuery);
-    
+
         if ($checkEndDateResult && mysqli_num_rows($checkEndDateResult) > 0) {
             $row = mysqli_fetch_assoc($checkEndDateResult);
             $endSchoolDate = $row['endSchoolDate'];
-            echo "Debug: End Date: " . $endSchoolDate; // Debug output
             return $endSchoolDate === null;
         }
-    
+
         return false;
     }
-    
 
     if (isset($_GET['studentID']) && $_GET['action'] == 'register') {
-        echo "Debug: Registering student."; // Debug output
         $studentID = $_GET['studentID'];
         if (isEndDateNull($studentID, $conn)) {
             echo '<div class="container mt-5">';
@@ -37,8 +33,6 @@
             mysqli_close($conn);
             exit;
         } else {
-            // Debug output
-            echo "Debug: Student can register."; 
             // Continue to the registration page
             header("Location: ../RegisterStudent.php?studentID=$studentID&action=register");
             exit;
@@ -165,10 +159,29 @@
         function editStudent(studentID) {
             window.location.href = "../CreateForum/StudentForm.php?studentID=" + studentID + "&action=edit";
         }
-        // function registerStudent(studentID) {
-        //     window.location.href = "../RegisterStudent.php?studentID=" + studentID + "&action=register";
+        function registerStudent(studentID) {
+        var xhr = new XMLHttpRequest();
+        xhr.onreadystatechange = function() {
+            if (xhr.readyState == XMLHttpRequest.DONE ) {
+                if(xhr.status == 200)
+                {
+                    if (xhr.responseText.trim() === "can_register") {
+                        window.location.href = "../RegisterStudent.php?studentID=" + studentID + "&action=register";
+                    } else {
+                        alert("The student cannot be registered as their end date is null.");
+                    }
+                }
+                else
+                {
+                    alert("Error checking registration eligibility");
+                }
 
-        // }
+            }
+        };
+        xhr.open("GET", "<?php echo $_SERVER['PHP_SELF']; ?>?studentID=" + studentID + "&action=check_register", true);
+        xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+        xhr.send("studentID=" + studentID);
+    }
     </script>
        
     </div>
