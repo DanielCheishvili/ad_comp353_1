@@ -160,28 +160,30 @@
             window.location.href = "../CreateForum/StudentForm.php?studentID=" + studentID + "&action=edit";
         }
         function registerStudent(studentID) {
-        var xhr = new XMLHttpRequest();
-        xhr.onreadystatechange = function() {
-            if (xhr.readyState == XMLHttpRequest.DONE ) {
-                if(xhr.status == 200)
-                {
-                    if (xhr.responseText.trim() === "can_register") {
-                        window.location.href = "../RegisterStudent.php?studentID=" + studentID + "&action=register";
-                    } else {
-                        alert("The student cannot be registered as their end date is null.");
+            var xhr = new XMLHttpRequest();
+            xhr.onreadystatechange = function() {
+                if (xhr.readyState == XMLHttpRequest.DONE ) {
+                    if(xhr.status == 200)
+                    {
+                        if (xhr.responseText.trim() === "can_register") {
+                            window.location.href = "../RegisterStudent.php?studentID=" + studentID + "&action=register";
+                        } else if (xhr.responseText.trim() === "cannot_register") {
+                            alert("The student cannot be registered as their end date is null.");
+                        } else {
+                            alert("Error checking registration eligibility");
+                        }
                     }
-                }
-                else
-                {
-                    alert("Error checking registration eligibility");
-                }
+                    else
+                    {
+                        alert("Error checking registration eligibility");
+                    }
 
-            }
-        };
-        xhr.open("GET", "<?php echo $_SERVER['PHP_SELF']; ?>?studentID=" + studentID + "&action=register", true);
-        xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
-        xhr.send("studentID=" + studentID);
-    }
+                }
+            };
+            xhr.open("GET", "../CheckRegistration.php?studentID=" + studentID + "&action=check_register", true);
+            xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+            xhr.send("studentID=" + studentID);
+        }
     </script>
        
     </div>
