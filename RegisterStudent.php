@@ -48,8 +48,11 @@
     $facilites = [];
 
     while($row = mysqli_fetch_assoc($result)){
-       $facilites[$row['facilityID'] = $row['facilityName']];
+        $facilities[$row['facilityID']] = $row['facilityName'];
     }
+    echo '<pre>';
+    print_r($facilities);
+    echo '</pre>';  
 
     mysqli_close($conn);
 
