@@ -128,8 +128,8 @@
             return mysqli_num_rows($result) > 0;
         }
 
-        // Check if the form was submitted
         if (isset($_POST['addSchedule'])) {
+            $scheduleID = $_POST['scheduleID'];
             $employeeID = $_GET['employeeID'];
             $scheduleDate = $_POST['scheduleDate'];
             $startTime = $_POST['startTime'];
@@ -137,27 +137,65 @@
             $startDateTime = $scheduleDate . ' ' . $startTime;
             $endDateTime = $scheduleDate . ' ' . $endTime;
 
-            // Check if start time is not greater than end time
             if ($startTime >= $endTime) {
                 echo '<div class="alert alert-danger">Start time cannot be greater than end time.</div>';
             }
-            // Check if there is at least one hour gap between schedules
-            elseif (strtotime($endTime) <= strtotime($startTime) + 3600) {
-                echo '<div class="alert alert-danger">The schedule must be at least 1 hour apart.</div>';
-            }
-            // Check if the employee is infected
+            
             elseif (isInfected($conn, $employeeID, $scheduleDate)) {
                 echo '<div class="alert alert-danger">The employee is infected and cannot be scheduled within 2 weeks of infection.</div>';
             }
-            // Check if the employee is not vaccinated
             elseif (!isVaccinated($conn, $employeeID, $scheduleDate)) {
                 echo '<div class="alert alert-danger">The employee is not vaccinated within the past 6 months.</div>';
             }
+            $employeeID = isset($_GET['employeeID']) ? $_GET['employeeID'] : '';
+            $scheduleDate = $_POST['scheduleDate'];
+            $startTime = $_POST['startTime'];
+            $endTime = $_POST['endTime'];
+
+            $sqlExistingSchedules = "SELECT scheduleStartTime, scheduleEndTime FROM Schedule
+                                    WHERE employeeID = '$employeeID'";
+            $resultExistingSchedules = mysqli_query($conn, $sqlExistingSchedules);
+
+            $existingSchedules = array();
+            while ($rowExistingSchedule = mysqli_fetch_assoc($resultExistingSchedules)) {
+                $existingSchedules[] = [
+                    'startTime' => strtotime($rowExistingSchedule['scheduleStartTime']),
+                    'endTime' => strtotime($rowExistingSchedule['scheduleEndTime'])
+                ];
+            }
+
+            $newStartTime = strtotime($startTime);
+            $newEndTime = strtotime($endTime);
+
+            $isConflict = false;
+            foreach ($existingSchedules as $schedule) {
+                if ($newStartTime >= $schedule['startTime'] && $newStartTime <= $schedule['endTime']) {
+                    $isConflict = true;
+                    break;
+                }
+                if ($newEndTime >= $schedule['startTime'] && $newEndTime <= $schedule['endTime']) {
+                    $isConflict = true;
+                    break;
+                }
+                if ($newStartTime <= $schedule['startTime'] && $newEndTime >= $schedule['endTime']) {
+                    $isConflict = true;
+                    break;
+                }
+                if ($newStartTime <= $schedule['startTime'] && strtotime('+1 hour', $newEndTime) >= $schedule['startTime']) {
+                    $isConflict = true;
+                    break;
+                }
+            }
+
+            if ($isConflict) {
+                echo '<div class="alert alert-danger">The schedule conflicts with existing schedules or is not at least 1 hour apart.</div>';
+            }
             // All constraints met, insert schedule
             else {
+                $facilityID = "SELECT facilityID FROM Schedule WHERE employeeID = '$employeeID'";
                 $scheduleDate = date('Y-m-d', strtotime($scheduleDate));
                 $sql = "INSERT INTO Schedule (scheduleID,employeeID,facilityID,scheduleDate, scheduleStartTime, scheduleEndTime) 
-                        VALUES (30,'$employeeID',5,'$scheduleDate', '$startDateTime', '$endDateTime')";
+                        VALUES ('$scheduleID','$employeeID','$facilityID','$scheduleDate', '$startDateTime', '$endDateTime')";
                 if (mysqli_query($conn, $sql)) {
                     echo '<div class="alert alert-success">Schedule added successfully.</div>';
                     echo '<script>setTimeout(function(){ location.reload(); }, 1000);</script>';
@@ -168,6 +206,10 @@
         }
         ?>
         <form action="<?php echo $_SERVER['PHP_SELF'] . '?employeeID=' . $_GET['employeeID']; ?>" method="post">
+            <div class="form-group">
+                <label for="scheduleID">Schedule ID</label>
+                <input type="text" name="scheduleID" class="form-control" required>
+            </div>
             <div class="form-group">
                 <label for="scheduleDate">Schedule Date</label>
                 <input type="date" name="scheduleDate" class="form-control" required>
