@@ -123,7 +123,7 @@
             $sixMonthsAgo = date('Y-m-d', strtotime('-6 months'));
             $sql = "SELECT * FROM VaccinatedPerson 
             JOIN Vaccination ON VaccinatedPerson.vaccinatedPerson = Vaccination.VaccinationID
-            WHERE VaccinatedPerson.medicareCard = '$medicareCard' AND Vaccination.vaccinationDate > '$sixMonthsAgo'";
+            WHERE VaccinatedPerson.medicareCard = '$medicareCard' AND Vaccination.doseDate > '$sixMonthsAgo'";
             $result = mysqli_query($conn, $sql);
             return mysqli_num_rows($result) > 0;
         }
