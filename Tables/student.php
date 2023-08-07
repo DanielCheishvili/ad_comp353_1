@@ -13,15 +13,17 @@
     function isEndDateNull($studentID, $conn) {
         $checkEndDateQuery = "SELECT endSchoolDate FROM Student WHERE studentID = '$studentID'";
         $checkEndDateResult = mysqli_query($conn, $checkEndDateQuery);
-
+    
         if ($checkEndDateResult && mysqli_num_rows($checkEndDateResult) > 0) {
             $row = mysqli_fetch_assoc($checkEndDateResult);
             $endSchoolDate = $row['endSchoolDate'];
+            echo "Debug: End Date: " . $endSchoolDate; // Debug output
             return $endSchoolDate === null;
         }
-
+    
         return false;
     }
+    
 
     if (isset($_GET['studentID']) && $_GET['action'] == 'register') {
         $studentID = $_GET['studentID'];
@@ -33,11 +35,14 @@
             mysqli_close($conn);
             exit;
         } else {
+            // Debug output
+            echo "Debug: Student can register."; 
             // Continue to the registration page
             header("Location: ../RegisterStudent.php?studentID=$studentID&action=register");
             exit;
         }
     }
+    
 
     ?>
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
