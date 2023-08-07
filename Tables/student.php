@@ -8,7 +8,7 @@
 </head>
 <body>
 <?php
-    include('config.php');
+    include('../config.php');
 
     function isEndDateNull($studentID, $conn) {
         $checkEndDateQuery = "SELECT endSchoolDate FROM Student WHERE studentID = '$studentID'";
