@@ -45,6 +45,34 @@
     $getStudentId = "SELECT studentID FROM Student";
     $row = mysqli_fetch_assoc(mysqli_query($conn, $getStudentId));
     $studentID = $row['studentID'];
+    if($action == 'register' && !empty($studentID))
+    {
+        $facilityID = $_POST['facilityID'];
+        $currentDate = date("Y-m-d");
+        $updateQuery = "UPDATE Student SET educationalFacilityId = ?, startSchoolDate = ?, endSchoolDate = NULL WHERE studentID = ?";
+
+        $stmt = mysqli_prepare($conn, $updateQuery);
+        mysqli_stmt_bind_param($stmt, "sss", $facilityID, $currentDate, $studentID);
+        mysqli_stmt_execute($stmt);
+        if (mysqli_stmt_execute($stmt)) {
+            echo '<div class="container mt-5">';
+            echo '<h2>Registration Successful</h2>';
+            echo '<p>The student has been registered successfully.</p>';
+            echo '</div>';
+        } else {
+            echo '<div class="container mt-5">';
+            echo '<h2>Error</h2>';
+            echo '<p>An error occurred while registering the student.</p>';
+            echo '</div>';
+        }
+        
+        mysqli_stmt_close($stmt);
+        mysqli_close($conn);
+        exit;
+
+    }
+
+
     $retreiveEducationalFacility = "SELECT Facility.facilityID, Facility.facilityName 
     From EducationalFacility
     JOIN Facility ON EducationalFacility.facilityID = Facility.facilityID";
@@ -76,7 +104,7 @@
                 ?>
             </select>
         </div>
-        <button type="submit" class="btn btn-primary">Submit</button>
+        <button type="submit" class="btn btn-primary">Register</button>
     </form>
 </div>
 
