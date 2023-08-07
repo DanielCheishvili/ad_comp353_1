@@ -178,7 +178,7 @@
 
             }
         };
-        xhr.open("GET", "<?php echo $_SERVER['PHP_SELF']; ?>?studentID=" + studentID + "&action=check_register", true);
+        xhr.open("GET", "<?php echo $_SERVER['PHP_SELF']; ?>?studentID=" + studentID + "&action=register", true);
         xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
         xhr.send("studentID=" + studentID);
     }
