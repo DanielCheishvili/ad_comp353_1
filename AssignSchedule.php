@@ -72,8 +72,8 @@
                 echo '<tr>';
                 echo '<td>' . $row['scheduleID'] . '</td>';
                 echo '<td>' . $row['firstName'] . '</td>';
-                echo '<td>' . $row['lastName'] . '</td>';
-                echo '<td>' . $row['facilityID'] . '</td>';
+                echo '<td>' . $row['LastName'] . '</td>';
+                echo '<td>' . $row['facilityName'] . '</td>';
                 echo '<td>' . $row['scheduleDate'] . '</td>';
                 echo '<td>' . $row['scheduleStartTime'] . '</td>';
                 echo '<td>' . $row['scheduleEndTime'] . '</td>';
@@ -92,7 +92,6 @@
     
     </div>
     <div class="container mt-5">
-        <!-- Display existing schedules here -->
         
         <!-- Add New Schedule form -->
         <h3>Add New Schedule</h3>
