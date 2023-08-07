@@ -38,13 +38,10 @@
         </div>
     </nav>
     <?php
-    var_dump($_POST);
     include('config.php');
     $action = isset($_GET['action']) ? $_GET['action'] : '';
     $studentID = $facilityID = '';
     
-
-
     $retreiveEducationalFacility = "SELECT Facility.facilityID, Facility.facilityName 
     From EducationalFacility
     JOIN Facility ON EducationalFacility.facilityID = Facility.facilityID";
@@ -57,7 +54,6 @@
     }
     if($action == 'register')
     {
-        echo "register";
         $studentID = isset($_GET['studentID']) ? $_GET['studentID'] : '';
         $sql = "SELECT * FROM Student WHERE studentID = '$studentID'";
         $result = mysqli_query($conn, $sql);
@@ -69,8 +65,7 @@
         
         $studentID = $row['studentID'];
         $facilityID = $row['educationalFacilityId'];
-        echo $studentID;
-        echo $facilityID;
+       
 
         if(isset($_POST['submit']))
         {
