@@ -58,7 +58,7 @@
             $studentID = $row['studentID'];
             $startSchoolDate = $row['startSchoolDate'];
             $endSchoolDate = $row['endSchoolDate'];
-            $educationalFacilityId = $row['educationalFacilityId'];
+            $educationalFacilityId = $row['educationalFacilityID'];
             $medicareCard = $row['medicareCard'];
             
 
@@ -71,7 +71,7 @@
                     $studentID = $_POST['studentID'];
                     $startSchoolDate = $_POST['startSchoolDate'];
                     $endSchoolDate = $_POST['endSchoolDate'] ? $_POST['endSchoolDate'] : null; // Set to null if empty
-                    $educationalFacilityId = $_POST['educationalFacilityId'];
+                    $educationalFacilityId = $_POST['educationalFacilityID'];
                     $medicareCard = $_POST['medicareCard'];
 
                     
@@ -88,7 +88,7 @@
     
                         }
                         else{
-                            $sql = "INSERT INTO Student (studentID, startSchoolDate, endSchoolDate, educationalFacilityId, medicareCard) VALUES (?, ?, ?, ?, ?)";
+                            $sql = "INSERT INTO Student (studentID, startSchoolDate, endSchoolDate, educationalFacilityID, medicareCard) VALUES (?, ?, ?, ?, ?)";
                             $stmt = mysqli_prepare($conn, $sql);
                             mysqli_stmt_bind_param($stmt, "sssss", $studentID, $startSchoolDate, $endSchoolDate, $educationalFacilityId, $medicareCard);
                             if (mysqli_stmt_execute($stmt)) {
@@ -114,13 +114,13 @@
                     $newStudentID = $_POST['studentID'];
                     $newStartSchoolDate = $_POST['startSchoolDate'];
                     $newEndSchoolDate = $_POST['endSchoolDate'] ? $_POST['endSchoolDate'] : null; // Set to null if empty
-                    $newEducationalFacilityId = $_POST['educationalFacilityId'];
+                    $newEducationalFacilityId = $_POST['educationalFacilityID'];
                     //$newMedicareCard = $_POST['medicareCard'];
 
 
                     $sql = "UPDATE Student SET startSchoolDate = ?, endSchoolDate = ?, educationalFacilityID = ? WHERE studentID = ?";
                     $stmt = mysqli_prepare($conn, $sql);
-                    mysqli_stmt_bind_param($stmt, "sssi", $newStartSchoolDate, $newEndSchoolDate, $newEducationalFacilityId, $originalStudentID);
+                    mysqli_stmt_bind_param($stmt, "ssss" ,$newStartSchoolDate, $newEndSchoolDate, $newEducationalFacilityId, $originalStudentID);
  
                     if (mysqli_stmt_execute($stmt)) {
                         echo "Record updated successfully!";
