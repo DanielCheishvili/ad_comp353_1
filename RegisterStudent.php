@@ -45,10 +45,12 @@
     $getStudentId = "SELECT studentID FROM Student";
     $row = mysqli_fetch_assoc(mysqli_query($conn, $getStudentId));
     $studentID = $row['studentID'];
+    echo $studentID;
     if($action == 'register' && !empty($studentID))
     {
         if(isset($_POST['submit']))
         {
+            echo "it gets here";
             $facilityID = $_POST['facilityID'];
             $currentDate = date("Y-m-d");
             $updateQuery = "UPDATE Student SET educationalFacilityId = ?, startSchoolDate = ?, endSchoolDate = NULL WHERE studentID = ?";
