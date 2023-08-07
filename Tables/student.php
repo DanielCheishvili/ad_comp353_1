@@ -7,7 +7,7 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
 </head>
 <body>
-<?php
+<!-- <?php
     include('../config.php');
 
     function isEndDateNull($studentID, $conn) {
@@ -40,7 +40,7 @@
     }
     
 
-    ?>
+    ?> -->
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
         <div class="container">
             <a class="navbar-brand" href="#">My Website</a>
@@ -96,6 +96,7 @@
             echo '<th>Start School Date</th>';
             echo '<th>End School Date</th>';
             echo '<th>Institution</th>';
+            echo '<th>School ID</th>';
             echo '<th>Action</th>';
             echo '<th>Registration</th>';
             echo '</tr>';
@@ -110,6 +111,7 @@
                 echo '<td>' . $row['startSchoolDate'] . '</td>';
                 echo '<td>' . $row['endSchoolDate'] . '</td>';
                 echo '<td>' . $row['facilityName'] . '</td>';
+                echo '<td>' . $row['educationalFacilityID'] . '</td>';
                 echo '<td>';
                 echo "<button class=\"btn btn-danger\" onclick=\"deleteStudent('" . $row['studentID'] . "')\">Delete</button>";
                 echo "<button class=\"btn btn-warning\" onclick=\"editStudent('" . $row['studentID'] . "')\">Edit</button>";
