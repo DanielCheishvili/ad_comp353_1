@@ -96,6 +96,8 @@
                                 if($result)
                                 {
                                     echo "success";
+                                    var_dump($result);
+                                    
                                 }
                                 else
                                 {
