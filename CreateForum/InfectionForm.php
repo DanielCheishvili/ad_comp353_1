@@ -85,37 +85,39 @@
                                 echo "New record created successfully";
                                 echo '</div>';
                                 echo $medicareCard;
-                                $sendEmail ="SELECT Person.firstName, Person.lastName, Infection.infectionDate,Employee.employeeRole,
-                                EducationalFacilityID.educationalFacilityID,principalID
+                                $sendEmail ="SELECT Person.firstName, Person.lastName, Infection.infectionDate,Employee.employeeRole
                                 from InfectedPerson
                                 JOIN Infection ON InfectedPerson.infectionID = Infection.infectionID
                                 JOIN Person ON InfectedPerson.medicareCard = Person.medicareCard
                                 JOIN Employee ON Person.medicareCard = Employee.medicareCard
-                                JOIN EducationalFacility ON EducationalFacility.employeeID = Employee.employeeID;
                                 WHERE InfectedPerson.medicareCard = '$medicareCard'
                                 AND Employee.employeeRole = 'teacher' ";
 
                                 $result = mysqli_query($conn, $sendEmail);
                                 $row = mysqli_fetch_assoc($result);
-                            
-                                $firstName = $row['firstName'];
-                                $lastName = $row['lastName'];
-                                $infectionDate = $row['infectionDate'];
-
-                                $to = 'emaldan2000@gmail.com'; 
-                                $subject = 'WARNING: New Infected Person';
-                                $message = 'Hello, ' . $firstName . ' ' . $lastName . ' has been infected with COVID-19 on ' . $infectionDate . '. Please take the necessary precautions.
-                                All of the assigments for this class will be cancelled for the next two weeks.';
-                                $headers = 'From: sender@example.com'; 
-                                if (mail($to, $subject, $message, $headers)) {
-                                    echo '<div class="text-center text-success mb-4">';
-                                    echo "Email sent successfully";
-                                    echo '</div>';
-                                } else {
-                                    echo '<div class="text-center text-danger mb-4">';
-                                    echo "Error sending email";
-                                    echo '</div>';
+                                if($result)
+                                {
+                                    $firstName = $row['firstName'];
+                                    $lastName = $row['lastName'];
+                                    $infectionDate = $row['infectionDate'];
+    
+                                    $to = 'emaldan2000@gmail.com'; 
+                                    $subject = 'WARNING: New Infected Person';
+                                    $message = 'Hello, ' . $firstName . ' ' . $lastName . ' has been infected with COVID-19 on ' . $infectionDate . '. Please take the necessary precautions.
+                                    All of the assigments for this class will be cancelled for the next two weeks.';
+                                    $headers = 'From: sender@example.com'; 
+                                    if (mail($to, $subject, $message, $headers)) {
+                                        echo '<div class="text-center text-success mb-4">';
+                                        echo "Email sent successfully";
+                                        echo '</div>';
+                                    } else {
+                                        echo '<div class="text-center text-danger mb-4">';
+                                        echo "Error sending email";
+                                        echo '</div>';
+                                    }
                                 }
+                            
+                                
 
                             } else {
                                  echo "Error: " . $sql . "<br>" . mysqli_error($conn);

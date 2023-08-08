@@ -118,7 +118,6 @@
             $row = mysqli_fetch_assoc($result);
 
             $medicareCard = $row['medicareCard'];
-            echo "I am trying to see something $medicareCard";
 
             $sixMonthsAgo = date('Y-m-d', strtotime('-6 months'));
             $sql = "SELECT * FROM VaccinatedPerson 
@@ -134,6 +133,7 @@
             $scheduleDate = $_POST['scheduleDate'];
             $startTime = $_POST['startTime'];
             $endTime = $_POST['endTime'];
+            $facilityID = $_POST['facilityID'];
             $startDateTime = $scheduleDate . ' ' . $startTime;
             $endDateTime = $scheduleDate . ' ' . $endTime;
 
