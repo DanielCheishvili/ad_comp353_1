@@ -97,7 +97,6 @@
         <?php
         include('config.php');
         
-        // Function to check if an employee is infected
         function isInfected($conn, $employeeID, $scheduleDate) {
             $medicareCard = "SELECT medicareCard FROM Employee WHERE employeeID = '$employeeID'";
             $result = mysqli_query($conn, $medicareCard);
@@ -203,8 +202,10 @@
                 $sql = "INSERT INTO Schedule (scheduleID,employeeID,scheduleDate, scheduleStartTime, scheduleEndTime) 
                         VALUES ('$scheduleID','$employeeID','$scheduleDate', '$startDateTime', '$endDateTime')";
                 if (mysqli_query($conn, $sql)) {
-                    echo '<div class="alert alert-success">Schedule added successfully.</div>';
-                    echo '<script>setTimeout(function(){ location.reload(); }, 1000);</script>';
+                    // echo '<div class="alert alert-success">Schedule added successfully.</div>';
+                    // echo '<script>setTimeout(function(){ location.reload(); }, 1000);</script>';
+                    header("Location: " . $_SERVER['PHP_SELF'] . '?employeeID=' . $_GET['employeeID']);
+                    exit;
                 } else {
                     echo '<div class="alert alert-danger">Error adding schedule: ' . mysqli_error($conn) . '</div>';
                 }
