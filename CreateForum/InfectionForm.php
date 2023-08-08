@@ -96,7 +96,7 @@
                                 if($result)
                                 {
                                     echo "success";
-                                    var_dump($result);
+                                    var_dump($row);
                                     
                                 }
                                 else
@@ -106,6 +106,8 @@
                                 $firstName = $row['firstName'];
                                 $lastName = $row['lastName'];
                                 $infectionDate = $row['infectionDate'];
+
+                                echo $firstName, $lastName, $infectionDate;
 
                                 // $to = 'emaldan2000@gmail.com'; 
                                 // $subject = 'WARNING: New Infected Person';
