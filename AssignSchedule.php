@@ -198,6 +198,7 @@
                 $result = mysqli_query($conn, $facilityID);
                 $row = mysqli_fetch_assoc($result);
                 $facilityID = $row['facilityID'];
+                echo $facilityID;
                 $scheduleDate = date('Y-m-d', strtotime($scheduleDate));
                 $sql = "INSERT INTO Schedule (scheduleID,employeeID,scheduleDate, scheduleStartTime, scheduleEndTime) 
                         VALUES ('$scheduleID','$employeeID','$scheduleDate', '$startDateTime', '$endDateTime')";
