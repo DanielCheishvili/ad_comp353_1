@@ -44,7 +44,7 @@
         <?php
         include('config.php');
         $employeeID = isset($_GET['employeeID']) ? $_GET['employeeID'] : '';
-        $sql = "SELECT scheduleID, Person.firstName, Person.LastName,Facility.facilityName,scheduleDate,scheduleStartTime,scheduleEndTime
+        $sql = "SELECT scheduleID, Person.firstName, Person.LastName,Facility.facilityName,scheduleDate,scheduleStartTime,scheduleEndTime,Facility.FacilityID
         FROM Schedule
         JOIN Employee ON Schedule.employeeID = Employee.employeeID
         JOIN Person ON Employee.medicareCard = Person.medicareCard
