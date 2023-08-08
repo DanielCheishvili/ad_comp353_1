@@ -133,6 +133,7 @@
             $startTime = $_POST['startTime'];
             $endTime = $_POST['endTime'];
             $facilityID = $_POST['facilityID'];
+            echo $facilityID;
             $startDateTime = $scheduleDate . ' ' . $startTime;
             $endDateTime = $scheduleDate . ' ' . $endTime;
 
