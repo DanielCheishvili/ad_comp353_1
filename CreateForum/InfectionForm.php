@@ -88,7 +88,7 @@
                                 from InfectedPerson
                                 JOIN Infection ON InfectedPerson.infectionID = Infection.infectionID
                                 JOIN Person ON InfectedPerson.medicareCard = Person.medicareCard
-                                WHERE medicareCard = '$medicareCard'";
+                                WHERE InfectedPerson.medicareCard = '$medicareCard'";
                                 $result = mysqli_query($conn, $sendEmail);
                                 $row = mysqli_fetch_assoc($result);
                                 $firstName = $row['firstName'];
