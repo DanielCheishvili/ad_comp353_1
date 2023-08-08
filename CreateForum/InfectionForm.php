@@ -94,7 +94,7 @@
 
                                 $resultEmail = mysqli_query($conn, $sendEmail);
                                 $row = mysqli_fetch_assoc($resultEmail);
-                                if(mysqli_num_rows($resultEmail) == 0)
+                                if(mysqli_num_rows($resultEmail) != 0)
                                 {
                                     $firstName = $row['firstName'];
                                     $lastName = $row['lastName'];
