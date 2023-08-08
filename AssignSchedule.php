@@ -205,8 +205,7 @@
                 if (mysqli_query($conn, $sql)) {
                     // echo '<div class="alert alert-success">Schedule added successfully.</div>';
                     // echo '<script>setTimeout(function(){ location.reload(); }, 1000);</script>';
-                    header("Location: " . $_SERVER['PHP_SELF'] . '?employeeID=' . $_GET['employeeID']);
-                    exit;
+                    echo '<script>setTimeout(function(){ window.location.href = "../AssignSchedule.php?employeeID=' . $employeeID . '"; }, 1000);</script>';
                 } else {
                     echo '<div class="alert alert-danger">Error adding schedule: ' . mysqli_error($conn) . '</div>';
                 }
