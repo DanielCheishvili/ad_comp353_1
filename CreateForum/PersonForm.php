@@ -98,9 +98,9 @@
                         $sql = "INSERT INTO Person (medicareCard, firstName, lastName, address, city, province, postalCode, telephoneNumber, email, dateOfBirth, medicareExpiryDate, citizenship)
                         VALUES ('$medicareCard', '$firstName', '$lastName', '$address', '$city', '$province', '$postalCode', '$telephoneNumber', '$email', '$dateOfBirth', '$medicareExpiryDate', '1')";
                         if (mysqli_query($conn, $sql)) {
-                            echo "Record inserted successfully!";
-                            //header("Location: ../Tables/person.php");
-                            exit();
+                            echo '<div class="text-center text-success mb-4">';
+                            echo "Record Inserted successfully";
+                            echo '</div>';
                         } else {
                             echo "Error: " . $sql . "<br>" . mysqli_error($conn);
                         }
@@ -130,9 +130,9 @@
                     WHERE medicareCard = '$originalMedicareCard'";
 
                     if (mysqli_query($conn, $sql)) {
-                        echo "Record updated successfully!";
-                        //header("Location: ../Tables/person.php");
-                        //exit();
+                        echo '<div class="text-center text-success mb-4">';
+                        echo "Record updated successfully";
+                        echo '</div>';
                     } 
                     else {
                         echo "Error: " . $sql . "<br>" . mysqli_error($conn);
@@ -146,9 +146,9 @@
         $medicareCard = isset($_GET['medicareCard']) ? $_GET['medicareCard'] : '';
         $sql = "DELETE FROM Person WHERE medicareCard = '$medicareCard'";
         if (mysqli_query($conn, $sql)) {
-            echo "Record deleted successfully!";
-            //header("Location: ../Tables/person.php");
-            exit();
+            echo '<div class="text-center text-success mb-4">';
+            echo "Record Deleted successfully";
+            echo '</div>';
         } else {
             echo "Error: " . $sql . "<br>" . mysqli_error($conn);
         }

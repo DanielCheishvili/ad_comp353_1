@@ -152,13 +152,14 @@
             $startTime = $_POST['startTime'];
             $endTime = $_POST['endTime'];
 
-            $sqlExistingSchedules = "SELECT scheduleStartTime, scheduleEndTime FROM Schedule
+            $sqlExistingSchedules = "SELECT scheduleDate, scheduleStartTime, scheduleEndTime FROM Schedule
                                     WHERE employeeID = '$employeeID'";
             $resultExistingSchedules = mysqli_query($conn, $sqlExistingSchedules);
 
             $existingSchedules = array();
             while ($rowExistingSchedule = mysqli_fetch_assoc($resultExistingSchedules)) {
                 $existingSchedules[] = [
+                    'date' => $rowExistingSchedule['scheduleDate'],
                     'startTime' => strtotime($rowExistingSchedule['scheduleStartTime']),
                     'endTime' => strtotime($rowExistingSchedule['scheduleEndTime'])
                 ];
@@ -169,27 +170,30 @@
 
             $isConflict = false;
             foreach ($existingSchedules as $schedule) {
-                if ($newStartTime >= $schedule['startTime'] && $newStartTime <= $schedule['endTime']) {
-                    $isConflict = true;
-                    break;
-                }
-                if ($newEndTime >= $schedule['startTime'] && $newEndTime <= $schedule['endTime']) {
-                    $isConflict = true;
-                    break;
-                }
-                if ($newStartTime <= $schedule['startTime'] && $newEndTime >= $schedule['endTime']) {
-                    $isConflict = true;
-                    break;
-                }
-                if ($newStartTime <= $schedule['startTime'] && strtotime('+1 hour', $newEndTime) >= $schedule['startTime']) {
-                    $isConflict = true;
-                    break;
+                if ($scheduleDate == $schedule['date']) {
+                    if ($newStartTime >= $schedule['startTime'] && $newStartTime <= $schedule['endTime']) {
+                        $isConflict = true;
+                        break;
+                    }
+                    if ($newEndTime >= $schedule['startTime'] && $newEndTime <= $schedule['endTime']) {
+                        $isConflict = true;
+                        break;
+                    }
+                    if ($newStartTime <= $schedule['startTime'] && $newEndTime >= $schedule['endTime']) {
+                        $isConflict = true;
+                        break;
+                    }
+                    if ($newStartTime <= $schedule['startTime'] && strtotime('+1 hour', $newEndTime) >= $schedule['startTime']) {
+                        $isConflict = true;
+                        break;
+                    }
                 }
             }
 
             if ($isConflict) {
                 echo '<div class="alert alert-danger">The schedule conflicts with existing schedules or is not at least 1 hour apart.</div>';
             }
+
             else {
                 $facilityID = "SELECT facilityID FROM Schedule WHERE employeeID = '$employeeID'";
                 $result = mysqli_query($conn, $facilityID);

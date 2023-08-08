@@ -85,33 +85,27 @@
                                 echo "New record created successfully";
                                 echo '</div>';
                                 echo $medicareCard;
-                                $sendEmail ="SELECT Person.firstName, Person.lastName, Infection.infectionDate
+                                $sendEmail ="SELECT Person.firstName, Person.lastName, Infection.infectionDate,Employee.employeeRole,
+                                EducationalFacilityID.educationalFacilityID,principalID
                                 from InfectedPerson
                                 JOIN Infection ON InfectedPerson.infectionID = Infection.infectionID
                                 JOIN Person ON InfectedPerson.medicareCard = Person.medicareCard
-                                WHERE InfectedPerson.medicareCard = '$medicareCard'";
+                                JOIN Employee ON Person.medicareCard = Employee.medicareCard
+                                JOIN EducationalFacility ON EducationalFacility.employeeID = Employee.employeeID;
+                                WHERE InfectedPerson.medicareCard = '$medicareCard'
+                                AND Employee.employeeRole = 'teacher' ";
 
                                 $result = mysqli_query($conn, $sendEmail);
                                 $row = mysqli_fetch_assoc($result);
-                                if($result)
-                                {
-                                    echo "success";
-                                    var_dump($row);
-                                    
-                                }
-                                else
-                                {
-                                    echo "Error: " . $sql . "<br>" . mysqli_error($conn);
-                                }
+                            
                                 $firstName = $row['firstName'];
                                 $lastName = $row['lastName'];
                                 $infectionDate = $row['infectionDate'];
 
-                                echo $firstName, $lastName, $infectionDate;
-
                                 $to = 'emaldan2000@gmail.com'; 
                                 $subject = 'WARNING: New Infected Person';
-                                $message = 'Hello, ' . $firstName . ' ' . $lastName . ' has been infected with COVID-19 on ' . $infectionDate . '. Please take the necessary precautions.';
+                                $message = 'Hello, ' . $firstName . ' ' . $lastName . ' has been infected with COVID-19 on ' . $infectionDate . '. Please take the necessary precautions.
+                                All of the assigments for this class will be cancelled for the next two weeks.';
                                 $headers = 'From: sender@example.com'; 
                                 if (mail($to, $subject, $message, $headers)) {
                                     echo '<div class="text-center text-success mb-4">';

@@ -139,14 +139,7 @@
         $studentID = isset($_GET['studentID']) ? $_GET['studentID'] : '';
 
         // Delete related records in child tables first
-        $childTables = array("EducationalFacility", "StudentLevel");
-
-        foreach ($childTables as $table) {
-            $deleteSql = "DELETE FROM $table WHERE studentID IN (SELECT studentID FROM Student WHERE studentID = '$studentID')";
-            if (!mysqli_query($conn, $deleteSql)) {
-               echo "Error deleting from $table: " . mysqli_error($conn);
-            }
-    }
+       
         $sql = "DELETE FROM Student WHERE studentID = '$studentID'";
         if (mysqli_query($conn, $sql)) {
             echo "Record deleted successfully!";
