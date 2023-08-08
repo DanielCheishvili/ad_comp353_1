@@ -84,7 +84,6 @@
                                 echo '<div class="text-center text-success mb-4">';
                                 echo "New record created successfully";
                                 echo '</div>';
-                                echo $medicareCard;
                                 $sendEmail ="SELECT Person.firstName, Person.lastName, Infection.infectionDate,Employee.employeeRole
                                 from InfectedPerson
                                 JOIN Infection ON InfectedPerson.infectionID = Infection.infectionID
@@ -93,9 +92,9 @@
                                 WHERE InfectedPerson.medicareCard = '$medicareCard'
                                 AND Employee.employeeRole = 'teacher' ";
 
-                                $result = mysqli_query($conn, $sendEmail);
-                                $row = mysqli_fetch_assoc($result);
-                                if($result)
+                                $resultEmail = mysqli_query($conn, $sendEmail);
+                                $row = mysqli_fetch_assoc($resultEmail);
+                                if($resultEmail)
                                 {
                                     $firstName = $row['firstName'];
                                     $lastName = $row['lastName'];
