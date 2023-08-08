@@ -190,9 +190,11 @@
             if ($isConflict) {
                 echo '<div class="alert alert-danger">The schedule conflicts with existing schedules or is not at least 1 hour apart.</div>';
             }
-            // All constraints met, insert schedule
             else {
                 $facilityID = "SELECT facilityID FROM Schedule WHERE employeeID = '$employeeID'";
+                $result = mysqli_query($conn, $facilityID);
+                $row = mysqli_fetch_assoc($result);
+                $facilityID = $row['facilityID'];
                 $scheduleDate = date('Y-m-d', strtotime($scheduleDate));
                 $sql = "INSERT INTO Schedule (scheduleID,employeeID,facilityID,scheduleDate, scheduleStartTime, scheduleEndTime) 
                         VALUES ('$scheduleID','$employeeID','$facilityID','$scheduleDate', '$startDateTime', '$endDateTime')";
