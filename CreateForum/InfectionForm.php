@@ -81,9 +81,34 @@
                         else{
                            $sql = "INSERT INTO InfectedPerson (infectedPersonID, medicareCard, infectionID) VALUES ('$infectedPersonID', '$medicareCard', '$infectionID')";
                             if (mysqli_query($conn, $sql)) {
-                                 echo '<div class="text-center text-success mb-4">';
-                                 echo "New record created successfully";
-                                 echo '</div>';
+                                echo '<div class="text-center text-success mb-4">';
+                                echo "New record created successfully";
+                                echo '</div>';
+                                $sendEmail ="SELECT Person.firstName, Person.lastName, Infection.infectionDate
+                                from InfectedPerson
+                                JOIN Infection ON InfectedPerson.infectionID = Infection.infectionID
+                                JOIN Person ON InfectedPerson.medicareCard = Person.medicareCard
+                                WHERE medicareCard = '$medicareCard'";
+                                $result = mysqli_query($conn, $sendEmail);
+                                $row = mysqli_fetch_assoc($result);
+                                $firstName = $row['firstName'];
+                                $lastName = $row['lastName'];
+                                $infectionDate = $row['infectionDate'];
+
+                                $to = 'emaldan2000@gmail.com'; 
+                                $subject = 'WARNING: New Infected Person';
+                                $message = 'Hello, ' . $firstName . ' ' . $lastName . ' has been infected with COVID-19 on ' . $infectionDate . '. Please take the necessary precautions.';
+                                $headers = 'From: sender@example.com'; 
+                                if (mail($to, $subject, $message, $headers)) {
+                                    echo '<div class="text-center text-success mb-4">';
+                                    echo "Email sent successfully";
+                                    echo '</div>';
+                                } else {
+                                    echo '<div class="text-center text-danger mb-4">';
+                                    echo "Error sending email";
+                                    echo '</div>';
+                                }
+
                             } else {
                                  echo "Error: " . $sql . "<br>" . mysqli_error($conn);
                             }
