@@ -121,7 +121,7 @@
 
             $sixMonthsAgo = date('Y-m-d', strtotime('-6 months'));
             $sql = "SELECT * FROM VaccinatedPerson 
-            JOIN Vaccination ON VaccinatedPerson.vaccinatedPerson = Vaccination.VaccinationID
+            JOIN Vaccination ON VaccinatedPerson.vaccinationID = Vaccination.VaccinationID
             WHERE VaccinatedPerson.medicareCard = '$medicareCard' AND Vaccination.doseDate < '$sixMonthsAgo'";
             $result = mysqli_query($conn, $sql);
             return mysqli_num_rows($result) > 0;
@@ -200,8 +200,8 @@
                 $row = mysqli_fetch_assoc($result);
                 $facilityID = $row['facilityID'];
                 $scheduleDate = date('Y-m-d', strtotime($scheduleDate));
-                $sql = "INSERT INTO Schedule (scheduleID,employeeID,facilityID,scheduleDate, scheduleStartTime, scheduleEndTime) 
-                        VALUES ('$scheduleID','$employeeID','$facilityID','$scheduleDate', '$startDateTime', '$endDateTime')";
+                $sql = "INSERT INTO Schedule (scheduleID,employeeID,scheduleDate, scheduleStartTime, scheduleEndTime) 
+                        VALUES ('$scheduleID','$employeeID','$scheduleDate', '$startDateTime', '$endDateTime')";
                 if (mysqli_query($conn, $sql)) {
                     echo '<div class="alert alert-success">Schedule added successfully.</div>';
                     echo '<script>setTimeout(function(){ location.reload(); }, 1000);</script>';
