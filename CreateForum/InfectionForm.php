@@ -112,6 +112,10 @@
                                         echo "Email sent successfully";
                                         echo '</div>';
                                         $dateNow = date("Y-m-d");
+                                        echo $employeeID;
+                                        echo $dateNow;
+                                        echo $personEmail;
+                                        
                                         $insertIntoLog = "INSERT INTO Log (employeeID,emailDate,senderFacility,recieverEmail,emailSubject,emailBody)
                                         VALUES('$employeeID','$dateNow','Rosemont Elementary School','$personEmail','$subject','$message')";
                                         $resultsOfInsert = mysqli_query($conn, $insertIntoLog);
