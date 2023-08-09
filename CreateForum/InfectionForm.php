@@ -104,8 +104,7 @@
                                 
                                     $to = 'emaldan2000@gmail.com'; 
                                     $subject = 'WARNING: New Infected Person';
-                                    $message = 'Hello, ' . $firstName . ' ' . $lastName . ' has been infected with COVID-19 on ' . $infectionDate . '. Please take the necessary precautions.
-                                    All of the assigments for this class will be cancelled for the next two weeks.';
+                                    $message = 'Hello, ' . $firstName . ' ' . $lastName . ' has been infected with COVID-19 on ' . $infectionDate . '.All of the assigments for this class will be cancelled for the next two weeks.';
                                     $headers = 'From: sender@example.com'; 
                                     if (mail($to, $subject, $message, $headers)) {
                                         echo '<div class="text-center text-success mb-4">';
@@ -128,7 +127,7 @@
                                         else
                                         {
                                             echo '<div class="text-center text-danger mb-4">';
-                                            echo "Error updating email log" + mysqli_error($conn);
+                                            echo "Error updating email log" + mysqli_error($conn) + var_dump($resultsOfInsert);
                                             echo '</div>';
                                         }
                                     } else {
