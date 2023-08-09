@@ -124,7 +124,7 @@
                                         else
                                         {
                                             echo '<div class="text-center text-danger mb-4">';
-                                            echo "Error updating email log";
+                                            echo "Error updating email log" + mysqli_error($conn);
                                             echo '</div>';
                                         }
                                     } else {
