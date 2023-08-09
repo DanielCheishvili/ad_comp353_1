@@ -111,9 +111,6 @@
                                         echo "Email sent successfully";
                                         echo '</div>';
                                         $dateNow = date("Y-m-d");
-                                        echo $employeeID;
-                                        echo $dateNow;
-                                        echo $personEmail;
                                         
                                         $insertIntoLog = "INSERT INTO Log (employeeID,emailDate,senderFacility,receiverEmail,emailSubject,emailBody)
                                         VALUES('$employeeID','$dateNow','Rosemont Elementary School','$personEmail','$subject','$message')";
