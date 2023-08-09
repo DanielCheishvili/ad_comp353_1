@@ -84,7 +84,7 @@
                                 echo '<div class="text-center text-success mb-4">';
                                 echo "New record created successfully";
                                 echo '</div>';
-                                $sendEmail ="SELECT Person.firstName, Person.lastName, Infection.infectionDate,Employee.employeeRole
+                                $sendEmail ="SELECT Person.firstName, Person.lastName, Infection.infectionDate,Employee.employeeRole,Employee.employeeID,Person.email
                                 from InfectedPerson
                                 JOIN Infection ON InfectedPerson.infectionID = Infection.infectionID
                                 JOIN Person ON InfectedPerson.medicareCard = Person.medicareCard
@@ -99,7 +99,9 @@
                                     $firstName = $row['firstName'];
                                     $lastName = $row['lastName'];
                                     $infectionDate = $row['infectionDate'];
-    
+                                    $employeeID = $row['employeeID'];
+                                    $personEmail = $row['email'];
+                                
                                     $to = 'emaldan2000@gmail.com'; 
                                     $subject = 'WARNING: New Infected Person';
                                     $message = 'Hello, ' . $firstName . ' ' . $lastName . ' has been infected with COVID-19 on ' . $infectionDate . '. Please take the necessary precautions.
@@ -109,6 +111,22 @@
                                         echo '<div class="text-center text-success mb-4">';
                                         echo "Email sent successfully";
                                         echo '</div>';
+                                        $dateNow = date("Y-m-d");
+                                        $insertIntoLog = "INSERT INTO Log (employeeID,emailDate,senderFacility,recieverEmail,emailSubject,emailBody)
+                                        VALUES('$employeeID','$dateNow','Rosemont Elementary School','$personEmail','$subject','$message')";
+                                        $resultsOfInsert = mysqli_query($conn, $insertIntoLog);
+                                        if($resultsOfInsert)
+                                        {
+                                            echo '<div class="text-center text-success mb-4">';
+                                            echo "Email log updated successfully";
+                                            echo '</div>';
+                                        }
+                                        else
+                                        {
+                                            echo '<div class="text-center text-danger mb-4">';
+                                            echo "Error updating email log";
+                                            echo '</div>';
+                                        }
                                     } else {
                                         echo '<div class="text-center text-danger mb-4">';
                                         echo "Error sending email";
