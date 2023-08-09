@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Person Form</title>
+    <title>Student Form</title>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
 </head>
 <body>
@@ -179,7 +179,7 @@
                     <label for="endSchoolDate">End School Date</label>
                     <input type="text" name="endSchoolDate" id="endSchoolDate" class="form-control" placeholder="End School Date" value="<?php echo $endSchoolDate; ?>">
                 </div>
-                <?php echo "Debug: educationalFacilityId = $educationalFacilityId"; ?>
+                
 
                 <div class="form-group col-md-6">
                     <label for="educationalFacilityId">Educational Facility ID</label>
