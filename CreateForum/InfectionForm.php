@@ -104,7 +104,7 @@
                                 
                                     $to = 'emaldan2000@gmail.com'; 
                                     $subject = 'WARNING: New Infected Person';
-                                    $message = 'Hello, ' . $firstName . ' ' . $lastName . ' has been infected with COVID-19 on ' . $infectionDate . '.All of the assigments for this class will be cancelled for the next two weeks.';
+                                    $message = 'Hello, ' . $firstName . ' ' . $lastName . ' has been infected with COVID-19 on ' . $infectionDate . '.';
                                     $headers = 'From: sender@example.com'; 
                                     if (mail($to, $subject, $message, $headers)) {
                                         echo '<div class="text-center text-success mb-4">';
@@ -115,7 +115,7 @@
                                         echo $dateNow;
                                         echo $personEmail;
                                         
-                                        $insertIntoLog = "INSERT INTO Log (employeeID,emailDate,senderFacility,recieverEmail,emailSubject,emailBody)
+                                        $insertIntoLog = "INSERT INTO Log (employeeID,emailDate,senderFacility,receiverEmail,emailSubject,emailBody)
                                         VALUES('$employeeID','$dateNow','Rosemont Elementary School','$personEmail','$subject','$message')";
                                         $resultsOfInsert = mysqli_query($conn, $insertIntoLog);
                                         if($resultsOfInsert)
