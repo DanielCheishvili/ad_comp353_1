@@ -5,7 +5,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Query Buttons</title>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
-    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
 
 </head>
 <body>
@@ -68,67 +67,66 @@
 
    
     <script>
-    $(document).ready(function () {
-        function displayResults(queryNumber) {
-            $.ajax({
-                url: 'QueriesResult.php', 
-                method: 'POST',
-                data: { queryNumber: queryNumber },
-                success: function (data) {
-                    $('#queryResults').html(data); 
-                },
-                error: function (xhr, status, error) {
-                    console.error(error);
-                    $('#queryResults').html('<p class="text-danger">Error fetching results.</p>');
+    
+    function displayResults(queryNumber) {
+            var xhr = new XMLHttpRequest();
+            xhr.open('POST', 'QueriesResult.php', true);
+            xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+            xhr.onreadystatechange = function () {
+                if (xhr.readyState === 4 && xhr.status === 200) {
+                    document.getElementById('queryResults').innerHTML = xhr.responseText;
+                } else if (xhr.readyState === 4) {
+                    document.getElementById('queryResults').innerHTML = '<p class="text-danger">Error fetching results.</p>';
                 }
-            });
+            };
+            xhr.send('queryNumber=' + queryNumber);
         }
 
-        $('#query1Btn').click(function () {
+        document.getElementById('query1Btn').addEventListener('click', function () {
             displayResults(1);
         });
 
-        $('#query2Btn').click(function () {
+        document.getElementById('query2Btn').addEventListener('click', function () {
             displayResults(2);
         });
 
-        $('#query3Btn').click(function () {
+        document.getElementById('query3Btn').addEventListener('click', function () {
             displayResults(3);
         });
 
-        $('#query4Btn').click(function () {
+        document.getElementById('query4Btn').addEventListener('click', function () {
             displayResults(4);
         });
 
-        $('#query5Btn').click(function () {
+        document.getElementById('query5Btn').addEventListener('click', function () {
             displayResults(5);
         });
 
-        $('#query6Btn').click(function () {
+        document.getElementById('query6Btn').addEventListener('click', function () {
             displayResults(6);
         });
 
-        $('#query7Btn').click(function () {
+        document.getElementById('query7Btn').addEventListener('click', function () {
             displayResults(7);
         });
 
-        $('#query8Btn').click(function () {
+        document.getElementById('query8Btn').addEventListener('click', function () {
             displayResults(8);
         });
 
-        $('#query9Btn').click(function () {
+        document.getElementById('query9Btn').addEventListener('click', function () {
             displayResults(9);
         });
 
-        $('#query10Btn').click(function () {
+        document.getElementById('query10Btn').addEventListener('click', function () {
             displayResults(10);
         });
-        
 
-        $('#query11Btn').click(function () {
+        document.getElementById('query11Btn').addEventListener('click', function () {
             displayResults(11);
         });
-    });
+
+
 </script>
 <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.3/dist/umd/popper.min.js"></script>
