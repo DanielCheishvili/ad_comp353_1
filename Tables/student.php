@@ -67,6 +67,9 @@
                     <li class="nav-item">
                         <a class="nav-link" href="infection.php">Infections</a>
                     </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="../ShowQueries.php">Show Queries</a>
+                    </li>
                 </ul>
             </div>
         </div>

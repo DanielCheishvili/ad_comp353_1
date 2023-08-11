@@ -2,55 +2,40 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Query Buttons</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
 </head>
 <body>
-    <?php
-    include('config.php');
-    $sql = "SELECT
-    Facility.facilityName,
-    Facility.address,
-    Facility.city,
-    Facility.province,
-    Facility.postalCode,
-    Facility.phoneNumber,
-    Facility.webAddress,
-    Facility.capacity,
-    Person.firstName,
-    Person.lastName,
-    COUNT(Employee.employeeID) AS NumberOfEmployees
-    FROM Facility
-    LEFT JOIN ManagementFacility ON ManagementFacility.facilityID = Facility.facilityID
-    LEFT JOIN EducationalFacility ON EducationalFacility.educationFacilityID = Facility.facilityID
-    LEFT JOIN Employee ON Employee.employeeID = ManagementFacility.presidentID OR Employee.employeeID = EducationalFacility.principalID
-    LEFT JOIN Person ON Person.medicareCard = Employee.medicareCard
-    GROUP BY
-    Facility.facilityName,
-    Facility.address,
-    Facility.city,
-    Facility.province,
-    Facility.postalCode,
-    Facility.phoneNumber,
-    Facility.webAddress,
-    Facility.capacity,
-    Person.firstName,
-    Person.lastName
-    ORDER BY 
-    Facility.province ASC, Facility.city ASC, Facility.facilityID ASC, NumberOfEmployees ASC
-    ";
+    <div class="container mt-5 text-center">
+        <h2>Select a Query to Display Results</h2>
+        <div class="row mt-4">
+            <div class="col-md-6 offset-md-3">
+                <button class="btn btn-primary btn-block mb-2" id="query1Btn">Query 1</button>
+                <button class="btn btn-success btn-block mb-2" id="query2Btn">Query 2</button>
+                <button class="btn btn-info btn-block mb-2" id="query3Btn">Query 3</button>
+                <button class="btn btn-warning btn-block mb-2" id="query4Btn">Query 4</button>
+                <button class="btn btn-danger btn-block mb-2" id="query5Btn">Query 5</button>
+                <button class="btn btn-secondary btn-block mb-2" id="query6Btn">Query 6</button>
+                <button class="btn btn-primary btn-block mb-2" id="query7Btn">Query 7</button>
+                <button class="btn btn-success btn-block mb-2" id="query8Btn">Query 8</button>
+                <button class="btn btn-info btn-block mb-2" id="query9Btn">Query 9</button>
+                <button class="btn btn-warning btn-block mb-2" id="query10Btn">Query 10</button>
+                <button class="btn btn-danger btn-block mb-2" id="query11Btn">Query 11</button>
+            </div>
+        </div>
+        <div class="row mt-4">
+            <div class="col-md-6 offset-md-3">
+                <div id="queryResults" class="text-center"></div>
+            </div>
+        </div>
+    </div>
 
-    $result = mysqli_query($conn, $sql);
-    if (mysqli_num_rows($result) > 0) {
-        echo "<table border='1'><tr><th>Facility Name</th><th>Address</th><th>City</th><th>Province</th><th>Postal Code</th><th>Phone Number</th><th>Web Address</th><th>Capacity</th><th>President/Principal</th><th>Number of Employees</th></tr>";
-        while($row = mysqli_fetch_assoc($result)) {
-            echo "<tr><td>".$row["facilityName"]."</td><td>".$row["address"]."</td><td>".$row["city"]."</td><td>".$row["province"]."</td><td>".$row["postalCode"]."</td><td>".$row["phoneNumber"]."</td><td>".$row["webAddress"]."</td><td>".$row["capacity"]."</td><td>".$row["firstName"]." ".$row["lastName"]."</td><td>".$row["NumberOfEmployees"]."</td></tr>";
-        }
-        echo "</table>";
-    } else {
-        echo "0 results";
-    }
-    ?>
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.3/dist/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script>
+        // JavaScript code for button clicks and AJAX goes here...
+    </script>
 </body>
 </html>
