@@ -434,8 +434,67 @@ if (isset($_POST['queryNumber'])) {
             } else {
                 $queryResult .= '<p class="text-danger">No results found.</p>';
             }
-    
+            break;
+        
+        case 10:
+            $queryResult = '<p>Query 10 result</p>';
+            $sql = "SELECT 
+            Person.firstName,
+                    Person.lastName,
+                    Employee.startWorkDate,
+                    Teacher.specialization,
+                    Person.dateOfBirth,
+                  Person.email,
+            SUM((TIMESTAMPDIFF(SECOND, Schedule.scheduleStartTime, Schedule.scheduleEndTime)) / 3600) AS totalScheduledHours
+            FROM Person
+            JOIN Employee ON Person.medicareCard = Employee.medicareCard
+            JOIN Teacher ON Employee.employeeID = Teacher.employeeID
+            JOIN InfectedPerson ON Person.medicareCard = InfectedPerson.medicareCard
+            JOIN Infection ON InfectedPerson.infectionID = Infection.infectionID AND Infection.infectionType = 'covid-19'
+            JOIN Schedule ON Employee.employeeID = Schedule.employeeID
+            WHERE 
+                    Teacher.additionalRole = 'school counselor'
+            GROUP BY 
+                    Person.firstName,
+                   Person.lastName,
+                    Employee.startWorkDate,
+                    Teacher.specialization,
+                    Person.dateOfBirth,
+                    Person.email
+            HAVING 
+            COUNT(InfectedPerson.infectionID) >= 3
+            ORDER BY 
+                    Teacher.specialization ASC,
+                    Person.firstName ASC,
+                    Person.lastName ASC";
             
+            $result = mysqli_query($conn, $sql);
+
+            //write me a table to display all results
+            if ($result && mysqli_num_rows($result) > 0) {
+                $queryResult .= '<div class="text-center">'; 
+                $queryResult .= '<table class="table table-bordered table-striped">';
+                $queryResult .= '<thead class="thead-dark"><tr><th scope="col">First Name</th><th scope="col">Last Name</th><th scope="col">Start Work Date</th><th scope="col">Specialization</th><th scope="col">Date of Birth</th><th scope="col">Email</th><th scope="col">Total Scheduled Hours</th></tr></thead>';
+                $queryResult .= '<tbody>';
+                while ($row = mysqli_fetch_assoc($result)) {
+                    $queryResult .= '<tr>';
+                    $queryResult .= '<td>' . $row['firstName'] . '</td>';
+                    $queryResult .= '<td>' . $row['lastName'] . '</td>';
+                    $queryResult .= '<td>' . $row['startWorkDate'] . '</td>';
+                    $queryResult .= '<td>' . $row['specialization'] . '</td>';
+                    $queryResult .= '<td>' . $row['dateOfBirth'] . '</td>';
+                    $queryResult .= '<td>' . $row['email'] . '</td>';
+                    $queryResult .= '<td>' . $row['totalScheduledHours'] . '</td>';
+                    $queryResult .= '</tr>';
+                }
+                $queryResult .= '</tbody>';
+                $queryResult .= '</table>';
+                $queryResult .= '</div>';
+            } else {
+                $queryResult .= '<p class="text-danger">No results found.</p>';
+            }
+    
+            break;
             
               
         
