@@ -55,7 +55,6 @@
                 <button class="btn btn-success btn-block mb-2" id="query8Btn">Query 8</button>
                 <button class="btn btn-info btn-block mb-2" id="query9Btn">Query 9</button>
                 <button class="btn btn-warning btn-block mb-2" id="query10Btn">Query 10</button>
-                <button class="btn btn-danger btn-block mb-2" id="query11Btn">Query 11</button>
             </div>
         </div>
         <div class="row mt-4">
@@ -120,10 +119,6 @@
 
         document.getElementById('query10Btn').addEventListener('click', function () {
             displayResults(10);
-        });
-
-        document.getElementById('query11Btn').addEventListener('click', function () {
-            displayResults(11);
         });
 
 
