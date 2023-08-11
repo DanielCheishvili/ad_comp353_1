@@ -44,6 +44,7 @@ if (isset($_POST['queryNumber'])) {
             $result = mysqli_query($conn, $sql);
             //write me a table of all the results
             if ($result && mysqli_num_rows($result) > 0) {
+                $queryResult .= '<div class="text-center">'; 
                 $queryResult .= '<table class="table table-bordered table-striped">';
                 $queryResult .= '<thead class="thead-dark"><tr><th scope="col">Facility Name</th><th scope="col">Address</th><th scope="col">City</th><th scope="col">Province</th><th scope="col">Postal Code</th><th scope="col">Phone Number</th><th scope="col">Web Address</th><th scope="col">Capacity</th><th scope="col">President/Principal</th><th scope="col">Number of Employees</th></tr></thead>';
                 $queryResult .= '<tbody>';
@@ -63,6 +64,7 @@ if (isset($_POST['queryNumber'])) {
                 }
                 $queryResult .= '</tbody>';
                 $queryResult .= '</table>';
+                $queryResult .= '</div>';
             } else {
                 $queryResult .= '<p class="text-danger">No results found.</p>';
             }
