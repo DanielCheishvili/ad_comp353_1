@@ -7,6 +7,39 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
 </head>
 <body>
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <div class="container">
+            <a class="navbar-brand" href="#">My Website</a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav">
+                    <li class="nav-item">
+                        <a class="nav-link" href="/Tables/person.php">Person</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/Tables/employee.php">Employees</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/Tables/student.php">Students</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/Tables/facility.php">Facilities</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/Tables/vaccination.php">Vaccinations</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/Tables/infection.php">Infections</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/ShowQueries.php">Show Queries</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
     <div class="container mt-5 text-center">
         <h2>Select a Query to Display Results</h2>
         <div class="row mt-4">
@@ -35,7 +68,68 @@
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.3/dist/umd/popper.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
     <script>
-        // JavaScript code for button clicks and AJAX goes here...
-    </script>
+    $(document).ready(function () {
+        function displayResults(queryNumber) {
+            $.ajax({
+                url: 'QueriesResult.php', 
+                method: 'POST',
+                data: { queryNumber: queryNumber },
+                success: function (data) {
+                    $('#queryResults').html(data); 
+                },
+                error: function (xhr, status, error) {
+                    console.error(error);
+                    $('#queryResults').html('<p class="text-danger">Error fetching results.</p>');
+                }
+            });
+        }
+
+        $('#query1Btn').click(function () {
+            displayResults(1);
+        });
+
+        $('#query2Btn').click(function () {
+            displayResults(2);
+        });
+
+        $('#query3Btn').click(function () {
+            displayResults(3);
+        });
+
+        $('#query4Btn').click(function () {
+            displayResults(4);
+        });
+
+        $('#query5Btn').click(function () {
+            displayResults(5);
+        });
+
+        $('#query6Btn').click(function () {
+            displayResults(6);
+        });
+
+        $('#query7Btn').click(function () {
+            displayResults(7);
+        });
+
+        $('#query8Btn').click(function () {
+            displayResults(8);
+        });
+
+        $('#query9Btn').click(function () {
+            displayResults(9);
+        });
+
+        $('#query10Btn').click(function () {
+            displayResults(10);
+        });
+        
+
+        $('#query11Btn').click(function () {
+            displayResults(11);
+        });
+    });
+</script>
+
 </body>
 </html>
